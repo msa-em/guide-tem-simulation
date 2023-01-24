@@ -12,7 +12,7 @@ Colin Ophus, Alex Rakowski, Hamish Brown, Jacob Madsen, Toma Susi, et al.
 
 ### Information
 
-This repository contains the source files for this manuscript. Manuscript will be submitted to Elements of Microscopy, published by the ![Microscopy Society of America](https://www.microscopy.org). Manuscript platform powered by ~[https://curvenote.com/](Curvenote).
+This repository contains the source files for this manuscript. Manuscript will be submitted to Elements of Microscopy, published by the [Microscopy Society of America](https://www.microscopy.org). Manuscript platform powered by [https://curvenote.com/](Curvenote).
 
 
 
