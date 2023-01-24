@@ -17,8 +17,8 @@ This repository contains the source files for this manuscript. Manuscript will b
 
 
 
-### License
+### License - CC-BY
 
-![CC-BY license](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png)
+<img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png" alt="drawing" width="200"/>
 
 CC-BY: This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use.
