@@ -160,11 +160,40 @@ Mathematical
 
 Scalars, vectors and matrices can be represented using native python types in multiple ways. Scalars, can be simply represented as a number, which we assign to a variable. Vectors and arrays, can be stored inside a python data structure such as a *list*.
 
+```{code-block} python
+:caption: Examples of a scalar vector and a 2D array in Python syntax
 
+scalar = 5
+vector = [0,1,2,3,4,5]
+array = [[0,1,2],
+         [3,4,5],
+         [6,7,8]]
+# we can access individual or multiple elements from vectors and arrays by passing an index 
+# e.g. get the second element from the vector 
+vector[1] # n.b. python indexes from 0
+1
+# e.g. get second row from the array
+array[1]
+[3, 4, 5]
+# e.g. get last element from second row of the array
+array[1][2]
+5
+
+```
 
 Although it is typical to use additional python libraries to accelerate performance, improved memory use and increase functionality, the *de facto* library is numpy, and is used throughout this text. Further performance improvements may be achieved using GPU aware libraries such as CuPy, Numba or pyTorch; S/TEM simulations benefit greatly from hardware accelerations. However, it is important to note that parallelism and/or off loading calculations work to the GPU doesn’t guarantee improved performance and can be in fact come with a significant performance penalty. With the increasing power of GPUs and number of cores in a CPUs, utilising GPUs and parallising code is an extremely active area of research **Something about Amdahl’s law, and Cuda/OpenCL/Julia languages?**
 
+```{code-block} python
+:caption: Examples of a scalar vector and a 2D array in using numpy Python syntax
 
+import numpy as np # n.b we will omit the import in the rest of the text for clarity 
+numpy_scalar = np.array(5)
+numpy_vector = np.array([0,1,2,3,4,5])
+numpy_array = np.array([[0,1,2],
+                        [3,4,5],
+                        [6,7,8]])
+
+```
 
 TODO:
 
@@ -188,7 +217,24 @@ complex conjugates the complex conjugate of a number typically denoted {math}`\b
 
 Python uses {math}`j` as the letter to denote imaginary unit, a quick example of basic usage is shown in ADD REF.
 
+```{code-block} python
+:caption: Basic use of complex numbers in Python syntax
 
+a = 4 + 6j
+b = 0 - 2j
+c = a + b 
+c 
+(4+4j) 
+c.conjugate()
+(4-4j)
+c.real
+4.0
+c.imag
+4.0
+np.array(6.5 + 12j)
+array(6.5+12.j)
+
+```
 
 Complex numbers are used/found/underpin many areas of physics and mathematics, for example they are crucial in the description of quantum mechanical systems, wave optics and Fourier transforms. Consequently, they will be used through this text.
 
