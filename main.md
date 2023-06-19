@@ -52,21 +52,38 @@ github: https://github.com/msa-eom/guide-tem-simulation
 thumbnail: files/wiki-complex-2d6a1987c3ade5f0893bad2e53dc9bd2.png
 ---
 +++
-Abstract.
+%  What do you guys think about this for a title?  -CO
+
+%  I will push to include everyone's email address and direct links to all of the codes. -CO
 
 +++
-(Introduction)=
+Abstract.
+
+%  \pacs{PACS Numbers}
+
+%  \keywords{Keywords go here}
+
++++
+(introduction)=
 ## Introduction
+
+% This is a direct citation from \cite{ophus2019four}, and this is an indirect citation \citep{ophus2019four}.
 
 This text covers simulating images for scanning/transmission electron microscopy (S/TEM) experiments, with a focus on a modern Python implementations. ***This text is aimed at...***. The goal of the text is to enable readers to have an understanding of both the theory and practical applications of S/TEM image simulation. After reading, you should feel comfortable in devising, preparing and running S/TEM image simulations, and be able to critically assess simulated images in literature. To that end, this text contains interactive figures, with the hope that these may aide the reader in understanding/visualising the described concepts, as well as familiarising them with the associated code. While there are no formal pre-requisites and the text aims to be self-contained, a basic understanding of the Python programming language, linear algebra, and condensed matter physics will enhance the understanding of the text.
 
+% \textbf{\emph{is this reasonable?}} 
+
 The text can be broken into three sections: (1) Basic introduction to Python as well as crucial mathematical concepts. (2) Theory of S/TEM image simulation. (3) Practical implementations and considerations for image simulation. We finish by offer our perspective on the outlook for such simulations. The first section consists of a brief overview to the [Python programming language](code_stuff), and instructions on how to run the interactive figures. This is followed by a primer on the [mathematical concepts](math_stuff) that underpin image simulations. The second section addresses the theory of S/TEM image simulation, beginning with a discussion on the [underlying physics](physics_stuff) of electron-atom interactions, after which the [algorithms](electron_scatter) used to simulate images are detailed. In the final section the practicalities of image simulation are discussed, covering [creating simulation inputs](sim_inputs), [TEM simulations](TEM_SIMS), [STEM simulations](STEM_SIMS), post-processing simulated images to create more experimentally realistic images, common errors and helpful tips. Finally we conclude with an outlook for image simulations.
+
+% these are the sections as it stands:
+
+% Code stuff, mathematical concepts, physical Concepts, simulating electron scattering, simulation inputs and parameters, TEM simulations with plane waves, STEM simulations with converged probes, post-processing, conclusion and outlook.
 
 +++
 (code_stuff)=
 ## Code Stuff - Needs a new name
 
-(Why Python)=
+(why-python)=
 ### Why Python
 
 Python is a popular programming language in the scientific community. This is due to Python being friendly for beginners, owing to its less strict language structure (dynamic typing, automatic memory management, non-compiled language) and the plethora of tutorials and examples. It also benefits from being free (this textbook would be less accessible if it required a license), with numerous high quality libraries covering a broad range of applications (numeric calculations, image analysis, machine learning, ...), including a number of packages dedicated to S/TEM. The diverse and broad scope of the python ecosystem allows for interoperability between different domains, and file formats as well as easily re-purposing existing implementations algorithms to new domains. An example of this is the incorporation the machine learning functionality from scikit-learn(REF/LINK) to the analysis electron energy loss spectroscopy (EELS) data sets, as implemented in the python hyperspy(REF/LINK) library.
@@ -109,13 +126,17 @@ Some downsides of Python:
 
 *   Python can be slower and more memory intensive out of the box compared to other languages like C++, and Matlab. Although it should be noted that there are number of libraries (e.g. Multiprocessing, Threading, Numba, PyPy, CuPy, pyTorch, Tensorflow, ...) which can improve the performance of the python code
 
+% \item Matlab has nicer documentation, and a virtually unlimited supply of worked examples.
+
+% \item Matlab has some inbuilt capabilities which cam make some tasks easier e.g. \emph{parfor} to parallelise simple for loops.
+
 A complete overview and introduction of Python is beyond the scope of this text, instead this section is intended as summary overview and justification for this choice.
 
 TODO:
 
 *   Add good Python resources
 
-(Running the Codes (AMR))=
+(running-the-codes-amr)=
 ### Running the Codes (AMR)
 
 This paper contains interactive code blocks rather than traditional figures. \[INSTRUCTIONS FOR USE]
@@ -124,7 +145,7 @@ This paper contains interactive code blocks rather than traditional figures. \[I
 (math_stuff)=
 ## Mathematical Concepts
 
-(Scalars, Vectors and N-Dimensional Arrays)=
+(scalars-vectors-and-n-dimensional-arrays)=
 ### Scalars, Vectors and N-Dimensional Arrays
 
 Scalars, Vectors and N-Dimensional Arrays (tensors) are frequently terms which have different meanings within different fields of research. The most applicable disciplines are physics, mathematics and computer science.
@@ -155,7 +176,7 @@ TODO:
 
 *   Transposing
 
-(Complex Numbers)=
+(complex-numbers)=
 ### Complex Numbers
 
 A complex number, {math}`z \in \mathbb{C}`, is expressed as {math}`z = a + ib` where {math}`a` and {math}`b` are both real numbers, and {math}`i^2=-1`. The coefficient {math}`a` represents the real component, and {math}`b` the imaginary component. A complex number can be illustrated as a vector in the complex plane. Fig Ref
@@ -183,7 +204,7 @@ TODO:
 
 *   replace the diagram with something not from wiki, Should it be interactive?
 
-(The Fourier Transform, Bandwidth and Nyquist Sampling (CO))=
+(the-fourier-transform-bandwidth-and-nyquist-sampling-co)=
 ### The Fourier Transform, Bandwidth and Nyquist Sampling (CO)
 
 One of the most important tools in the arsenal of an electron microscopist is the ability to think in reciprocal space, and to mentally convert between real and reciprocal space. By using a TEM, we can easily move between the two spaces, since when we focus parallel electrons down to a point, we convert from an image plane to a diffraction plane. We can also perform this transformation analytically by taking a *Fourier Transform*, or numerically on a computer by using a *discrete Fourier transform*. This is of vital importance for our simulations, as the discrete Fourier transform lies at the heart of all our algorithms for simulating electron scattering. In this text, we will use capital letters to denote reciprocal space functions with variables {math}`(k, \bm{k})`, and lower case letters with variables {math}`(x, \bm{r})` to denote their real-space counterparts.
@@ -249,11 +270,55 @@ Instead, we use a fast Fourier Transform (FFT), which reduces the calculation ti
 Temporary figure for 1D FFT example, [link to current notebook](https://github.com/tem-elements/tem-elements/blob/main/notebooks/Fourier_Transform_1D.ipynb).
 :::
 
+% \hl{Colin add text / figure / widget for understanding 1D FFTs}
+
 In STEM simulation, we typically perform simulations of 2D images. Thus we use a 2D FFT, which can be computed by simply taking the FFT along each axis in sequence; the order does not matter due to the orthogonality property of the Fourier transform.
 
 Colin add text / figure / widget for understanding 2D FFTs
 
 Bandwidth and FFT, show with widget or figure.
+
+% \begin{lstlisting}[caption=Fourier Transform in Python/numpy]
+
+% array = np.array([[0,1,2],
+
+%                  [3,4,5],
+
+%                  [6,7,8]])
+
+% array
+
+% array([[0, 1, 2],
+
+%        [3, 4, 5],
+
+%        [6, 7, 8]])
+
+% # we can take the FFT of our array. Not the change of data type to a complex type
+
+% fft_array = np.fft.fft2(numpy_array)
+
+% fft_array
+
+% array([[ 36. +0.j        ,  -4.5+2.59807621j,  -4.5-2.59807621j],
+
+%        [-13.5+7.79422863j,   0. +0.j        ,   0. +0.j        ],
+
+%        [-13.5-7.79422863j,   0. +0.j        ,   0. +0.j        ]])
+
+% # we can take the inverse FFT to get our original array back. Although note the data type is still complex. 
+
+% ifft_array = np.fft.ifft2(fft_array)
+
+% ifft_array
+
+% array([[0.+0.j, 1.+0.j, 2.+0.j],
+
+%        [3.+0.j, 4.+0.j, 5.+0.j],
+
+%        [6.+0.j, 7.+0.j, 8.+0.j]])
+
+% \end{lstlisting}
 
 +++
 (physics_stuff)=
@@ -261,7 +326,7 @@ Bandwidth and FFT, show with widget or figure.
 
 The properties of atoms, molecules and solids are fundamentally determined by quantum mechanics. In this modern theory of physics, some classical concepts such as the electrostatic potential and the propagation of waves are carried over essentially unchanged, whereas many familiar intuitions fail on the level of the very small. In particular, quantum objects including electrons exhibit both wave and particle properties depending on how they are observed – in the context of electron scattering, matter-wave interference is of central importance. Mathematically, both free propagating electrons and those bound into atoms are described mathematically as complex waves, via so-called electron wavefunctions.
 
-(Electron Wavefunctions (TS))=
+(electron-wavefunctions-ts)=
 ### Electron Wavefunctions (TS)
 
 An electron wavefunction, typically denoted by {math}`\psi`, is a mathematical description of the quantum state of an isolated quantum system. The wavefunctions are complex-valued, and thus not directly observable, but their squared amplitudes can be interpreted as probabilities to find the electrons in particular states that do correspond to physically observable properties of the system. Wavefunctions naturally live in a many-dimensional mathematical space called the Hilbert space. By choosing a basis of representation, they can be represented in real space, typically using either Cartesian (convenient for planewave propagation) or spherical coordinates (convenient for scattering).
@@ -284,7 +349,7 @@ where {math}`\bm{r}^{\prime}` now denotes the location of a scattering center, a
 
 To describe the propagation of these waves in free space, the imaginary term in the exponential describes periodic variation. Thus for any fixed sum of the spatial and temporal terms in the exponent, the wavefunction has the same value; these represent the planes (or shells) of constant amplitude. To calculate the wave in an arbitrary position, we can simply substitute the new spatial location and time arguments to calculate the resulting amplitude.
 
-(Bound Systems: The Schrödinger Equation (TS))=
+(bound-systems-the-schr-dinger-equation-ts)=
 ### Bound Systems: The Schrödinger Equation (TS)
 
 To derive the wavefunction of a bound system, we need to solve the quantum “equation of motion” for the electron(s) in the corresponding confining potential: this is the Schrödinger equation. The Schrödinger equation gives the fundamental mathematical description of quantum systems, describing the time-evolution of their wavefunction. The equation for a single non-relativistic particle can in the position representation be written as
@@ -307,7 +372,7 @@ The equation can only be solved analytically for a handful of simple cases, of w
 
 where wavefunctions {math}`\psi(\bm{r})` are the eigenvectors and energies {math}`E` the eigenvalues of the system.
 
-(Electrostatic Potentials (TS))=
+(electrostatic-potentials-ts)=
 ### Electrostatic Potentials (TS)
 
 The electrostatic potential of a specimen determines not only how the electrons of the system are bound, but also how transmitting electrons scatter via the Lorentz force. It therefore connects the properties of the material to the resulting images or diffraction patterns. The electrostatic potential is fundamentally speaking derived from the electron density of the atoms in a specimen, which is described by their quantum mechanical many-body wavefunction. However, this is only rarely analytically solvable, and various approximations may be needed.
@@ -340,7 +405,7 @@ whose squared norm gives the (non-relativistic) electron density of hydrogen as
 \rho(r) = |\psi_{1 0 0}(r)|^2 = \frac{1}{\pi a_0^3} \mathrm{e^{-2 r / a_0}}.
 ```
 
-(Scattering from a Potential)=
+(scattering-from-a-potential)=
 ### Scattering from a Potential
 
 To understand how electrons scatter from a potential, we can consider an electron plane wave incident on an isolated atom. The wave interacts with the electrostatic potential of the nucleus and electrons of the atom, and an outgoing spherical wave is generated. To understand the effect of the atom on the wave, we need to calculated the distribution of scattered intensity, which is not isotropic due to the initial linear momentum of the incident wave.
@@ -376,7 +441,7 @@ This can be formally solved with the help of Green’s function {math}`G(\bm{r},
 
 While this formal solution is in principle exact, it is in the form of an implicit integral equation whose solution {math}`\psi` appears both inside and outside the integral – indeed, we have merely transformed the differential Schrödinger equation into an integral equation without solving anything. To proceed, some approximation is needed.
 
-(Born approximation for electron scattering)=
+(born-approximation-for-electron-scattering)=
 #### Born approximation for electron scattering
 
 A widely used approximation to solve Eq. [16](#eq:scattering_schrödinger) is the first Born approximation, whereby we replace the full {math}`\psi` within the integral simply by the incident planewave. In effect, this approximation makes the assumption that the incident wave is not diminished and scattered only once by the material, which is valid when scattering is weak.
@@ -412,7 +477,9 @@ f(\Delta \bm{k}) \equiv-\frac{m}{2 \pi \hbar^{2}} \int V\left(\bm{r}^{\prime}\ri
 
 is called the atomic form factor (or electron scattering factor {cite:t}`kirkland_advanced_2010`) and it describes the angular distribution of scattered intensity. In the first Born approximation it corresponds to the Fourier transform of the scattering potential.
 
-(Atomic form factors (TS))=
+%  ($f(\Delta \bm{k})=\mathcal{F}_k[V(r)]$).
+
+(atomic-form-factors-ts)=
 #### Atomic form factors (TS)
 
 The atomic form factors thus describe the angular amplitude for scattering of a single electron of by a single atom. While the first Born approximation is inadequate for describing real specimens (as electrons typically scatter multiple times when passing through a crystal), this description is quite useful since it relates the three-dimensional Fourier transform of the atomic potential to the scattering amplitude.
@@ -464,7 +531,7 @@ f(\Delta k)=\frac{a_0}{2 \varepsilon_0 \Delta k^{2}} \left(1-\frac{1}{\left(1+\p
 
 Hydrogen is the only case that is analytically solvable; in general neither the density nor the atomic form factor can be directly written down. Instead, these have been calculated using various approximations to the true multielectron wavefunctions, and tabulated for isolated atoms of all elements as isolated atomic potentials.
 
-(Isolated Atomic Potentials (TS))=
+(isolated-atomic-potentials-ts)=
 ### Isolated Atomic Potentials (TS)
 
 Since the Schrödinger equation cannot be solved analytically even for most molecules, let alone solid-state systems, several kinds of approaches have been developed to obtain approximate solutions. These accurate but computationally very expensive techniques have been used to parametrize what are called isolated atomic potentials – or, equivalently in reciprocal space, electron scattering factors – which describe the potential of a specimen as a sum of isolated, non-interacting atom potentials. This approximation is often called the independent atom model.
@@ -476,7 +543,7 @@ An interactive example of independent-atom scattering potentials for elements up
 :::{figure} files/Atomic_potentials_wi-2083e0f8084898c576f88554c702452f.png
 :::
 
-(Density Functional Theory Potentials (TS))=
+(density-functional-theory-potentials-ts)=
 ### Density Functional Theory Potentials (TS)
 
 Since the complicated many-body interactions of multiple electrons mean that wavefunction cannot in general be analytically solved, further approximations are needed. Density functional theory (DFT) is the most prominent one, and is widely use for modeling the electronic structure of molecules and solids. In DFT, the combinatorially intractable many-body problem of {math}`N` electrons with {math}`3N` spatial coordinates is reduced to a solution for the three spatial coordinates of the electron density that can be variationally reached. This approximation would in principle be exact, but a term that describes electron exchange and correlation is not analytically known and must be approximated.
@@ -512,7 +579,7 @@ Although IAM potentials are useful for many purposes, they do neglect chemical b
 :::{figure} files/H2_molecule_widget-e638d2bf6b04fe11cc1780e3a1d1366f.png
 :::
 
-(Numerical Solutions of the Schrödinger Equation (CO))=
+(numerical-solutions-of-the-schr-dinger-equation-co)=
 ### Numerical Solutions of the Schrödinger Equation (CO)
 
 As discussed previously, the Schrödinger equation typically cannot be solved analytically in complex systems. Therefore, in order to perform electron scattering simulations, we must calculate numerical solutions of Eq. [7](#eq:Shrodinger_time) for electron waves. First, we define the {cite:t}`debroglie1925recherches` wavelength of a free electrons (corrected for relativistic effects) as
@@ -589,7 +656,7 @@ V_{\Delta z}(\bm{r})
 
 is a thin slice of the potential. Unfortunately, even with the above approximations, Eq. [34](#eq:Shrodinger_simple) cannot be solved in closed form due to the two non-commuting operators. Instead, we will solve it numerically by using a split-step method, where we calculate solutions for each operator independently, and alternating their application to the electron wavefunction. This solution was introduced by {cite:t}`cowley1957scattering` and is known as the multislice method.
 
-(Free Space Wave Propagation)=
+(free-space-wave-propagation)=
 ### Free Space Wave Propagation
 
 For an electron wavefunction moving through free space, we can set {math}`V_{\Delta z}(\bm{r}) = 0`. This assumption and our ability to split the {math}`x` and {math}`y` derivatives into two terms, allows us to simplify Eq. [34](#eq:Shrodinger_simple) to
@@ -678,14 +745,14 @@ Colin section 1 - adapt my wave propagation movies into interactive demos
 
 Colin section 2 - adapt my wave propagation movies into interactive demos (I think I’ve done this for at least a couple of your functions AMR)
 
-(Constructive and Destructive Interference)=
+(constructive-and-destructive-interference)=
 ### Constructive and Destructive Interference
 
 +++
 (electron_sacttering)=
 ## Simulating Electron Scattering
 
-(The Multislice Algorithm for S/TEM Simulation)=
+(the-multislice-algorithm-for-s-tem-simulation)=
 ### The Multislice Algorithm for S/TEM Simulation
 
 :::{figure} files/3d_wavefunction-eb7f6ae63ceb55d3607bc51b874f06fe.png
@@ -695,8 +762,12 @@ Colin section 2 - adapt my wave propagation movies into interactive demos (I thi
 [(Link to visualization)](https://tem-elements.herokuapp.com/voila/render/notebooks/3D_wavefunction.ipynb)
 :::
 
-(The PRISM Algorithm for STEM Simulation)=
+(the-prism-algorithm-for-stem-simulation)=
 ### The PRISM Algorithm for STEM Simulation
+
+%  Extensions of PRISM?
+
+%  \subsection*{Partitioned PRISM for STEM Simulation}
 
 We probably want a section where we make STEM probes interactively - a few ideas: -probe size vs parameters (AMR) -probe size for specialized shapes like phase plates or amplitude plates / bullseye probes -Recent user question - how do I define probe overlap in ptychography? I use “shared intensity” vs probe spacing, i.e sum(int1 \* int2) / sqrt(sum(int1\*\*2) \* sum(int2\*\*2)) - this would be a neat interactive demo
 
@@ -704,10 +775,12 @@ We probably want a section where we make STEM probes interactively - a few ideas
 (sim_inputs)=
 ## Simulation Inputs and Parameters
 
-(Building Scenes from Atomic Coordinates)=
+(building-scenes-from-atomic-coordinates)=
 ### Building Scenes from Atomic Coordinates
 
 The first step of an image simulation is creating a representation of the sample. For most simulations this is achieved by building the object from its constituent atoms. In its most basic form the position in 3D space and type of each atom must be defined, additionally it is typical to include partial occupancy and Debye-Waller factor (DWF). Once the object is created, it must be passed to the simulation in an parsable way. There are an innumerable ways of doing this, and multiple bespoke file formats which in theory are all interchangeable. The most common/universal file types are *.xyz*, and and *.cif*. With *.xyz* being the simpler of the two, defining the cell (size and angles) of the entire object, and atom type, x, y, z, and occupancy and DWF for every atom in the object. Whereas, *.cif*, describes the unit cell, and the symmetry operations to tile the unit cell, which can be a much more efficient representation for highly symmetric objects, but will result in the same length file for non symmetric objects.
+
+% \newline
 
 *The *.cif* file format is widely used in x-ray crystallography.*
 
@@ -721,7 +794,7 @@ The first step of an image simulation is creating a representation of the sample
 
 *   add short example of .cif
 
-(Making simple samples (TS))=
+(making-simple-samples-ts)=
 #### Making simple samples (TS)
 
 e.g. Single Nanoparticles, Simple structures from materials project, CIF files etc.
@@ -730,7 +803,7 @@ e.g. Single Nanoparticles, Simple structures from materials project, CIF files e
 
 2\) Structures with easily defined and periodic lattices such as graphene, TMDCs, nanoribbons, and (metallic) nanoparticles can be created using easily be created using python libraries such as [Atomic Simulation Environment (ASE)](https://wiki.fysik.dtu.dk/ase/), [pymatgen](https://pymatgen.org/#).
 
-(Making simple samples more realistic)=
+(making-simple-samples-more-realistic)=
 #### Making simple samples more realistic
 
 :::{figure} files/complex_structure-ee6a9e0f88ae65f02563046cd84304c1.pdf
@@ -751,29 +824,31 @@ Next, we position some functional groups onto random positions on the nanopartic
 
 The last structural component we need is the amorphous carbon substrate. We have opted to use the realistic amorphous carbon models published by citericolleau2013random. First, we import the block of carbon, which measures 5x5x5 nanometers in size. This is too small to use for our nanoparticle which is roughly 5 nm in diameter, and so we tile the amorphous carbon block 2 times in both the x and y directions. Because the structure already has 3D periodicity, we can safely tile in any direction. If we needed to further randomize the structure, we could apply a random tilt and then crop the desired surfaces. Our next step is to position the substrate directly below the particle, and then remove any overlapping atoms, defined as those within a distance of 3 {math}`\rm{\AA}`. Finally, we recompute the cell boundaries to hold the periodic structure in x and y and provide sufficient distance along the beam direction z to contain all atoms.
 
-(Making complex structures (CO))=
+(making-complex-structures-co)=
 #### Making complex structures (CO)
 
 e.g. some materials with different strains, boundaries, domain walls etc.
 
 Relax grain boundary structure using EMT in ASE?
 
-(Making soft-matter samples)=
+(making-soft-matter-samples)=
 #### Making soft-matter samples
 
 e.g. proteins or polymers
 
 Read in PDB file using ASE, make cell, add vitreous ice possibly (or continuum water model from Shang and Sigworth)
 
-(Common mistakes/errors)=
+% \subsubsection*{Importing an MD trajectory}
+
+(common-mistakes-errors)=
 #### Common mistakes/errors
 
 Boundaries when tiling Unit cells too small/wrap around errors
 
-(Wavefunction Sampling)=
+(wavefunction-sampling)=
 ### Wavefunction Sampling
 
-(Wave Aberrations)=
+(wave-aberrations)=
 ### Wave Aberrations
 
 An ideal lens forms a spherical wave converging on or emerging from a single point. This means that a plane wave will be converted to a spherical wave converging at the focal point of the lens, and the image of a point source is also a point. In STEM we want the objective lens to produce the smallest possible probe and in HRTEM we want the objective lens to produce a perfect magnified image of the sample. Both of these objectives require that we minimize all aberrations (except for defocus) as much as possible.
@@ -828,24 +903,26 @@ CO - love the vis idea of course, we could also add one for HRTEM where we demon
 [(Link to visualization)](https://tem-elements.herokuapp.com/voila/render/notebooks/Aberrations.ipynb)
 :::
 
-(Other Microscope and Detector Parameters)=
+% From quantum mechanics we know that it is not possible, given a lens with a finite aperture, to focus electrons to a single point, instead we say that ideal (electron-)optical systems are diffraction limited. 
+
+(other-microscope-and-detector-parameters)=
 ### Other Microscope and Detector Parameters
 
 +++
-(TEM_SIMS)=
+(tem_sims)=
 ## TEM Simulations with Plane Waves
 
-(Imaging)=
+(imaging)=
 ### Imaging
 
-(Diffraction)=
+(diffraction)=
 ### Diffraction
 
-(Biological Samples Embedded in Ice)=
+(biological-samples-embedded-in-ice)=
 ### Biological Samples Embedded in Ice
 
 +++
-(Including Limited Coherence)=
+(including-limited-coherence)=
 ## Including Limited Coherence
 
 :::{figure} files/hrtem-30c513bbb8fb842bc3bc1188aef19746.png
@@ -861,10 +938,10 @@ CO - love the vis idea of course, we could also add one for HRTEM where we demon
 :::
 
 +++
-(STEM_SIMS)=
+(stem_sims)=
 ## STEM Simulations with Converged Probes
 
-(Initial Conditions of the Electron Wave)=
+(initial-conditions-of-the-electron-wave)=
 ### Initial Conditions of the Electron Wave
 
 In STEM the objective lens acts on the electron beam before the beam reaches the specimen, hence the effects of the lens aberrations and aperture is incorporated in the initial conditions of the wavefunction.
@@ -926,7 +1003,7 @@ Because STEM simulations can require long computation times, we often try to red
 
 Fig. [13](#Fig:probe_overlap) shows an interactive demo for testing the overlap of a STEM probe for different microscope parameters and cell dimensions. Try setting ... Note that this example only considers an empty cell volume. Atoms inside the simulation volume will scatter the electron beam, with heavier elements scattering electrons to higher angles. We recommend positioning individual STEM probes at the positions where the highest scattering is expected (for example directly on or adjacent to the thickest atomic columns), and carefully checking the dimensions of the probe at the exit surface. This is especially important for PRISM simulations, as the cropping box around the STEM probe can be significantly smaller than the full cell dimensions for high PRISM interpolation factors {cite:t}`ophus_fast_2017`.
 
-(Imaging)=
+(imaging)=
 ### Imaging
 
 The initial wavefunction is passed through the specimen potential according to the multislice algorithm. The exit wavefunction, {math}`\psi_t(\bm{r}, \bm{r}_p)`, is then diffracted to the detector plane using another Fourier transform
@@ -972,30 +1049,46 @@ The image, {math}`g(\bm{r}_p)`, is the collection of integrated intensities at a
 [(Link to visualization)](https://boiling-wildwood-85903.herokuapp.com/voila/render/annular_detector.ipynb)
 :::
 
-(Differential Phase Contrast)=
+%  We can significantly limit the computational cost, by choosing the largest possible spacing between the sample positions, or probe step size, $\Delta r_p$. 
+
+%  \begin{align*}
+
+%      \Delta r_p = 0.9 \frac{1}{4 \lambda \alpha_{cutoff}}.
+
+%  \end{align*}
+
+%  It is important to remember the difference between the wavefunction sampling and probe step, both in units of Angstrom. The probe step only refers to the spacing of the initial probe, and it is entirely independent from the grid used to sample the wavefunctions and potentials.
+
+%  In Vis. \ref{}, we present a visualization for exploring how the integration region of the detector influence the image.
+
+(differential-phase-contrast)=
 ### Differential Phase Contrast
 
-(4D-STEM (CO))=
+(id-4d-stem-co)=
 ### 4D-STEM (CO)
 
 +++
-(Inelastic Scattering)=
+(inelastic-scattering)=
 ## Inelastic Scattering
 
+%  Beyond the scope of this article?
+
+%  Maybe yeah...
+
 +++
-(Including Limited Coherence)=
+(including-limited-coherence)=
 ## Including Limited Coherence
 
 +++
-(Post-Processing (HB))=
+(post-processing-hb)=
 ## Post-Processing (HB)
 
-(Limited Electron Dose)=
+(limited-electron-dose)=
 ### Limited Electron Dose
 
 Notebook done, will upload to repository
 
-(Elliptical Lens Distortions)=
+(elliptical-lens-distortions)=
 ### Elliptical Lens Distortions
 
 Notebook done, will upload to repository
@@ -1007,23 +1100,23 @@ Notebook done, will upload to repository
 [(Link to visualization)](https://tem-elements.herokuapp.com/voila/render/notebooks/dose_distortions.ipynb)
 :::
 
-(Scanning Artifacts)=
+(scanning-artifacts)=
 ### Scanning Artifacts
 
 probably include
 
-(Resampling for Direct Comparison with Experiment)=
+(resampling-for-direct-comparison-with-experiment)=
 ### Resampling for Direct Comparison with Experiment
 
 We can’t assume everyone understands nyquist!
 
-(Camera MTF and DQE)=
+(camera-mtf-and-dqe)=
 ### Camera MTF and DQE
 
 Python script written - need to make this interactive (I can help with this AMR)
 
 +++
-(Common errors and hints)=
+(common-errors-and-hints)=
 ## Common errors and hints
 
 Problems:
@@ -1055,11 +1148,11 @@ What to do when you don’t know a microscope parameter
 When to use an ab initio potential and when it is not necessary
 
 +++
-(Possible other sections to include)=
+(possible-other-sections-to-include)=
 ## Possible other sections to include
 
 +++
-(Conclusion and Outlook)=
+(conclusion-and-outlook)=
 ## Conclusion and Outlook
 
 Conclusion Datasets are getting more complex and simulations can aid in interpreting the information Can simulate experiment to inform optimal experimental parameters, feasibility Can
@@ -1067,10 +1160,14 @@ Conclusion Datasets are getting more complex and simulations can aid in interpre
 Outlook ML In-situ
 
 +++
-(Acknowledgements)=
+(acknowledgements)=
 ## Acknowledgements
 
 We are heavily indebted to the various excellent textbooks on electron microscopy, in particular {cite:t}`kirkland2020`, add others ...
+
+% \section*{References}
+
+%  \bibliographystyle{MandM}
 
 +++
 (app:constants)=
