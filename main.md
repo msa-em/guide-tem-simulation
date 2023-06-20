@@ -55,12 +55,10 @@ github: https://github.com/msa-eom/guide-tem-simulation
 
 %  I will push to include everyone's email address and direct links to all of the codes. -CO
 
-+++
++++ {"part":"abstract"}
 Abstract.
 
 %  \pacs{PACS Numbers}
-
-%  \keywords{Keywords go here}
 
 +++
 (introduction)=
@@ -72,7 +70,7 @@ This text covers simulating images for scanning/transmission electron microscopy
 
 % \textbf{\emph{is this reasonable?}} 
 
-The text can be broken into three sections: (1) Basic introduction to Python as well as crucial mathematical concepts. (2) Theory of S/TEM image simulation. (3) Practical implementations and considerations for image simulation. We finish by offer our perspective on the outlook for such simulations. The first section consists of a brief overview to the [Python programming language](code_stuff), and instructions on how to run the interactive figures. This is followed by a primer on the [mathematical concepts](math_stuff) that underpin image simulations. The second section addresses the theory of S/TEM image simulation, beginning with a discussion on the [underlying physics](physics_stuff) of electron-atom interactions, after which the [algorithms](electron_scatter) used to simulate images are detailed. In the final section the practicalities of image simulation are discussed, covering [creating simulation inputs](sim_inputs), [TEM simulations](TEM_SIMS), [STEM simulations](STEM_SIMS), post-processing simulated images to create more experimentally realistic images, common errors and helpful tips. Finally we conclude with an outlook for image simulations.
+The text can be broken into three sections: (1) Basic introduction to Python as well as crucial mathematical concepts. (2) Theory of S/TEM image simulation. (3) Practical implementations and considerations for image simulation. We finish by offer our perspective on the outlook for such simulations. The first section consists of a brief overview to the [Python programming language](#code_stuff), and instructions on how to run the interactive figures. This is followed by a primer on the [mathematical concepts](#math_stuff) that underpin image simulations. The second section addresses the theory of S/TEM image simulation, beginning with a discussion on the [underlying physics](#physics_stuff) of electron-atom interactions, after which the [algorithms](#electron-wavefunctions-ts) used to simulate images are detailed. In the final section the practicalities of image simulation are discussed, covering [creating simulation inputs](#sim_inputs), [TEM simulations](#tem_sims), [STEM simulations](#stem_sims), post-processing simulated images to create more experimentally realistic images, common errors and helpful tips. Finally we conclude with an outlook for image simulations.
 
 % these are the sections as it stands:
 
@@ -637,7 +635,7 @@ As discussed previously, the Schrödinger equation typically cannot be solved an
 
 where {math}`h` is the Plank constant, {math}`c` is the speed of light, {math}`e` is the electron charge, and {math}`E_0` is the accelerating voltage applied to the electron. Using SI units for Eq. [30](#eq:wavelength) will give the wavelength in units of meters. In practice we typically use length units of  for all calculations, and therefore multiple this result by {math}`10^{10}`.
 
-Next, we define the electron-potential interaction constant as (the numerical values of these constants can be found in Appendix [??](#app:constants))
+Next, we define the electron-potential interaction constant as (the numerical values of these constants can be found in Appendix [](#app:constants))
 
 ```{math}
 :label: eq:interaction_constant
@@ -844,9 +842,9 @@ The first step of an image simulation is creating a representation of the sample
 
 e.g. Single Nanoparticles, Simple structures from materials project, CIF files etc.
 
-1\) Searching materials repositories such as, [Materials Project](https://materialsproject.org), [American Mineralogist Crystal Structure Database](http://rruff.geo.arizona.edu/AMS/amcsd.php) ... and downloading the corresponding structure file.
+1. Searching materials repositories such as, [Materials Project](https://materialsproject.org), [American Mineralogist Crystal Structure Database](http://rruff.geo.arizona.edu/AMS/amcsd.php) ... and downloading the corresponding structure file.
 
-2\) Structures with easily defined and periodic lattices such as graphene, TMDCs, nanoribbons, and (metallic) nanoparticles can be created using easily be created using python libraries such as [Atomic Simulation Environment (ASE)](https://wiki.fysik.dtu.dk/ase/), [pymatgen](https://pymatgen.org/#).
+2. Structures with easily defined and periodic lattices such as graphene, TMDCs, nanoribbons, and (metallic) nanoparticles can be created using easily be created using python libraries such as [Atomic Simulation Environment (ASE)](https://wiki.fysik.dtu.dk/ase/), [pymatgen](https://pymatgen.org/#).
 
 (making-simple-samples-more-realistic)=
 #### Making simple samples more realistic
@@ -1204,7 +1202,7 @@ Conclusion Datasets are getting more complex and simulations can aid in interpre
 
 Outlook ML In-situ
 
-+++
++++ {"part":"acknowledgements"}
 (acknowledgements)=
 ## Acknowledgements
 
@@ -1214,7 +1212,7 @@ We are heavily indebted to the various excellent textbooks on electron microscop
 
 %  \bibliographystyle{MandM}
 
-+++
++++ {"part":"appendix"}
 (app:constants)=
 ## Numerical values of constants
 
