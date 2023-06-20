@@ -453,7 +453,7 @@ whose squared norm gives the (non-relativistic) electron density of hydrogen as
 
 To understand how electrons scatter from a potential, we can consider an electron plane wave incident on an isolated atom. The wave interacts with the electrostatic potential of the nucleus and electrons of the atom, and an outgoing spherical wave is generated. To understand the effect of the atom on the wave, we need to calculated the distribution of scattered intensity, which is not isotropic due to the initial linear momentum of the incident wave.
 
-The scattering problem can be formally treated by finding a solution of the Schrödinger equation (Eq. [8](#eq:Shrodinger)) for the incident electron inside the scattering atom (with electron coordinates {math}`\bm{r^{\prime}}`)
+The scattering problem can be formally treated by finding a solution of the Schrödinger equation ([](#eq:Shrodinger)) for the incident electron inside the scattering atom (with electron coordinates {math}`\bm{r^{\prime}}`)
 
 ```{math}
 \left[-\frac{\hbar^{2}}{2 m} \frac{\partial^{2}}{\partial \bm{r^{\prime \textmd{2}}}}+V(\bm{r^{\prime}})\right] \psi(\bm{r^{\prime}}) = E\psi(\bm{r^{\prime}}),
@@ -476,7 +476,7 @@ with the substitutions
 This can be formally solved with the help of Green’s function {math}`G(\bm{r},\bm{r^{\prime}})` (we refer the reader to {cite:t}`fultz_transmission_2013` for detail) to yield a sum of the incident and scattered components
 
 ```{math}
-:label: eq:scattering_schrödinger
+:label: eq:scattering_schrodinger
 
 \psi(\bm{r}) = \psi_{\mathrm{inc}}(\bm{r}) + \psi_{\mathrm{scatt}}(\bm{r}) =
     \mathrm{e}^{\mathrm{i} k_{0} \cdot \bm{r}}+\frac{2 m}{\hbar^{2}} \int V\left(\bm{r}^{\prime}\right) \psi\left(\bm{r}^{\prime}\right) G\left(\bm{r}, \bm{r}^{\prime}\right) \mathrm{d}^{3} \bm{r}^{\prime}.
@@ -487,7 +487,7 @@ While this formal solution is in principle exact, it is in the form of an implic
 (born-approximation-for-electron-scattering)=
 #### Born approximation for electron scattering
 
-A widely used approximation to solve Eq. [16](#eq:scattering_schrödinger) is the first Born approximation, whereby we replace the full {math}`\psi` within the integral simply by the incident planewave. In effect, this approximation makes the assumption that the incident wave is not diminished and scattered only once by the material, which is valid when scattering is weak.
+A widely used approximation to solve [](#eq:scattering_schrodinger) is the first Born approximation, whereby we replace the full {math}`\psi` within the integral simply by the incident planewave. In effect, this approximation makes the assumption that the incident wave is not diminished and scattered only once by the material, which is valid when scattering is weak.
 
 By further assuming that the detector is far from the scatterer, which allows us to work with outgoing planewaves instead of spherical waves, and by aligning the outgoing wavevector {math}`\bm{k}` with the direction {math}`(\bm{r} - \bm{r^{\prime}})`, as well as assuming that the origin of the coordinate system is near the atom so that {math}`|\bm{r}| \gg |\bm{r^{\prime}}|`, we can write the Green’s function as
 
@@ -495,7 +495,7 @@ By further assuming that the detector is far from the scatterer, which allows us
 G\left(\bm{r}, \bm{r}^{\prime}\right) \simeq-\frac{1}{4 \pi} \frac{\mathrm{e}^{i \bm{k} \cdot\left(\bm{r}-\bm{r}^{\prime}\right)}}{|\bm{r}|}.
 ```
 
-By substituting this to Eq. [16](#eq:scattering_schrödinger) we get
+By substituting this to [](#eq:scattering_schrodinger) we get
 
 ```{math}
 \begin{align}
@@ -533,7 +533,7 @@ In the general case, we can describe the potential as a sum of a negative term d
 V(\bm{r})=-\frac{Z e^{2}}{|\bm{r}|}+\int_{-\infty}^{+\infty} \frac{e^{2} \rho\left(\bm{r}^{\prime}\right)}{\left|\bm{r}-\bm{r}^{\prime}\right|} \mathrm{d}^{3} \bm{r}^{\prime}.
 ```
 
-By substituting this into Eq. [20](#eq:formfactor) and defining a new variable {math}`\bm{R} \equiv \bm{r} - \bm{r}^{\prime}`, so that {math}`\bm{r} = \bm{R} - \bm{r}^{\prime}` and rearranging, we get
+By substituting this into [](#eq:formfactor) and defining a new variable {math}`\bm{R} \equiv \bm{r} - \bm{r}^{\prime}`, so that {math}`\bm{r} = \bm{R} - \bm{r}^{\prime}` and rearranging, we get
 
 ```{math}
 f(\Delta \bm{k})=\frac{m Z e^{2}}{2 \pi \hbar^{2}} \int_{-\infty}^{+\infty} \frac{1}{|\bm{r}|} \mathrm{e}^{-\mathrm{i} \Delta k \cdot \bm{r}} \mathrm{d}^{3} \bm{r} -\frac{m e^{2}}{2 \pi \hbar^{2}} \int_{-\infty}^{+\infty} \frac{1}{|\bm{R}|} \mathrm{e}^{-\mathrm{i} \Delta \bm{k} \cdot \bm{R}} \mathrm{d}^{3} \bm{R} \int_{-\infty}^{+\infty} \rho\left(\bm{r}^{\prime}\right) \mathrm{e}^{-\mathrm{i} \Delta \bm{k} \cdot \bm{r}^{\prime}} \mathrm{d}^{3} \bm{r}^{\prime}.
@@ -553,7 +553,7 @@ f(\Delta \bm{k})=\frac{2 m e^2}{\hbar^{2} \Delta k^{2}} \left(Z-\frac{m c^2}{e^2
 
 relating electron scattering factors with x-ray scattering factors {math}`f_{x}(k)=\mathcal{F}_k[\rho(r)]`, where {math}`\rho(r)` is the electron density. This comparison highlights that unlike x-ray scattering (where the nucleus is too heavy to accelerate in an interaction with a nearly massless photon), electron scattering is sensitive to both nuclear and electron charges, with the latter contribution being relatively enhanced for small electron scattering angles (corresponding to small momentum vectors {math}`k`). The Mott-Bethe formula is a convenient way to obtain the potential distribution from a charge distribution including the nuclear point charge, effectively by solving Poisson’s equation in reciprocal space.
 
-As an example, we can calculate the x-ray form factor for hydrogen in spherical coordinates (c.f. Eq. [12](#eq:H_density)), assuming that the incident electron wavevector {math}`\bm{k} = (0, 0, k)` is parallel to the {math}`z` axis. In this spherically symmetric case, the x-ray form factor reduces to a radial integral
+As an example, we can calculate the x-ray form factor for hydrogen in spherical coordinates (c.f. [](#eq:H_density)), assuming that the incident electron wavevector {math}`\bm{k} = (0, 0, k)` is parallel to the {math}`z` axis. In this spherically symmetric case, the x-ray form factor reduces to a radial integral
 
 ```{math}
 f_\mathrm{x}(\Delta k)=\frac{e^2}{m c^2} \int_{0}^{\infty} \rho(r) \sin (2 \pi \Delta k\, r)\, r\, \mathrm{d}r,
@@ -579,7 +579,7 @@ Hydrogen is the only case that is analytically solvable; in general neither the 
 
 Since the Schrödinger equation cannot be solved analytically even for most molecules, let alone solid-state systems, several kinds of approaches have been developed to obtain approximate solutions. These accurate but computationally very expensive techniques have been used to parametrize what are called isolated atomic potentials – or, equivalently in reciprocal space, electron scattering factors – which describe the potential of a specimen as a sum of isolated, non-interacting atom potentials. This approximation is often called the independent atom model.
 
-A potential parametrization is a numerical fit to such first principles calculations of electron atomic form factors that describe the radial dependence of the potential for each element. One of the most widely used parametrizations is the one published by {cite:t}`kirkland_advanced_2010`, who fitted Dirac-Fock scattering factors with combination of Gaussians and Lorentzians. In 2014, Lobato and Van Dyck improved the quality of the fit further, using hydrogen’s analytical non-relativistic electron scattering factors as basis functions to enable the correct inclusion of all physical constraints {cite:t}`lobato_accurate_2014`.
+A potential parametrization is a numerical fit to such first principles calculations of electron atomic form factors that describe the radial dependence of the potential for each element. One of the most widely used parametrizations is the one published by {cite:t}`kirkland_advanced_2010`, who fitted Dirac-Fock scattering factors with combination of Gaussians and Lorentzians. In 2014, Lobato and Van Dyck improved the quality of the fit further, using hydrogen’s analytical non-relativistic electron scattering factors as basis functions to enable the correct inclusion of all physical constraints {cite:p}`lobato_accurate_2014`.
 
 An interactive example of independent-atom scattering potentials for elements up to {math}`Z = 32` is shown below (the code can be found on [GitHub](https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/Atomic_potentials.ipynb)).
 
@@ -591,7 +591,7 @@ An interactive example of independent-atom scattering potentials for elements up
 
 Since the complicated many-body interactions of multiple electrons mean that wavefunction cannot in general be analytically solved, further approximations are needed. Density functional theory (DFT) is the most prominent one, and is widely use for modeling the electronic structure of molecules and solids. In DFT, the combinatorially intractable many-body problem of {math}`N` electrons with {math}`3N` spatial coordinates is reduced to a solution for the three spatial coordinates of the electron density that can be variationally reached. This approximation would in principle be exact, but a term that describes electron exchange and correlation is not analytically known and must be approximated.
 
-Although the ground-state electron density for all electrons, including those in the core levels and in the valence, can in principle be solved within the DFT framework, the electron wavefunctions rapidly oscillate near the nuclei, making a numerical description computationally very expensive. To make calculations practical, some partition of the treatment of the cores and the valence is therefore typically needed. Pseudopotential {cite:t}`schwerdtfeger_pseudopotential_2011` and projector-augmented wave (PAW) methods {cite:t}`blochl_projector_1994` have in recent years matured to offer excellent computational efficiency. The core electrons are not described explicitly in either method, but in the former are replaced by a smooth pseudo-density, while in the latter, by smooth analytical projector functions in the core region.
+Although the ground-state electron density for all electrons, including those in the core levels and in the valence, can in principle be solved within the DFT framework, the electron wavefunctions rapidly oscillate near the nuclei, making a numerical description computationally very expensive. To make calculations practical, some partition of the treatment of the cores and the valence is therefore typically needed. Pseudopotential {cite:p}`schwerdtfeger_pseudopotential_2011` and projector-augmented wave (PAW) methods {cite:p}`blochl_projector_1994` have in recent years matured to offer excellent computational efficiency. The core electrons are not described explicitly in either method, but in the former are replaced by a smooth pseudo-density, while in the latter, by smooth analytical projector functions in the core region.
 
 Inverting the projector functions allows the exact core electron density to be analytically calculated, making the PAW method arguably ideally suited for efficient and accurate *ab initio* all-electron electrostatic potentials. The PAW method is accordingly the approach chosen for {sc}`abTEM`, specifically via the grid-based DFT code {sc}`GPAW` (more details on the method can be found in the literature {cite:t}`blochl_projector_1994,enkovaara_electronic_2010`). Notably for our purposes here, GPAW allows the full electrostatic potentials (with smeared nuclear contributions) to be efficiently calculated for molecules and solids, and seamlessly used for electron scattering simulations using {sc}`abTEM`.
 
@@ -611,7 +611,7 @@ V(r) = \frac{q_e}{4 \pi \epsilon_{0}} \frac{\mathrm{e^{-2 r / a_0}}}{r}\left(1 +
 
 This expression is singular at the origin due to the point charge of the nucleus, but that singularity gets smeared out due and numerically discretized in practical calculations (by default, GPAW smears the nuclear potentials with a Gaussian function).
 
-In Fig. [4](#fig:H_atom), we plot the exact solution of Eq. [29](#eq:H_potential) against the Kirkland IAM parameterization as well as a GPAW calculation (the code can be found on [GitHub](https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/H_atom.ipynb)).. While all models agree perfectly near the nucleus (the discontinuous appearance of the line is due to a finite computational grid with a spacing of 0.02 Å), where the potential is the strongest, small differences emerge further away. In the case of the DFT model, the simulation box is finite in size, and thus the continuity requirement of the wavefunction and corresponding density slightly affect the long-range part of the calculated potential. The choice of exchange-correlation functional may also slightly influence the results.
+In [](#fig:H_atom), we plot the exact solution of [](#eq:H_potential) against the Kirkland IAM parameterization as well as a GPAW calculation (the code can be found on [GitHub](https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/H_atom.ipynb)).. While all models agree perfectly near the nucleus (the discontinuous appearance of the line is due to a finite computational grid with a spacing of 0.02 Å), where the potential is the strongest, small differences emerge further away. In the case of the DFT model, the simulation box is finite in size, and thus the continuity requirement of the wavefunction and corresponding density slightly affect the long-range part of the calculated potential. The choice of exchange-correlation functional may also slightly influence the results.
 
 :::{figure} figures/H_atom.pdf
 :name: fig:H_atom
@@ -625,7 +625,7 @@ Although IAM potentials are useful for many purposes, they do neglect chemical b
 (numerical-solutions-of-the-schr-dinger-equation-co)=
 ### Numerical Solutions of the Schrödinger Equation (CO)
 
-As discussed previously, the Schrödinger equation typically cannot be solved analytically in complex systems. Therefore, in order to perform electron scattering simulations, we must calculate numerical solutions of Eq. [7](#eq:Shrodinger_time) for electron waves. First, we define the {cite:t}`debroglie1925recherches` wavelength of a free electrons (corrected for relativistic effects) as
+As discussed previously, the Schrödinger equation typically cannot be solved analytically in complex systems. Therefore, in order to perform electron scattering simulations, we must calculate numerical solutions of [](#eq:Shrodinger_time) for electron waves. First, we define the {cite:t}`debroglie1925recherches` wavelength of a free electrons (corrected for relativistic effects) as
 
 ```{math}
 :label: eq:wavelength
@@ -633,7 +633,7 @@ As discussed previously, the Schrödinger equation typically cannot be solved an
 \lambda = \frac{h \, c}{\sqrt{e \, E_0 (2 \, m \, c^2 + e \, E_0)}},
 ```
 
-where {math}`h` is the Plank constant, {math}`c` is the speed of light, {math}`e` is the electron charge, and {math}`E_0` is the accelerating voltage applied to the electron. Using SI units for Eq. [30](#eq:wavelength) will give the wavelength in units of meters. In practice we typically use length units of  for all calculations, and therefore multiple this result by {math}`10^{10}`.
+where {math}`h` is the Plank constant, {math}`c` is the speed of light, {math}`e` is the electron charge, and {math}`E_0` is the accelerating voltage applied to the electron. Using SI units for [](#eq:wavelength) will give the wavelength in units of meters. In practice we typically use length units of  for all calculations, and therefore multiple this result by {math}`10^{10}`.
 
 Next, we define the electron-potential interaction constant as (the numerical values of these constants can be found in Appendix [](#app:constants))
 
@@ -643,7 +643,7 @@ Next, we define the electron-potential interaction constant as (the numerical va
 \sigma = \frac{2 \pi \, m \, e \, \lambda}{h^2}.
 ```
 
-In our simulations, we will assume the {math}`z`-position coordinate of the wavefunction {math}`\psi(\bm{r})` is alone sufficient to describe its propagation in both time and space, and therefore drop the {math}`t` coordinate. Substituting Eqs. [30](#eq:wavelength) and [31](#eq:interaction_constant) into Eq. [7](#eq:Shrodinger_time), we obtain {cite:p}`kirkland2020`
+In our simulations, we will assume the {math}`z`-position coordinate of the wavefunction {math}`\psi(\bm{r})` is alone sufficient to describe its propagation in both time and space, and therefore drop the {math}`t` coordinate. Substituting [](#eq:wavelength) and [](#eq:interaction_constant) into [](#eq:Shrodinger_time), we obtain {cite:p}`kirkland2020`
 
 ```{math}
 :label: eq:Shrodinger_electron
@@ -655,7 +655,7 @@ In our simulations, we will assume the {math}`z`-position coordinate of the wave
     \ii \sigma V(\bm{r}) \psi(\bm{r}),
 ```
 
-where {math}`{\nabla_{xy}}^2 = \partial^2/\partial x^2 + \partial^2/\partial y^2`. This equation shows the overall numerical recipe we will use; when the wavefunction {math}`\psi_0(\bm{r})` is at position {math}`z_0`, we will evaluate the operators on the right hand side over a distance {math}`\Delta z` to calculate the new wavefunction {math}`\psi(\bm{r})` at position {math}`z_0 + \Delta z`. {cite:t}`kirkland2020` gives the formal operator solution to Eq.[32](#eq:Shrodinger_electron) as
+where {math}`{\nabla_{xy}}^2 = \partial^2/\partial x^2 + \partial^2/\partial y^2`. This equation shows the overall numerical recipe we will use; when the wavefunction {math}`\psi_0(\bm{r})` is at position {math}`z_0`, we will evaluate the operators on the right hand side over a distance {math}`\Delta z` to calculate the new wavefunction {math}`\psi(\bm{r})` at position {math}`z_0 + \Delta z`. {cite:t}`kirkland2020` gives the formal operator solution to [](#eq:Shrodinger_electron) as
 
 ```{math}
 :label: eq:Shrodinger_solution
@@ -673,7 +673,7 @@ where {math}`{\nabla_{xy}}^2 = \partial^2/\partial x^2 + \partial^2/\partial y^2
     \psi_0(\bm{r})
 ```
 
-Assuming {math}`\Delta z` is small, Eq. [33](#eq:Shrodinger_solution) can be simplified to
+Assuming {math}`\Delta z` is small, [](#eq:Shrodinger_solution) can be simplified to
 
 ```{math}
 :label: eq:Shrodinger_simple
@@ -697,15 +697,15 @@ V_{\Delta z}(\bm{r})
     V(\bm{r}) dz,
 ```
 
-is a thin slice of the potential. Unfortunately, even with the above approximations, Eq. [34](#eq:Shrodinger_simple) cannot be solved in closed form due to the two non-commuting operators. Instead, we will solve it numerically by using a split-step method, where we calculate solutions for each operator independently, and alternating their application to the electron wavefunction. This solution was introduced by {cite:t}`cowley1957scattering` and is known as the multislice method.
+is a thin slice of the potential. Unfortunately, even with the above approximations, [](#eq:Shrodinger_simple) cannot be solved in closed form due to the two non-commuting operators. Instead, we will solve it numerically by using a split-step method, where we calculate solutions for each operator independently, and alternating their application to the electron wavefunction. This solution was introduced by {cite:t}`cowley1957scattering` and is known as the multislice method.
 
 (free-space-wave-propagation)=
 ### Free Space Wave Propagation
 
-For an electron wavefunction moving through free space, we can set {math}`V_{\Delta z}(\bm{r}) = 0`. This assumption and our ability to split the {math}`x` and {math}`y` derivatives into two terms, allows us to simplify Eq. [34](#eq:Shrodinger_simple) to
+For an electron wavefunction moving through free space, we can set {math}`V_{\Delta z}(\bm{r}) = 0`. This assumption and our ability to split the {math}`x` and {math}`y` derivatives into two terms, allows us to simplify [](#eq:Shrodinger_simple) to
 
 ```{math}
-\begin{eqnarray}
+\begin{align*}
     \psi(\bm{r})
     &=& 
     \exp\left[
@@ -728,13 +728,13 @@ For an electron wavefunction moving through free space, we can set {math}`V_{\De
         \frac{\partial}{\partial y}
     \right)^{2m}
     \psi_0(\bm{r}).
-\end{eqnarray}
+\end{align*}
 ```
 
 This expression looks complicated due to the infinite series of derivatives, but we can solve it by taking the 2D Fourier transform of both sides, where the Fourier space wavefunction is defined as {math}`\Psi(\bm{k}) = \FFT\{\psi(\bm{r})\}` and where both {math}`\bm{r}` and {math}`\bm{k}` from here onward are 2D variables within the plane perpendicular to the propagation direction. This solution gives
 
 ```{math}
-\begin{eqnarray}
+\begin{align*}
     \Psi(\bm{k})
     &=&
     \sum_{n=0}^\infty
@@ -777,14 +777,16 @@ This expression looks complicated due to the infinite series of derivatives, but
         - \ii \pi \lambda  \Delta z |\bm{k}|^2
     \right)
     \Psi_0(\bm{k}).
-\end{eqnarray}
+\end{align*}
 ```
 
 Thus we can calculate the propagation of an electron wave through free space over a distance {math}`\Delta z` by taking the Fourier transform, multiplying each pixel by the above free space propagation operator, and taking the inverse Fourier transform.
 
 Colin section 1 - adapt my wave propagation movies into interactive demos
 
-
+```{attention}
+CODE BLOCK - plane wave propagation
+```
 
 Colin section 2 - adapt my wave propagation movies into interactive demos (I think I’ve done this for at least a couple of your functions AMR)
 
@@ -812,7 +814,11 @@ Colin section 2 - adapt my wave propagation movies into interactive demos (I thi
 
 %  \subsection*{Partitioned PRISM for STEM Simulation}
 
-We probably want a section where we make STEM probes interactively - a few ideas: -probe size vs parameters (AMR) -probe size for specialized shapes like phase plates or amplitude plates / bullseye probes -Recent user question - how do I define probe overlap in ptychography? I use “shared intensity” vs probe spacing, i.e sum(int1 \* int2) / sqrt(sum(int1\*\*2) \* sum(int2\*\*2)) - this would be a neat interactive demo
+We probably want a section where we make STEM probes interactively - a few ideas:
+
+- probe size vs parameters (AMR)
+- probe size for specialized shapes like phase plates or amplitude plates / bullseye probes
+- Recent user question - how do I define probe overlap in ptychography? I use “shared intensity” vs probe spacing, i.e sum(int1 \* int2) / sqrt(sum(int1\*\*2) \* sum(int2\*\*2)) - this would be a neat interactive demo
 
 +++
 (sim_inputs)=
@@ -857,7 +863,7 @@ e.g. Single Nanoparticles, Simple structures from materials project, CIF files e
 **Generating more complex simulation cells** - [link to notebook](https://github.com/tem-elements/tem-elements/blob/main/notebooks/Sample_NP_functionalized_substrate.ipynb)
 :::
 
-Often we will perform simulations of simple model systems to better understand the image contrast in TEM or STEM. One example of a such as a system is a “nanoparticle floating in space” geometry. For nanoparticles which contain high atomic number atoms and rest on a thin substrate, this can be a reasonable approximate. However, we often wish to perform more realistic simulations. The simplest addition is to add a substrate to our simulation cell. This notebook in Fig. [8](#Fig:sample_NP_func_substrate) will walk you through the process of using ASE to create a nanoparticle with an internal twin boundary defect, adding some randomly positioned surface functionalization molecules, and then placing the particle onto an amorphous carbon substrate.
+Often we will perform simulations of simple model systems to better understand the image contrast in TEM or STEM. One example of a such as a system is a “nanoparticle floating in space” geometry. For nanoparticles which contain high atomic number atoms and rest on a thin substrate, this can be a reasonable approximate. However, we often wish to perform more realistic simulations. The simplest addition is to add a substrate to our simulation cell. This notebook in [](#Fig:sample_NP_func_substrate) will walk you through the process of using ASE to create a nanoparticle with an internal twin boundary defect, adding some randomly positioned surface functionalization molecules, and then placing the particle onto an amorphous carbon substrate.
 
 The first step is to define our atomic structure. For this example, we use the face centered cubic (fcc) Au structure. Next, we tile the Au lattice to fill a Gibbs-Wulff {cite:p}`wulff1901question` polyhedron. The basic idea behind the Gibbs-Wulff construction is that the various crystallographic surfaces of a nanoparticle have normal vector distances from the particle origin which scale proportionally with the surface free energy. This is a good approximation for particles in solution. However, {cite:t}`winterbottom1967equilibrium` shows that it can be improved by including the substrate-particle interfacial energy or the energies of any internal planar defects such as grain boundaries in the equilibrium shape calculation. Thus we can easily define most nanoparticles by simply specifying the number of planes or vector normal distances for a small number of facets, as we do here.
 
@@ -955,7 +961,7 @@ CO - love the vis idea of course, we could also add one for HRTEM where we demon
 (tem_sims)=
 ## TEM Simulations with Plane Waves
 
-(imaging)=
+(imaging-2)=
 ### Imaging
 
 (diffraction)=
@@ -965,7 +971,7 @@ CO - love the vis idea of course, we could also add one for HRTEM where we demon
 ### Biological Samples Embedded in Ice
 
 +++
-(including-limited-coherence)=
+(including-limited-coherence-2)=
 ## Including Limited Coherence
 
 :::{figure} figures/hrtem.png
@@ -1029,22 +1035,20 @@ In Vis. [12](#vis:probe), we present an interactive visualization for exploring 
 
 :::{figure} figures/probe.png
 :name: vis:probe
-:alt: (Link to visualization) Left The Fourier space initial wavefunction in Eq. . Right The real space probe at the specimen in Eq. . Start by considering the effect of changing just the aperture and energy. In real space, the probe forms the diffraction-limited Airy disk pattern; increasing the aperture or energy decreases the radius of the pattern. Notice that changing the energy shifts the maximum of the axes in Fourier space. This is because the simulation uses a fixed wavefunction sampling; hence the maximum simulated scattering angle is decreased when the energy is increased according to Eq. %s. Next, add some defocus. In Fourier space, the phase starts oscillating radially with a linearly decreasing period, the resulting probe grows and its radial intensity profile may have multiple peaks and valleys. Now try to decrease the aperture to include only the inner slowly varying part of the phase; the result is a smaller, more well-behaved probe. Next, add some spherical aberration and try to compensate by adding some defocus to flatten the phase inside the aperture resulting in a better probe. Lastly, make a large probe and observe the diffraction fringes from self-interaction. This is the issue that should be avoided by increasing the size of the unit cell, as described in section %s.
 
-[(Link to visualization)](https://boiling-wildwood-85903.herokuapp.com/voila/render/probes.ipynb) **Left** The Fourier space initial wavefunction in Eq. [(42)](#eq:fourier_probe). **Right** The real space probe at the specimen in Eq. [(44)](#eq:realspace_probe). Start by considering the effect of changing just the aperture and energy. In real space, the probe forms the diffraction-limited Airy disk pattern; increasing the aperture or energy decreases the radius of the pattern. Notice that changing the energy shifts the maximum of the axes in Fourier space. This is because the simulation uses a fixed wavefunction sampling; hence the maximum simulated scattering angle is decreased when the energy is increased according to Eq. [%s](). Next, add some defocus. In Fourier space, the phase starts oscillating radially with a linearly decreasing period, the resulting probe grows and its radial intensity profile may have multiple peaks and valleys. Now try to decrease the aperture to include only the inner slowly varying part of the phase; the result is a smaller, more well-behaved probe. Next, add some spherical aberration and try to compensate by adding some defocus to flatten the phase inside the aperture resulting in a better probe. Lastly, make a large probe and observe the diffraction fringes from self-interaction. This is the issue that should be avoided by increasing the size of the unit cell, as described in section [%s]().
+[(Link to visualization)](https://boiling-wildwood-85903.herokuapp.com/voila/render/probes.ipynb) **Left** The Fourier space initial wavefunction in [](#eq:fourier_probe). **Right** The real space probe at the specimen in [](#eq:realspace_probe). Start by considering the effect of changing just the aperture and energy. In real space, the probe forms the diffraction-limited Airy disk pattern; increasing the aperture or energy decreases the radius of the pattern. Notice that changing the energy shifts the maximum of the axes in Fourier space. This is because the simulation uses a fixed wavefunction sampling; hence the maximum simulated scattering angle is decreased when the energy is increased according to Eq. [%s](). Next, add some defocus. In Fourier space, the phase starts oscillating radially with a linearly decreasing period, the resulting probe grows and its radial intensity profile may have multiple peaks and valleys. Now try to decrease the aperture to include only the inner slowly varying part of the phase; the result is a smaller, more well-behaved probe. Next, add some spherical aberration and try to compensate by adding some defocus to flatten the phase inside the aperture resulting in a better probe. Lastly, make a large probe and observe the diffraction fringes from self-interaction. This is the issue that should be avoided by increasing the size of the unit cell, as described in section [%s]().
 :::
 
 :::{figure} figures/probe_overlap.png
 :name: Fig:probe_overlap
 :align: center
-:alt: Estimating probe wraparound errors. - link to notebook
 
 **Estimating probe wraparound errors.** - [link to notebook](https://github.com/tem-elements/tem-elements/blob/main/notebooks/Probe_overlap.ipynb)
 :::
 
 Because STEM simulations can require long computation times, we often try to reduce the size of the simulation cell as much as possible. However, we must be careful to use a simulation cell large enough to hold the STEM probe. In particular, we need to consider the size of the probe throughout the full simulation cell volume. For an empty cell, the probe will have a maximum size at either the entrance or exit surface, depending on the probe defocus.
 
-Fig. [13](#Fig:probe_overlap) shows an interactive demo for testing the overlap of a STEM probe for different microscope parameters and cell dimensions. Try setting ... Note that this example only considers an empty cell volume. Atoms inside the simulation volume will scatter the electron beam, with heavier elements scattering electrons to higher angles. We recommend positioning individual STEM probes at the positions where the highest scattering is expected (for example directly on or adjacent to the thickest atomic columns), and carefully checking the dimensions of the probe at the exit surface. This is especially important for PRISM simulations, as the cropping box around the STEM probe can be significantly smaller than the full cell dimensions for high PRISM interpolation factors {cite:t}`ophus_fast_2017`.
+[](#Fig:probe_overlap) shows an interactive demo for testing the overlap of a STEM probe for different microscope parameters and cell dimensions. Try setting ... Note that this example only considers an empty cell volume. Atoms inside the simulation volume will scatter the electron beam, with heavier elements scattering electrons to higher angles. We recommend positioning individual STEM probes at the positions where the highest scattering is expected (for example directly on or adjacent to the thickest atomic columns), and carefully checking the dimensions of the probe at the exit surface. This is especially important for PRISM simulations, as the cropping box around the STEM probe can be significantly smaller than the full cell dimensions for high PRISM interpolation factors {cite:t}`ophus_fast_2017`.
 
 (imaging)=
 ### Imaging
