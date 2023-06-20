@@ -49,7 +49,6 @@ bibliography:
   - refs
   - toma_references
 github: https://github.com/msa-eom/guide-tem-simulation
-thumbnail: files/wiki-complex-2d6a1987c3ade5f0893bad2e53dc9bd2.png
 ---
 +++
 %  What do you guys think about this for a title?  -CO
@@ -210,7 +209,7 @@ TODO:
 
 A complex number, {math}`z \in \mathbb{C}`, is expressed as {math}`z = a + ib` where {math}`a` and {math}`b` are both real numbers, and {math}`i^2=-1`. The coefficient {math}`a` represents the real component, and {math}`b` the imaginary component. A complex number can be illustrated as a vector in the complex plane. Fig Ref
 
-:::{figure} files/wiki-complex-2d6a1987c3ade5f0893bad2e53dc9bd2.png
+:::{figure} figures/wiki-complex.png
 :::
 
 complex conjugates the complex conjugate of a number typically denoted {math}`\bar{z}`, for {math}`z = a + ib` is {math}`\bar{z} = a - ib`, and {math}`\bar{\bar{z}} = z`
@@ -309,7 +308,7 @@ Finally, it’s also worth noting that we never use the above expressions, since
 
 Instead, we use a fast Fourier Transform (FFT), which reduces the calculation time to a much more tractable {math}`O(N \log N)`. The first modern FFT algorithm is credited to {cite:t}`cooley1965algorithm`, though its original form appears in the works of Gauss {cite:p}`heideman1985gauss`. A description of this algorithm is beyond the scope of this paper. Many modern implementations of the FFT are available, for example in the FFTW libraries {cite:p}`frigo2005design`. Computing the FFT of a matrix is well suited to GPU acceleration, and is the reason why most modern simulation programs are GPU accelerated, relying on libraries such as cuFFT (ADD REF/CITE).
 
-:::{figure} files/temp_figure_1D_FFT-1a4b42465c4fa8c44f82546d75d71462.png
+:::{figure} figures/temp_figure_1D_FFT.png
 :name: vis:1d_fourier
 :alt: Temporary figure for 1D FFT example, link to current notebook.
 
@@ -586,7 +585,7 @@ A potential parametrization is a numerical fit to such first principles calculat
 
 An interactive example of independent-atom scattering potentials for elements up to {math}`Z = 32` is shown below (the code can be found on [GitHub](https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/Atomic_potentials.ipynb)).
 
-:::{figure} files/Atomic_potentials_wi-2083e0f8084898c576f88554c702452f.png
+:::{figure} figures/Atomic_potentials_widget.png
 :::
 
 (density-functional-theory-potentials-ts)=
@@ -616,13 +615,13 @@ This expression is singular at the origin due to the point charge of the nucleus
 
 In Fig. [4](#fig:H_atom), we plot the exact solution of Eq. [29](#eq:H_potential) against the Kirkland IAM parameterization as well as a GPAW calculation (the code can be found on [GitHub](https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/H_atom.ipynb)).. While all models agree perfectly near the nucleus (the discontinuous appearance of the line is due to a finite computational grid with a spacing of 0.02 Å), where the potential is the strongest, small differences emerge further away. In the case of the DFT model, the simulation box is finite in size, and thus the continuity requirement of the wavefunction and corresponding density slightly affect the long-range part of the calculated potential. The choice of exchange-correlation functional may also slightly influence the results.
 
-:::{figure} files/H_atom-8db9ba417924394429c1fd6866d4daf8.pdf
+:::{figure} figures/H_atom.pdf
 :name: fig:H_atom
 :::
 
 Although IAM potentials are useful for many purposes, they do neglect chemical bonding, which may be measurable and of interest. To illustrate this difference, an interactive comparison of the IAM and DFT scattering potentials of the H{math}`_2` molecule at different distances between the H atoms is shown below (the code can be found on [GitHub](https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/H2_molecule.ipynb)).
 
-:::{figure} files/H2_molecule_widget-e638d2bf6b04fe11cc1780e3a1d1366f.png
+:::{figure} figures/H2_molecule_widget.png
 :::
 
 (numerical-solutions-of-the-schr-dinger-equation-co)=
@@ -801,7 +800,7 @@ Colin section 2 - adapt my wave propagation movies into interactive demos (I thi
 (the-multislice-algorithm-for-s-tem-simulation)=
 ### The Multislice Algorithm for S/TEM Simulation
 
-:::{figure} files/3d_wavefunction-eb7f6ae63ceb55d3607bc51b874f06fe.png
+:::{figure} figures/3d_wavefunction.png
 :name: vis:3d_wavefunction
 :alt: (Link to visualization)
 
@@ -852,7 +851,7 @@ e.g. Single Nanoparticles, Simple structures from materials project, CIF files e
 (making-simple-samples-more-realistic)=
 #### Making simple samples more realistic
 
-:::{figure} files/complex_structure-ee6a9e0f88ae65f02563046cd84304c1.pdf
+:::{figure} figures/complex_structure.pdf
 :name: Fig:sample_NP_func_substrate
 :align: center
 :alt: Generating more complex simulation cells - link to notebook
@@ -943,7 +942,7 @@ You can explore how aberrations affect the contrast transfer function in visuali
 
 CO - love the vis idea of course, we could also add one for HRTEM where we demonstrate that for a weak phase object (a protein?) there is no contrast, so you need some aberration (or a phase plate) to see anything!
 
-:::{figure} files/aberrations_and_psf-3d9b9880b86a0d3935dbe54921fc1ea7.png
+:::{figure} figures/aberrations_and_psf.png
 :alt: (Link to visualization)
 
 [(Link to visualization)](https://tem-elements.herokuapp.com/voila/render/notebooks/Aberrations.ipynb)
@@ -971,13 +970,13 @@ CO - love the vis idea of course, we could also add one for HRTEM where we demon
 (including-limited-coherence)=
 ## Including Limited Coherence
 
-:::{figure} files/hrtem-30c513bbb8fb842bc3bc1188aef19746.png
+:::{figure} figures/hrtem.png
 :alt: (Link to visualization)
 
 [(Link to visualization)](https://boiling-wildwood-85903.herokuapp.com/voila/render/hrtem.ipynb)
 :::
 
-:::{figure} files/limited_coherence_ST-f8672602964fbb4cc413a4443778acc6.png
+:::{figure} figures/limited_coherence_STEM.png
 :alt: (Link to visualization)
 
 [(Link to visualization)](https://tem-elements.herokuapp.com/voila/render/notebooks/limited_coherence_STEM.ipynb)
@@ -1030,14 +1029,14 @@ where, {math}`\bm{r}_p`, is a specified probe position in relative to the atomic
 
 In Vis. [12](#vis:probe), we present an interactive visualization for exploring the relationship between size and shape of the incident probe and some parameters of the aperture and aberration functions.
 
-:::{figure} files/probe-ed8a28ee4aede3923a90af8de2cc0811.png
+:::{figure} figures/probe.png
 :name: vis:probe
 :alt: (Link to visualization) Left The Fourier space initial wavefunction in Eq. . Right The real space probe at the specimen in Eq. . Start by considering the effect of changing just the aperture and energy. In real space, the probe forms the diffraction-limited Airy disk pattern; increasing the aperture or energy decreases the radius of the pattern. Notice that changing the energy shifts the maximum of the axes in Fourier space. This is because the simulation uses a fixed wavefunction sampling; hence the maximum simulated scattering angle is decreased when the energy is increased according to Eq. %s. Next, add some defocus. In Fourier space, the phase starts oscillating radially with a linearly decreasing period, the resulting probe grows and its radial intensity profile may have multiple peaks and valleys. Now try to decrease the aperture to include only the inner slowly varying part of the phase; the result is a smaller, more well-behaved probe. Next, add some spherical aberration and try to compensate by adding some defocus to flatten the phase inside the aperture resulting in a better probe. Lastly, make a large probe and observe the diffraction fringes from self-interaction. This is the issue that should be avoided by increasing the size of the unit cell, as described in section %s.
 
 [(Link to visualization)](https://boiling-wildwood-85903.herokuapp.com/voila/render/probes.ipynb) **Left** The Fourier space initial wavefunction in Eq. [(42)](#eq:fourier_probe). **Right** The real space probe at the specimen in Eq. [(44)](#eq:realspace_probe). Start by considering the effect of changing just the aperture and energy. In real space, the probe forms the diffraction-limited Airy disk pattern; increasing the aperture or energy decreases the radius of the pattern. Notice that changing the energy shifts the maximum of the axes in Fourier space. This is because the simulation uses a fixed wavefunction sampling; hence the maximum simulated scattering angle is decreased when the energy is increased according to Eq. [%s](). Next, add some defocus. In Fourier space, the phase starts oscillating radially with a linearly decreasing period, the resulting probe grows and its radial intensity profile may have multiple peaks and valleys. Now try to decrease the aperture to include only the inner slowly varying part of the phase; the result is a smaller, more well-behaved probe. Next, add some spherical aberration and try to compensate by adding some defocus to flatten the phase inside the aperture resulting in a better probe. Lastly, make a large probe and observe the diffraction fringes from self-interaction. This is the issue that should be avoided by increasing the size of the unit cell, as described in section [%s]().
 :::
 
-:::{figure} files/probe_overlap-135d8e36eb34f7aee25ab2b075ffa40e.png
+:::{figure} figures/probe_overlap.png
 :name: Fig:probe_overlap
 :align: center
 :alt: Estimating probe wraparound errors. - link to notebook
@@ -1088,7 +1087,7 @@ If {math}`D(\bm{k})` is a small point on the axis then the measurement is a brig
 
 The image, {math}`g(\bm{r}_p)`, is the collection of integrated intensities at all sample positions in a (typically) rectangular region. The scan region may be chosen independently of the supercell and may cover only part of the super cell. In the case of a super cell consisting smaller periodic units, computation can be saved by choosing a scan window covering just one of the periodic units.
 
-:::{figure} files/annular_integrals-bd7166bdb4c549e667ca5832d565aca1.png
+:::{figure} figures/annular_integrals.png
 :name: vis:annular
 :alt: (Link to visualization)
 
@@ -1139,7 +1138,7 @@ Notebook done, will upload to repository
 
 Notebook done, will upload to repository
 
-:::{figure} files/dose_distortions-11333c89bc227d14186778a976e9f141.png
+:::{figure} figures/dose_distortions.png
 :name: vis:dose_distortions
 :alt: (Link to visualization)
 
