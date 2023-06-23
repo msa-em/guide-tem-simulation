@@ -1,12 +1,18 @@
 ---
 title: >-
-  Hands-on Introduction to Scanning and Transmission Electron Microscopy
-  Simulations
-short_title: 'Elements: S/TEM Sim'
+  A Practical Guide to Scanning and Transmission Electron Microscopy Simulations
+short_title: '.tex converted to .md'
 authors:
   - name: Colin Ophus
     corresponding: true
     email: cophus@gmail.com
+    affiliations:
+      - >-
+        National Center for Electron Microscopy, Molecular Foundry, Lawrence
+        Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, USA, 94720
+  - name: Stephanie M Ribet
+    corresponding: true
+    email: sribet@lbl.gov 
     affiliations:
       - >-
         National Center for Electron Microscopy, Molecular Foundry, Lawrence
@@ -32,7 +38,7 @@ authors:
       - >-
         University of Vienna, Faculty of Physics, Boltzmanngasse 5, Vienna,
         1090, Austria
-  - name: Hamish Brown
+  - name: Hamish G Brown
     corresponding: true
     email: hgbrown@unimelb.edu.au
     affiliations:
@@ -153,7 +159,7 @@ Mathematical
 | :----------------------------------: | :-----------------------------------------------------------------------------------------------------: | :----------------------------------------: | :--------------------------: |
 |                Scalar                |                measured value unchanged by translation or rotation e.g. measured distance               | element of a field defining a vector space | 0D data structure (variable) |
 |                Vector                | multiple scalars defining both a magnitude and a direction, which is altered by rotation or translation |        an element of a vector space        |       1D data structure      |
-| N-dimensional array (matrix, tensor) |                                                   545                                                   |                     778                    |       ND data structure      |
+| N-dimensional array (matrix, tensor) |                                                   545                                                   |                     778                    |       N-D data structure      |
 
 Scalars, vectors and matrices can be represented using native python types in multiple ways. Scalars, can be simply represented as a number, which we assign to a variable. Vectors and arrays, can be stored inside a python data structure such as a *list*.
 
