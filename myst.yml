@@ -15,22 +15,27 @@ project:
       affiliations:
         - National Center for Electron Microscopy, Molecular Foundry, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, USA, 94720
     - name: Stephanie M Ribet
+      corresponding: true
       email: sribet@lbl.gov 
       affiliations:
         - National Center for Electron Microscopy, Molecular Foundry, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, USA, 94720
     - name: Alexander Rakowski
+      corresponding: true
       email: arakowski@lbl.gov
       affiliations:
         - National Center for Electron Microscopy, Molecular Foundry, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, USA, 94720    
     - name: Jacob Madsen
+      corresponding: true
       email: jacob.madsen@univie.ac.at
       affiliations:
         - University of Vienna, Faculty of Physics, Boltzmanngasse 5, Vienna, 1090, Austria
     - name: Toma Susi
+      corresponding: true
       email: toma.susi@univie.ac.at
       affiliations:
         - University of Vienna, Faculty of Physics, Boltzmanngasse 5, Vienna, 1090, Austria
     - name: Hamish G Brown
+      corresponding: true
       email: hgbrown@unimelb.edu.au
       affiliations:
         - Ian Holmes Imaging Centre, Bio21 Institute, The University of Melbourne, Australia
