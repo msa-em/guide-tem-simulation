@@ -5,3 +5,11 @@ numbering:
 ---
 
 text
+
+```{figure} #app:fft_1d
+
+```
+
+```{figure} #app:probe_size
+
+```
