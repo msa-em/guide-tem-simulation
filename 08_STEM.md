@@ -48,7 +48,7 @@ The probe is transferred to the specimen using an inverse Fourier transform and,
 
 where, {math}`\bm{r}_p`, is a specified probe position in relative to the atomic coordinates.
 
-In Vis.[](#fig_probe) , we present an interactive visualization for exploring the relationship between size and shape of the incident probe and some parameters of the aperture and aberration functions.
+In [](#fig_probe) , we present an interactive visualization for exploring the relationship between size and shape of the incident probe and some parameters of the aperture and aberration functions.
 
 
 
@@ -112,24 +112,32 @@ where
 
 If {math}`D(\bm{k})` is a small point on the axis then the measurement is a bright field image. If {math}`D(\bm{k})` is a large annulus covering the high angle scattering then the measurement is an annular dark field image.
 
+[](#fig_stem_processing) shows the impact of collection angle on image intensity. 
+
+```{figure} #app:stem_processing
+:name: fig_stem_processing
+Aluminum, iron and gold nanoparticles on a carbon film: **Left** image from a circular detector. **Middle** image from an annular detector **Right**  differential phase contrast reconstruction. Notice how changing the collection angles impacts the contrast. 
+```
+
 The image, {math}`g(\bm{r}_p)`, is the collection of integrated intensities at all sample positions in a (typically) rectangular region. The scan region may be chosen independently of the supercell and may cover only part of the super cell. In the case of a super cell consisting smaller periodic units, computation can be saved by choosing a scan window covering just one of the periodic units.
 
+<!-- 
 :::{figure} figures/annular_integrals.png
 :name: vis:annular
 :alt: (Link to visualization)
 
 [(Link to visualization)](https://boiling-wildwood-85903.herokuapp.com/voila/render/annular_detector.ipynb)
-:::
+::: -->
 
-%  We can significantly limit the computational cost, by choosing the largest possible spacing between the sample positions, or probe step size, $\Delta r_p$. 
+We can significantly limit the computational cost, by choosing the largest possible spacing between the sample positions, or probe step size, $\Delta r_p$. 
 
-%  \begin{align*}
+\begin{align*}
 
-%      \Delta r_p = 0.9 \frac{1}{4 \lambda \alpha_{cutoff}}.
+      \Delta r_p = 0.9 \frac{1}{4 \lambda \alpha_{cutoff}}.
 
-%  \end{align*}
+\end{align*}
 
-%  It is important to remember the difference between the wavefunction sampling and probe step, both in units of Angstrom. The probe step only refers to the spacing of the initial probe, and it is entirely independent from the grid used to sample the wavefunctions and potentials.
+It is important to remember the difference between the wavefunction sampling and probe step, both in units of Angstrom. The probe step only refers to the spacing of the initial probe, and it is entirely independent from the grid used to sample the wavefunctions and potentials.
 
 %  In Vis. \ref{}, we present a visualization for exploring how the integration region of the detector influence the image.
 
@@ -139,7 +147,7 @@ The phase problem, namely the loss of phase information when taking a measuremen
 
 When an electron probe interacts with a sample potential the center of mass (CoM) of the beam changes. Depending on the sample potential and the size of the probe, this will take the form of either a rigid disk shift, for low-frequency features, or a change in the distribution of signal within a disk, for high-frequency features, such as atoms {cite:p}`cao2018theory`. 
 
-First proposed by {cite:t}`dekkers1974differential` replacing conventional detectors with segemented detectors can caputre this change in center of mass. Differential phase contrast (DPC) measurements are made by differentiating signal from oppposite segments, and this signal is proportional to the phase of the sample. Fig. illustrates this DPC approach with the mixed nanoparticle on carbon sample, and compared to the bright-field and dark-field images, the signal from both the heavy and light components is more clear. The contrast transfer function for DPC peaks for the convergence angle of the probe, so simulations with these detectors can be helpful for optimizing experimental parameters.
+First proposed by {cite:t}`dekkers1974differential` replacing conventional detectors with segemented detectors can caputre this change in center of mass. Differential phase contrast (DPC) measurements are made by differentiating signal from oppposite segments, and this signal is proportional to the phase of the sample. [](#fig_stem_processing) illustrates this DPC approach with the mixed nanoparticle on carbon structure, and compared to the bright-field and dark-field images, the signal from both the heavy and light components is more clear. The contrast transfer function for DPC peaks for the convergence angle of the probe, so simulations with these detectors can be helpful for optimizing experimental parameters.
 
 (id-4d-stem)=
 ### 4D-STEM (CO)
