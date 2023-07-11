@@ -16,14 +16,14 @@ project:
         - National Center for Electron Microscopy, Molecular Foundry, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, USA, 94720
     - name: Stephanie M Ribet
       corresponding: true
-      email: sribet@lbl.gov 
+      email: sribet@lbl.gov
       affiliations:
         - National Center for Electron Microscopy, Molecular Foundry, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, USA, 94720
     - name: Alexander Rakowski
       corresponding: true
       email: arakowski@lbl.gov
       affiliations:
-        - National Center for Electron Microscopy, Molecular Foundry, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, USA, 94720    
+        - National Center for Electron Microscopy, Molecular Foundry, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, USA, 94720
     - name: Jacob Madsen
       corresponding: true
       email: jacob.madsen@univie.ac.at
@@ -39,6 +39,8 @@ project:
       email: hgbrown@unimelb.edu.au
       affiliations:
         - Ian Holmes Imaging Centre, Bio21 Institute, The University of Melbourne, Australia
+  thebe:
+    server: true
 site:
   template: book-theme
   # title: Guide to STEM/TEM Sims
