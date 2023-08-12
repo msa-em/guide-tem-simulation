@@ -1,9 +1,11 @@
-# See docs at: https://myst.tools/docs/mystjs/frontmatter
+# See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
   title: A Practical Guide to Scanning and Transmission Electron Microscopy Simulations
   short_title: Guide to STEM/TEM Sims
-  # description:
+  description: The goal of the text is to enable readers to have an understanding of both the theory and practical applications of S/TEM image simulation. After reading, you should feel comfortable in devising, preparing and running S/TEM image simulations, and be able to critically assess simulated images in literature.
+  thumbnail: thumbnail.png
+  banner: banner.png
   keywords: []
   github: https://github.com/msa-eom/guide-tem-simulation
   # bibliography: []
@@ -43,13 +45,5 @@ project:
     server: true
 site:
   template: book-theme
-  # title: Guide to STEM/TEM Sims
-  # logo_text: Guide to STEM/TEM Sims
-  # nav: []
-  projects:
-    - slug: myst
-      path: .
-  actions:
-    - title: Learn More
-      url: https://myst.tools/docs/mystjs/quickstart
-  domains: []
+  domains:
+    - microscopy-EM000002.curve.space

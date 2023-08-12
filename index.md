@@ -5,12 +5,12 @@ numbering:
   heading_2: false
 ---
 
-+++ {"part": "abstract"} 
-## Abstract
++++ {"part": "abstract"}
 
 text
 
 +++
+
 ## Acknowledgements
 
 We are heavily indebted to the various excellent textbooks on electron microscopy, in particular {cite:t}`kirkland2020`, and others ...
@@ -18,6 +18,7 @@ We are heavily indebted to the various excellent textbooks on electron microscop
 Work at the Molecular Foundry was supported by the Office of Science, Office of Basic Energy Sciences, of the U.S. Department of Energy under Contract No. DE-AC02-05CH11231.
 
 +++
+
 ## Declaration of Competing Interest
 
 The authors declare that they have no known competing interests.
