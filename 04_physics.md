@@ -15,7 +15,7 @@ github: https://github.com/msa-eom/guide-tem-simulation
 (physical-concepts-ts)=
 # Physical Concepts (TS)
 
-The properties of atoms, molecules and solids are fundamentally determined by quantum mechanics. In this modern theory of physics, some classical concepts such as the electrostatic potential and the propagation of waves are carried over essentially unchanged, whereas many familiar intuitions fail on the level of the very small. In particular, quantum objects including electrons exhibit both wave and particle properties depending on how they are observed -- in the context of electron scattering, matter-wave interference is of central importance. Mathematically, both free propagating electrons and those bound into atoms are described mathematically as complex waves, via so-called electron wavefunctions.
+The properties of atoms, molecules and solids are fundamentally determined by quantum mechanics. In this modern theory of physics, some classical concepts such as the electrostatic potential and the propagation of waves are carried over essentially unchanged, whereas many familiar intuitions fail on the level of the very small. In particular, quantum objects including electrons exhibit both wave and particle properties depending on how they are observed — in the context of electron scattering, matter-wave interference is of central importance. Mathematically, both free propagating electrons and those bound into atoms are described mathematically as complex waves, via so-called electron wavefunctions.
 
 (electron-wavefunctions-ts)=
 ## Electron Wavefunctions
@@ -131,7 +131,7 @@ This can be formally solved with the help of Green's function $G(\bm{r},\bm{r^{\
     \mathrm{e}^{\mathrm{i} k_{0} \cdot \bm{r}}+\frac{2 m}{\hbar^{2}} \int V\left(\bm{r}^{\prime}\right) \psi\left(\bm{r}^{\prime}\right) G\left(\bm{r}, \bm{r}^{\prime}\right) \mathrm{d}^{3} \bm{r}^{\prime}.
 ```
 
-While this formal solution is in principle exact, it is in the form of an implicit integral equation whose solution $\psi$ appears both inside and outside the integral -- indeed, we have merely transformed the differential Schrödinger equation into an integral equation without solving anything. To proceed, some approximation is needed.
+While this formal solution is in principle exact, it is in the form of an implicit integral equation whose solution $\psi$ appears both inside and outside the integral – indeed, we have merely transformed the differential Schrödinger equation into an integral equation without solving anything. To proceed, some approximation is needed.
 
 (born-approximation-ts)=
 ### Born approximation for electron scattering
@@ -223,14 +223,16 @@ Hydrogen is the only case that is analytically solvable; in general neither the 
 (isolated-atomic-potentials-ts)=
 ## Isolated Atomic Potentials (TS)
 
-Since the Schrödinger equation cannot be solved analytically even for most molecules, let alone solid-state systems, several kinds of approaches have been developed to obtain approximate solutions. These accurate but computationally very expensive techniques have been used to parametrize what are called isolated atomic potentials -- or, equivalently in reciprocal space, electron scattering factors -- which describe the potential of a specimen as a sum of isolated, non-interacting atom potentials. This approximation is often called the independent atom model.
+Since the Schrödinger equation cannot be solved analytically even for most molecules, let alone solid-state systems, several kinds of approaches have been developed to obtain approximate solutions. These accurate but computationally very expensive techniques have been used to parametrize what are called isolated atomic potentials – or, equivalently in reciprocal space, electron scattering factors – which describe the potential of a specimen as a sum of isolated, non-interacting atom potentials. This approximation is often called the independent atom model.
 
 A potential parametrization is a numerical fit to such first principles calculations of electron atomic form factors that describe the radial dependence of the potential for each element. One of the most widely used parametrizations is the one published in {cite:t}`kirkland_advanced_2010`, who fitted Dirac-Fock scattering factors with combination of Gaussians and Lorentzians. In 2014, Lobato and Van Dyck improved the quality of the fit further, using hydrogen's analytical non-relativistic electron scattering factors as basis functions to enable the correct inclusion of all physical constraints {cite:p}`lobato_accurate_2014`.
 
-An interactive example of independent-atom scattering potentials for elements up to $Z = 32$ is shown below (the code can be found on \href{https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/Atomic_potentials.ipynb}{GitHub}).
+An example of independent-atom scattering potentials for several elements up to $Z = 32$ is shown in [](#fig:atomic_potentials).
 
-\framebox(468,280){
-\includegraphics[width=1\textwidth]{figures/Atomic_potentials_widget.png}}
+```{figure} #parametrized_potentials
+:name: fig:atomic_potentials
+Caption
+```
 
 (dft-potentials-ts)=
 ## Density Functional Theory Potentials (TS)
@@ -239,7 +241,7 @@ Since the complicated many-body interactions of multiple electrons mean that wav
 
 Although the ground-state electron density for all electrons, including those in the core levels and in the valence, can in principle be solved within the DFT framework, the electron wavefunctions rapidly oscillate near the nuclei, making a numerical description computationally very expensive. To make calculations practical, some partition of the treatment of the cores and the valence is therefore typically needed. Pseudopotential {cite:p}`schwerdtfeger_pseudopotential_2011` and projector-augmented wave (PAW) methods {cite:p}`blochl_projector_1994` have in recent years matured to offer excellent computational efficiency. The core electrons are not described explicitly in either method, but in the former are replaced by a smooth pseudo-density, while in the latter, by smooth analytical projector functions in the core region.
 
-Inverting the projector functions allows the exact core electron density to be analytically calculated, making the PAW method arguably ideally suited for efficient and accurate \textit{ab initio} all-electron electrostatic potentials. The PAW method is accordingly the approach chosen for \textsc{abTEM}, specifically via the grid-based DFT code \textsc{GPAW} (more details on the method can be found in the literature {cite:p}`blochl_projector_1994,enkovaara_electronic_2010`. Notably for our purposes here, GPAW allows the full electrostatic potentials (with smeared nuclear contributions) to be efficiently calculated for molecules and solids, and seamlessly used for electron scattering simulations using \textsc{abTEM}.
+Inverting the projector functions allows the exact core electron density to be analytically calculated, making the PAW method arguably ideally suited for efficient and accurate *ab initio* all-electron electrostatic potentials. The PAW method is accordingly the approach chosen for *ab*TEM, specifically via the grid-based DFT code GPAW (more details on the method can be found in the literature {cite:p}`blochl_projector_1994,enkovaara_electronic_2010`. Notably for our purposes here, GPAW allows the full electrostatic potentials (with smeared nuclear contributions) to be efficiently calculated for molecules and solids, and seamlessly used for electron scattering simulations using *ab*TEM.
 
 To come back to our hydrogen example, we can analytically calculate its full electrostatic potential by solving the Poisson equation for the charge density of the electron (charge $-q_e$) combined with the Coulomb potential of the nucleus ($+q_e$). The Poisson equation is
 
@@ -256,19 +258,19 @@ V(r) = \frac{q_e}{4 \pi \epsilon_{0}} \frac{\mathrm{e^{-2 r / a_0}}}{r}\left(1 +
 
 This expression is singular at the origin due to the point charge of the nucleus, but that singularity gets smeared out due and numerically discretized in practical calculations (by default, GPAW smears the nuclear potentials with a Gaussian function).
 
-In Fig.~\ref{fig:H_atom}, we plot the exact solution of [](#eq:H_potential) against the Kirkland IAM parameterization as well as a GPAW calculation (the code can be found on \href{https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/H_atom.ipynb}{GitHub}).. While all models agree perfectly near the nucleus (the discontinuous appearance of the line is due to a finite computational grid with a spacing of 0.02~\AA), where the potential is the strongest, small differences emerge further away. In the case of the DFT model, the simulation box is finite in size, and thus the continuity requirement of the wavefunction and corresponding density slightly affect the long-range part of the calculated potential. The choice of exchange-correlation functional may also slightly influence the results.
+In [](#fig:H_atom), we plot the exact solution of [](#eq:H_potential) against the Kirkland IAM parameterization as well as a GPAW calculation (the code can be found on \href{https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/H_atom.ipynb}{GitHub}). While all models agree perfectly near the nucleus (the discontinuous appearance of the line is due to a finite computational grid with a spacing of 0.01 Å), where the potential is the strongest, small differences emerge further away. In the case of the DFT model, the simulation box is finite in size, and thus the continuity requirement of the wavefunction and corresponding density slightly affect the long-range part of the calculated potential. The choice of exchange-correlation functional may also slightly influence the results.
 
-\framebox(468,130){
-    \includegraphics[width=1\textwidth]{figures/H_atom.pdf}
-    \label{fig:H_atom}
-}
+```{figure} #H_potential_comparisons
+:name: fig:H_atom
+Caption
+```
 
 Although IAM potentials are useful for many purposes, they do neglect chemical bonding, which may be measurable and of interest. To illustrate this difference, an interactive comparison of the IAM and DFT scattering potentials of the H$_2$ molecule at different distances between the H atoms is shown below (the code can be found on \href{https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/H2_molecule.ipynb}{GitHub}).
 
 \framebox(468,300){
 \includegraphics[width=1\textwidth]{figures/H2_molecule_widget.png}}
 
-(numerical-solutions-of-the-schr-dinger-equation-co)=
+(numerical-solutions-of-the-schrodinger-equation-co)=
 ### Numerical Solutions of the Schrödinger Equation (CO)
 
 As discussed previously, the Schrödinger equation typically cannot be solved analytically in complex systems. Therefore, in order to perform electron scattering simulations, we must calculate numerical solutions of [](#eq:Schrodinger_time) for electron waves. First, we define the {cite:t}`debroglie1925recherches` wavelength of a free electrons (corrected for relativistic effects) as
