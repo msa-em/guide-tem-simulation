@@ -77,7 +77,7 @@ The square modulus, {math}`|\Psi_t(\bm{k}, \bm{r}_p)|^2` is the diffraction patt
 
 Every STEM mode requires calculating a diffraction pattern for each shifted initial wavefunction in the scan region, the modes differ only by how the detector geometry is applied to the diffraction patterns.
 
-In bright-field and annular-dark-field STEM the detector integrates the CBED pattern on a region in the diffraction plane. This is equivalent to multiplying with a detector function
+In bright-field (BF) and annular-dark-field (ADF) STEM the detector integrates the CBED pattern on a region in the diffraction plane. This is equivalent to multiplying with a detector function
 
 ```{math}
 \begin{align*}
@@ -98,9 +98,14 @@ where
 \end{align*}
 ```
 
+
+
+
 If {math}`D(\bm{k})` is a small point on the axis then the measurement is a bright field image. If {math}`D(\bm{k})` is a large annulus covering the high angle scattering then the measurement is an annular dark field image.
 
-The image, {math}`g(\bm{r}_p)`, is the collection of integrated intensities at all sample positions in a (typically) rectangular region. The scan region may be chosen independently of the supercell and may cover only part of the super cell. In the case of a super cell consisting smaller periodic units, computation can be saved by choosing a scan window covering just one of the periodic units.
+In [](#fig_stem_processing), we present a visualization for exploring how the integration region of flexible circular and annular detectors influence the image contrast. More discussion of flexible detectors in STEM experiments is in [4D-STEM](#id-4d-stem). For BF imaging, we often use a collection angle just larger than the convergence angle of the incident probe. In annular dark field (ADF) imaging the contrast is approximately $Z^\alpha$, where Z is the atomic number and $\alpha$ is anywhere between 1.3 and 2 depending on the detector geometry {cite:p}`treacy2011z`. In a high angle annular dark field (HAADF) experiment, the contrast is even more strongly dominated by the heavy atoms.  ADF imaging is a linear technqiue and relatively robust to sample thickness, but as can be oserved in [](#fig_stem_processing) is not well suited for visualizing light elements. Annular bright field imaging (ABF) uses a colleciton angle matching the outer ring of the bright field disk, and capture signals from both heavy and light elements {cite:p}`okunishi2009visualization`. 
+
+The image, {math}`g(\bm{r}_p)`, is the collection of integrated intensities at all sample positions in a (typically) rectangular region. The scan region may be chosen independently of the supercell and may cover only part of the super cell. In the case of a super cell consisting smaller periodic units, computation can be saved by choosing a scan window covering just one of the periodic units. For non-periodic cells, it is important to pad the region of interest to avoid wrap-around errors in the sample field of view.
 
 We can significantly limit the computational cost, by choosing the largest possible spacing between the sample positions, or probe step size, $\Delta r_p$. 
 
@@ -111,8 +116,6 @@ We can significantly limit the computational cost, by choosing the largest possi
 \end{align*}
 
 It is important to remember the difference between the wavefunction sampling and probe step, both in units of Angstrom. The probe step only refers to the spacing of the initial probe, and it is entirely independent from the grid used to sample the wavefunctions and potentials.
-
-In [](#fig_stem_processing), we present a visualization for exploring how the integration region of flexible circular and annular detectors influence the image contrast. More discussion of flexible detectors in STEM experiments is in [4D-STEM](#id-4d-stem). In bright field imaging, we generally use a detector slightly bigger than the probe size to integrate all the information from the directly transmitted beam. In annular dark field (ADF) imaging the contrast is approximately $Z^\alpha$, where Z is the atomic number and $alpha$ is anywhere between 1.3 and 2 depending on the detector geometry {cite:p}`treacy2011z`. In a high angle annular dark field (HAADF) experiment, the contrast is even more strongly dominated by the heavy atoms.  ADF imaging is a linear technqiue and relatively robust to sample thickness, but as can be oserved in [](#fig_stem_processing) is not well suited for visualizing light elements. Annular bright field imaging (ABF) uses a colleciton angle matching the outer ring of the bright field disk, and capture signals from both heavy and light elements {cite:p}`okunishi2009visualization`. 
 
 
 ```{figure} #app:stem_post_processing
