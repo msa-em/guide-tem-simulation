@@ -1,0 +1,55 @@
+{
+    "kwargs0": {
+        "ensemble_axes_metadata": [
+            {
+                "_concatenate": true,
+                "_default_type": null,
+                "_ensemble_mean": false,
+                "_squeeze": false,
+                "_tex_label": null,
+                "label": "",
+                "type": "OrdinalAxis",
+                "units": null,
+                "values": [
+                    "0.75",
+                    "1.0",
+                    "1.25",
+                    "1.5",
+                    "1.75",
+                    "2.0",
+                    "2.25",
+                    "2.5",
+                    "2.75",
+                    "3.0"
+                ]
+            }
+        ],
+        "exit_planes": [
+            11
+        ],
+        "extent": [
+            12.0,
+            6.0
+        ],
+        "metadata": {},
+        "sampling": [
+            0.05,
+            0.05
+        ],
+        "slice_thickness": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ]
+    },
+    "type0": "PotentialArray"
+}

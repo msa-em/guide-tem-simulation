@@ -227,11 +227,11 @@ Since the Schrödinger equation cannot be solved analytically even for most mole
 
 A potential parametrization is a numerical fit to such first principles calculations of electron atomic form factors that describe the radial dependence of the potential for each element. One of the most widely used parametrizations is the one published in {cite:t}`kirkland_advanced_2010`, who fitted Dirac-Fock scattering factors with combination of Gaussians and Lorentzians. In 2014, Lobato and Van Dyck improved the quality of the fit further, using hydrogen's analytical non-relativistic electron scattering factors as basis functions to enable the correct inclusion of all physical constraints {cite:p}`lobato_accurate_2014`.
 
-An example of independent-atom scattering potentials for several elements up to $Z = 32$ is shown in [](#fig:atomic_potentials).
+An example of independent atom model scattering factors and potentials for several elements up to $Z = 32$ is shown in [](#fig:atomic_potentials).
 
 ```{figure} #parametrized_potentials
 :name: fig:atomic_potentials
-Caption
+Independent atom model potentials and scattering factors for several elements.
 ```
 
 (dft-potentials-ts)=
@@ -258,17 +258,19 @@ V(r) = \frac{q_e}{4 \pi \epsilon_{0}} \frac{\mathrm{e^{-2 r / a_0}}}{r}\left(1 +
 
 This expression is singular at the origin due to the point charge of the nucleus, but that singularity gets smeared out due and numerically discretized in practical calculations (by default, GPAW smears the nuclear potentials with a Gaussian function).
 
-In [](#fig:H_atom), we plot the exact solution of [](#eq:H_potential) against the Kirkland IAM parameterization as well as a GPAW calculation (the code can be found on \href{https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/H_atom.ipynb}{GitHub}). While all models agree perfectly near the nucleus (the discontinuous appearance of the line is due to a finite computational grid with a spacing of 0.01 Å), where the potential is the strongest, small differences emerge further away. In the case of the DFT model, the simulation box is finite in size, and thus the continuity requirement of the wavefunction and corresponding density slightly affect the long-range part of the calculated potential. The choice of exchange-correlation functional may also slightly influence the results.
+In [](#fig:H_atom), we plot the exact solution of [](#eq:H_potential) against the Kirkland IAM parameterization as well as a DFT calculation using the GPAW code. While all models agree perfectly near the nucleus (the discontinuous appearance of the line is due to a finite computational grid with a spacing of 0.01 Å), where the potential is the strongest, small differences emerge further away. In the case of the DFT model, the simulation box is finite in size, and thus the continuity requirement of the wavefunction and corresponding density slightly affect the long-range part of the calculated potential. The choice of exchange-correlation functional may also slightly influence the results.
 
 ```{figure} #H_potential_comparisons
 :name: fig:H_atom
-Caption
+Comparing the radial electrostatic potential of the hydrogen atom exactly solved from the Schrödinger equation, parametrized by the independent atom model, and calculated by DFT.
 ```
 
-Although IAM potentials are useful for many purposes, they do neglect chemical bonding, which may be measurable and of interest. To illustrate this difference, an interactive comparison of the IAM and DFT scattering potentials of the H$_2$ molecule at different distances between the H atoms is shown below (the code can be found on \href{https://github.com/jacobjma/hands-on-guide-to-TEM-simulations/blob/main/notebooks/toma/H2_molecule.ipynb}{GitHub}).
+Although IAM potentials are useful for many purposes, they do neglect chemical bonding, which may be measurable and of interest. To illustrate this difference, an interactive comparison of the IAM and DFT scattering potentials of the H$_2$ molecule at different distances between the H atoms is shown below.
 
-\framebox(468,300){
-\includegraphics[width=1\textwidth]{figures/H2_molecule_widget.png}}
+```{figure} #H2_potential
+:name: fig:H_atom
+The difference between the indepdendent atom model potential to the DFT potential for the hydrogen molecule as a function of the distance between the H atoms.
+```
 
 (numerical-solutions-of-the-schrodinger-equation-co)=
 ### Numerical Solutions of the Schrödinger Equation (CO)
