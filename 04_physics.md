@@ -268,7 +268,7 @@ Comparing the radial electrostatic potential of the hydrogen atom exactly solved
 Although IAM potentials are useful for many purposes, they do neglect chemical bonding, which may be measurable and of interest. To illustrate this difference, an interactive comparison of the IAM and DFT scattering potentials of the H$_2$ molecule at different distances between the H atoms is shown below.
 
 ```{figure} #H2_potential
-:name: fig:H_atom
+:name: fig:H2_potential
 The difference between the indepdendent atom model potential to the DFT potential for the hydrogen molecule as a function of the distance between the H atoms.
 ```
 

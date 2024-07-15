@@ -14,4 +14,14 @@ Indirect citation example:  {cite:p}`ophus2019four`
 Direct citation example:  {cite:t}`ophus2019four`
 
 
-The text can be broken into three sections: (1) Basic introduction to Python as well as crucial mathematical concepts. (2) Theory of S/TEM image simulation. (3) Practical implementations and considerations for image simulation. We finish by offer our perspective on the outlook for such simulations. The first section consists of a brief overview to the [Python programming language](#code_stuff), and instructions on how to run the interactive figures. This is followed by a primer on the [mathematical concepts](#math_stuff) that underpin image simulations. The second section addresses the theory of S/TEM image simulation, beginning with a discussion on the [underlying physics](#physics_stuff) of electron-atom interactions, after which the [algorithms](#electron-wavefunctions-ts) used to simulate images are detailed. In the final section the practicalities of image simulation are discussed, covering [creating simulation inputs](#sim_inputs), [TEM simulations](#tem_sims), [STEM simulations](#stem_sims), post-processing simulated images to create more experimentally realistic images, common errors and helpful tips. Finally we conclude with an outlook for image simulations.
+The text can be broken into three sections:
+1. Basic introduction to Python as well as crucial mathematical concepts.
+2. Theory of S/TEM image simulation.
+3. Practical implementations and considerations for image simulation. 
+
+We finish by offer our perspective on the outlook for such simulations.
+The first section consists of a brief overview to the [Python programming language](./02_code.md), and instructions on how to run the interactive figures.
+This is followed by a primer on the [mathematical concepts](./03_math.md) that underpin image simulations. 
+The second section addresses the theory of S/TEM image simulation, beginning with a discussion on the [underlying physics](./04_physics.md) of electron-atom interactions, after which the [algorithms](./05_algorithms.ms) used to simulate images are detailed. 
+In the final section the practicalities of image simulation are discussed, covering [creating simulation inputs](./06_sim_inputs.md), [TEM simulations](./07_TEM.md), [STEM simulations](./08_STEM.md), post-processing simulated images to create more experimentally realistic images, common errors and helpful tips.
+Finally we conclude with an outlook for image simulations.
