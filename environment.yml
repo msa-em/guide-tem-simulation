@@ -2,12 +2,13 @@ name: guide-tem-simulation
 channels:
   - conda-forge
 dependencies:
+  - numpy
   - scipy
   - h5py
   - matplotlib
+  - abtem
   - ipywidgets
-  - jupyterlab>=4.0.0
-  - jupyterlab-myst>=2.0.0
-  - pip
-  - pip:
-      - git+https://github.com/abtem/abtem
+  - jupyterlab
+  - jupyterlab-myst
+  - 'nodejs>=20,<21'
+  - mystmd
