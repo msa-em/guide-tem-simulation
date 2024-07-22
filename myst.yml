@@ -68,7 +68,8 @@ project:
     4D-STEM: four dimensional scanning transmission electron microscopy
     BF: bright-field
     CPU: central processing unit
-    DF: bright-field
+    DF: dark-field
+    DFT: discete Fourier transform
     GPU: graphics processing unit
     FFT: fast Fourier transform
     STEM: scanning transmission electron microscopy

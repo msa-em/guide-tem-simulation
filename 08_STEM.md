@@ -54,6 +54,7 @@ In [](#fig_probe) , we present an interactive visualization for exploring the re
 
 ```{figure} #app:probe_size
 :name: fig_probe
+:placeholder: ./static/probe_size.png
 **Left** The Fourier space initial wavefunction in equation [](#eq:fourier_probe). **Middle** The real space probe at the specimen in equation [](#eq:realspace_probe). **Right**  The real space intensity. Start by considering the effect of changing just the aperture and energy. In real space, the probe forms the diffraction-limited Airy disk pattern; increasing the aperture or energy decreases the radius of the pattern. Consider the differences between the STEM and SEM probes.  Next, add defocus. In Fourier space, the phase starts oscillating radially with a linearly decreasing period, the resulting probe grows and its radial intensity profile may have multiple peaks and valleys. Now try to decrease the aperture to include only the inner slowly varying part of the phase; the result is a smaller, more well-behaved probe. Add some spherical aberration and try to compensate by adding some defocus to flatten the phase inside the aperture resulting in a better probe (uncorrected STEM at Scherzer). Lastly, make a large probe and observe the diffraction fringes from self-interaction(boundary artifacts). This is the issue that should be avoided by increasing the size of the unit cell, as described in section. 
 ```
 
