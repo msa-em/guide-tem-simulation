@@ -35,14 +35,17 @@ project:
           ror: 02jbv0t02
     - name: Stephanie M Ribet
       corresponding: true
+      orcid: 0000-0002-7117-066X
       email: sribet@lbl.gov
       affiliations: [ncem]
     - name: Alexander Rakowski
       corresponding: true
+      orcid: 0000-0003-4565-8642
       email: arakowski@lbl.gov
       affiliations: [ncem]
     - name: Jacob Madsen
       corresponding: true
+      orcid: 0000-0001-5534-0553
       email: jacob.madsen@univie.ac.at
       affiliations:
         - id: vienna
@@ -51,10 +54,12 @@ project:
           address: Boltzmanngasse 5, Vienna, 1090, Austria
     - name: Toma Susi
       corresponding: true
+      orcid: 0000-0003-2513-573X
       email: toma.susi@univie.ac.at
       affiliations: [vienna]
     - name: Hamish G Brown
       corresponding: true
+      orcid: 0000-0003-2292-7766
       email: hgbrown@unimelb.edu.au
       affiliations:
         - id: melbourne
