@@ -1,19 +1,27 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
-  id: msa-guide-tem-simulation-1
+  id: msa-em-guide-tem-simulation-1
   title: A Practical Guide to Scanning and Transmission Electron Microscopy Simulations
-  # short_title: Guide to STEM/TEM Simulations
-  # description: The goal of the text is to enable readers to have an understanding of both the theory and practical applications of S/TEM image simulation. After reading, you should feel comfortable in devising, preparing and running S/TEM image simulations, and be able to critically assess simulated images in literature.
-  # thumbnail: thumbnail.png
-  # banner: banner.png
-  # github: https://github.com/msa-em/guide-tem-simulation
-  # bibliography: []
-  jupyter:
-    server:
-      url: 'http://localhost:8888'
-      token: '512ac78f14e1141db1fac17e8b4099c1e5bc7d589518b38c'
-  # keywords: []
+  short_title: Guide to STEM/TEM Simulations
+  description: Computational article explaining the theory and practical applications of S/TEM image simulation. After reading, readers should feel comfortable in devising, preparing and running S/TEM image simulations, and be able to critically assess simulated images in the literature.
+  thumbnail: thumbnail.png
+  banner: banner.png
+  github: https://github.com/msa-em/guide-tem-simulation
+  jupyter: true
+  #  jupyter:
+  #    binder:
+  #      url: https://y2j74k9mn0bz.curvenote.dev/services/binder/
+  #      repo: msa-em/guide-tem-simulation
+  #      ref: main
+  # jupyter:
+  #   server:
+  #     url: 'http://localhost:8888'
+  #     token: '512ac78f14e1141db1fac17e8b4099c1e5bc7d589518b38c'
+  keywords:
+    - Transmission electron microscopy
+    - Scanning transmission electron microscopy
+    - Multislice simulations
   authors:
     - name: Colin Ophus
       corresponding: true
@@ -24,6 +32,7 @@ project:
           department: National Center for Electron Microscopy, Molecular Foundry
           institution: Lawrence Berkeley National Laboratory
           address: 1 Cyclotron Road, Berkeley, CA, USA, 94720
+          ror: 02jbv0t02
     - name: Stephanie M Ribet
       corresponding: true
       email: sribet@lbl.gov
@@ -53,7 +62,6 @@ project:
           institution: The University of Melbourne
           address: 30 Flemington Rd, Parkville VIC 3052, Australia
   open_access: true
-  github: https://github.com/msa-em/guide-tem-simulation
   requirements:
     - 'environment.yml'
   resources:
@@ -76,5 +84,3 @@ project:
     TEM: transmission electron microscopy
 site:
   template: book-theme
-  domains:
-    - microscopy-EM000002.curve.space
