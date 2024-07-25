@@ -2,7 +2,7 @@ name: guide-tem-simulation
 channels:
   - conda-forge
 dependencies:
-  - numpy
+  - 'numpy<2'
   - scipy
   - h5py
   - matplotlib
