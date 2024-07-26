@@ -42,7 +42,7 @@ In our simulations, we will assume the {math}`z`-position coordinate of the wave
     \ii \sigma V(\bm{r}) \psi(\bm{r}),
 ```
 
-where {math}`{\nabla_{xy}}^2 = \partial^2/\partial x^2 + \partial^2/\partial y^2`. To perform electron scattering simulations, we will numerically solve Equation [](#eq:Shrodinger_electron) using one of the methods described below.
+where {math}`{\nabla_{xy}}^2 = \partial^2/\partial x^2 + \partial^2/\partial y^2`. To perform electron scattering simulations, we numerically solve Equation [](#eq:Shrodinger_electron) using one of the methods described below.
 
 
 
@@ -72,7 +72,6 @@ Assuming {math}`\Delta z` is small, [](#eq:Shrodinger_solution) can be simplifie
 
 ```{math}
 :label: eq:Shrodinger_simple
-
 \psi(\bm{r})
     = 
     \exp\left[
@@ -120,21 +119,46 @@ We can also add additional electrostatic or electromagnetic fields to the potent
 The effect of both extrinsic and intrinsic magnetic fields can be calculated using the [Aharonov–Bohm equation](#wiki:Aharonov–Bohm_effect).
 
 
-#### 3 - Transmisson Operator
+#### 3 - Initial Wavefunctions
+
+Next, we define the intitial condition of the electron beam wavefunction $\psi(\bm{r})$, described in Sections `insert sections`. In an ideal plane wave TEM or diffraction pattern simulation, we use only a single initial wavefunction. 
+We can also include spatial coherence in a [TEM simulation](#tem_sims) by performing a multislice simulation where the initial probe is tilted to a range of incident probe angles, which are then summed incoherently to generate the simulation output.
+For a [STEM simulation](#stem_sims), we may need to calculate thousands or even millions of initial conditions for the electron probe, as each unique STEM probe position requires another simulation.
+
+
+#### 4 - Transmisson Operator
+
+Following {cite:t}`kirkland2020`, if we assume a slice is infinitesimal thickness, we can set the ${\nabla_{xy}}^2$ term from [](#eq:Shrodinger_simple) to zero and obtain the solution
+```{math}
+:label: eq:operator_transmission
+\psi(\bm{r})
+    = 
+    \psi_0(\bm{r})
+    \exp[\ii \sigma V_{\Delta z}(\bm{r})].
+```
+
+We see from this expression that as the electron wavefuncton passes through a given slice, it will pick up a forward phase shift proportional to $V_{\Delta z}(\bm{r})$. This first Born approximation is quite accurate for high accelerating voltages, for small-to-intermediate atomic number species, and for thin slices. However we may require a more accurate expansion and / or numerical slicing of individual atomic potentals when using very low accelerating voltages or for calculating scattering from high atomic number species.
+
+
+#### 5 - Propagation Operator
+
+Next, we need to *propagate* the electron wave from one slice to the next by using the propagation operator in Equation [](#eq:Shrodinger_simple).
 
 
 
-#### 4 - Propagation Operator
 
+If there are still remaining slices that the electron wave has not passed through, we alternate steps 3 and 4 until the prope wavefunction reaches the output surface of the sample, where it is referred to as the `exit wave`.
 
+#### 6 - Transfer Function
 
+After we have calculated the exit wave, we then need to apply the effects of our microscope optics to this wave and reach the detector plane by using a microscope transfer function (MTF). The MTF could be very simple; for example in either a TEM diffraction simulation or a typical STEM simulation we assume the detector is placed at the far field limit, and therefore only need to Fourier transform the exit wave to reach the detector plane. 
 
-#### 5 - Contrast Transfer Function
+For a TEM imaging simulation, we typically use a contrast transfer function (CTF) for the MTF. The CTF can include aplanatic [optical aberrations](wiki:Optical_aberration) such as defocus, spherical aberration, astigmatism, and higher order coherent wave aberrations. It can also include more complex optical affects such as field distortion, image rotation, or planatic aberrations, where the aberrations vary as a function of position. The CTF equations are described in `add section link`.
 
+#### 7 - Detector Functions
 
+Finally .
 
-
-#### 6 - Detector Functions
 
 
 
@@ -143,7 +167,6 @@ Unfortunately, even with the above approximations, [](#eq:Shrodinger_simple)
 
 
 
-define intitial condition of the electron beam wavefunction $\psi(\bm{r})$, described in Sections `insert sections`. Next, we select a subset of the sample 
 
  is to solve the *transmission* operator by calculating the interaction of the electron beam inside a thin slice
 
