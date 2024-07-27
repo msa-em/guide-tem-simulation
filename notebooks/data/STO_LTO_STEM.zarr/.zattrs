@@ -1,0 +1,36 @@
+{
+    "kwargs0": {
+        "ensemble_axes_metadata": [
+            {
+                "_concatenate": true,
+                "_default_type": "index",
+                "_ensemble_mean": false,
+                "_squeeze": false,
+                "label": "",
+                "tex_label": null,
+                "tex_units": null,
+                "type": "OrdinalAxis",
+                "units": null,
+                "values": [
+                    "BF",
+                    "MAADF",
+                    "HAADF"
+                ]
+            }
+        ],
+        "metadata": {
+            "base_tilt_x": 0.0,
+            "base_tilt_y": 0.0,
+            "energy": 150000.0,
+            "label": "intensity",
+            "reciprocal_space": false,
+            "semiangle_cutoff": 20,
+            "units": "arb. unit"
+        },
+        "sampling": [
+            0.3487035219578105,
+            0.3669888372093023
+        ]
+    },
+    "type0": "Images"
+}
