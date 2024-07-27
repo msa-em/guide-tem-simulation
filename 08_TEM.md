@@ -25,6 +25,12 @@ After building an atomic potential as described in the [](#algorithms_page), the
 
 ### Diffraction 
 
+```{figure}
+:name: fig_tem_diffraction
+:placeholder: ./static/tem_diffraction.png
+**TEM diffraction of STO as a function of thickness**: 
+```
+
 
 
 ### Contrast transfer and phase contrast STEM
