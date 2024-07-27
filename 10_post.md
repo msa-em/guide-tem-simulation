@@ -23,5 +23,6 @@ The different STEM post-processing steps can be explored in [](#fig_stem_process
 
 ```{figure} #app:stem_processing
 :name: fig_stem_processing
+:placeholder: ./static/stem_processing.png
 Using the slider observe how different post-processing steps affect the scanned bright-field, medium-angle, and high-angle annular dark-field images of an STO-LTO heterostructure.
 ```

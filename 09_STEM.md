@@ -121,6 +121,7 @@ It is important to remember the difference between the wavefunction sampling and
 
 ```{figure} #app:stem_detectors
 :name: fig_stem_detectors
+:placeholder: ./static/stem_detectors.png
 Aluminum, iron and gold nanoparticles on a carbon film: **Left** image from a circular detector. **Middle** image from an annular detector **Right**  differential phase contrast reconstruction. Notice how changing the collection angles impacts the contrast and signal to noise. 
 ```
 
@@ -141,6 +142,7 @@ There are myriad possibilities with 4D-STEM, and we refer you to other reference
 
 ```{figure} #app:stem_convergence
 :name: fig_stem_convergence
+:placeholder: ./static/stem_convergence.png
 Using the slider observe how the separation of Bragg disks and probe size change with convergence angle for graphene. 80 kV simulation.
 ```
 
