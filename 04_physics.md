@@ -10,8 +10,8 @@ math:
 label: physics_page
 ---
 
-(physical-concepts-ts)=
-# Physical Concepts (TS)
+(physical-concepts)=
+# Physical Concepts
 
 The properties of atoms, molecules and solids are fundamentally determined by quantum mechanics. In this modern theory of physics, some classical concepts such as the electrostatic potential and the propagation of waves are carried over essentially unchanged, whereas many familiar intuitions fail on the level of the very small. In particular, quantum objects including electrons exhibit both wave and particle properties depending on how they are observed — in the context of electron scattering, matter-wave interference is of central importance. Mathematically, both free propagating electrons and those bound into atoms are described mathematically as complex waves, via so-called electron wavefunctions.
 
@@ -218,8 +218,8 @@ f(\Delta k)=\frac{a_0}{2 \varepsilon_0 \Delta k^{2}} \left(1-\frac{1}{\left(1+\p
 
 Hydrogen is the only case that is analytically solvable; in general neither the density nor the atomic form factor can be directly written down. Instead, these have been calculated using various approximations to the true multielectron wavefunctions, and tabulated for isolated atoms of all elements as isolated atomic potentials.
 
-(isolated-atomic-potentials-ts)=
-## Isolated Atomic Potentials (TS)
+(isolated-atomic-potentials)=
+## Isolated Atomic Potentials
 
 Since the Schrödinger equation cannot be solved analytically even for most molecules, let alone solid-state systems, several kinds of approaches have been developed to obtain approximate solutions. These accurate but computationally very expensive techniques have been used to parametrize what are called isolated atomic potentials – or, equivalently in reciprocal space, electron scattering factors – which describe the potential of a specimen as a sum of isolated, non-interacting atom potentials. This approximation is often called the independent atom model.
 
@@ -232,8 +232,8 @@ An example of independent atom model scattering factors and potentials for sever
 Independent atom model potentials and scattering factors for several elements.
 ```
 
-(dft-potentials-ts)=
-## Density Functional Theory Potentials (TS)
+(dft-potentials)=
+## Density Functional Theory Potentials
 
 Since the complicated many-body interactions of multiple electrons mean that wavefunction cannot in general be analytically solved, further approximations are needed. Density functional theory (DFT) is the most prominent one, and is widely use for modeling the electronic structure of molecules and solids. In DFT, the combinatorially intractable many-body problem of $N$ electrons with $3N$ spatial coordinates is reduced to a solution for the three spatial coordinates of the electron density that can be variationally reached. This approximation would in principle be exact, but a term that describes electron exchange and correlation is not analytically known and must be approximated.
 
