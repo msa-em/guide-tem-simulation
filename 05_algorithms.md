@@ -7,6 +7,7 @@ math:
   \invFFT: \mathcal{F}^{-1}_{\mathbf{k}\to\mathbf{r}}
   \FFT: \mathcal{F}_{\mathbf{r}\to\mathbf{k}}
   \angstroms: \text{\normalfont\AA}
+label:algorithms_page
 ---
 
 

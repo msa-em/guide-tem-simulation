@@ -8,7 +8,7 @@ numbering:
 ## TEM Simulations with Parallel Illumination
 
 ### Wavefunctions
-After building an atomic potential as described in the (TODO: LABEL SECTION), the first step in a TEM simulation is to choose the wavefunction ({math}`\Psi`) for the simulation. The simpilest case for the incident beam is to set {math}`\Psi` to unity everywhere in the plane, which means perfectly even illumination across the sample. However, it is possible to introduce more complications, such as titled plane wave. The sampling is set by the gridpoint and extent as described in seciton (TODO: LABEL SIM INPUTS)
+After building an atomic potential as described in the [](#algorithms_page), the first step in a TEM simulation is to choose the wavefunction ({math}`\Psi`) for the simulation. The simpilest case for the incident beam is to set {math}`\Psi` to unity everywhere in the plane, which means perfectly even illumination across the sample. However, it is possible to introduce more complications, such as titled plane wave. The sampling is set by the gridpoint and extent as described in seciton [](#sim_inputs_page).
 
 
 ### Imaging 
