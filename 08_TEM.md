@@ -7,12 +7,19 @@ numbering:
 (tem_sims)=
 ## TEM Simulations with Parallel Illumination
 
+#todo: add missing citations
+
 ### Wavefunctions
 After building an atomic potential as described in the [](#algorithms_page), the first step in a TEM simulation is to choose the wavefunction ({math}`\Psi`) for the simulation. The simpilest case for the incident beam is to set {math}`\Psi` to unity everywhere in the plane, which means perfectly even illumination across the sample. However, it is possible to introduce more complications, such as titled plane wave. The sampling is set by the gridpoint and extent as described in seciton [](#sim_inputs_page).
 
 
 ### Imaging 
 
+```{figure} #app:tem_imaging
+:name: fig_tem_phase
+:placeholder: ./static/tem_imaging.png
+**TEM imaging of SrTiO$_$ grains**: 
+```
 
 
 
