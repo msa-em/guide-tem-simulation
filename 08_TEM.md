@@ -51,7 +51,7 @@ One example of the importance of aberrations and wavfunction modification is sho
 ```{figure} #app:tem_contrast
 :name: fig_tem_phase
 :placeholder: ./static/tem_contrast.png
-**TEM imaging of covid spike protein**: (left) In focus, (middle) defocued, and (right) Zernike phase plate TEM images. Structure from [citation for paper]
+**TEM imaging of covid spike protein **: (left) In focus, (middle) defocued, and (right) Zernike phase plate TEM images. [Covid structure](https://www.rcsb.org/structure/3jcl) from {cite}`walls2016cryo`
 ```
 
 For the same, dose the image contrast can be increased by modfying the wavefunctions through the introduction of aberrations. This is most often done with defocus, which is illustrated in the middle pannel. The resulting image has improved contrast, making it easier to visualize the covid spike protein. The middle pannel shows the defocused image, but the aberrations can often be corrected for later in post-processing. 
