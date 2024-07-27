@@ -80,9 +80,8 @@ Assuming {math}`\Delta z` is small, [](#eq:Shrodinger_solution) can be simplifie
         + 
         \ii \sigma V_{\Delta z}(\bm{r})
     \right]
-    \psi_0(\bm{r})
+    \psi_0(\bm{r}),
 ```
-
 where
 
 ```{math}
@@ -143,12 +142,97 @@ We see from this expression that as the electron wavefuncton passes through a gi
 
 #### 5 - Propagation Operator
 
-Next, we need to *propagate* the electron wave from one slice to the next by using the propagation operator in Equation [](#eq:Shrodinger_simple).
+Next, we need to *propagate* the electron wave from one slice to the next by using the propagation operator in Equation [](#eq:Shrodinger_simple). We assume empty space between slices, setting $V(\bm{r})=0$ in [](#eq:Shrodinger_simple) to get
 
+```{math}
+:label: eq:prop01
+\psi(\bm{r})
+    = 
+    \exp \left\{
+    \frac{\ii \lambda \Delta z}{4 \pi} {\nabla_{xy}}^2
+    \right\}
+    \psi_0(\bm{r}).
+```
+Setting $\Lambda = \lambda \Delta z / 4 \pi$ and Taylor expanding this expression gives
+```{math}
+:label: eq:prop02
+\psi(\bm{r})
+    = 
+    \left[
+      \sum_{m=0}^\infty 
+      (\ii \Lambda)^m 
+      \frac{\partial^{2m} \psi_0(\bm{r})}{\partial x^{2m}} 
+    \right]
+    \left[
+      \sum_{n=0}^\infty 
+      (\ii \Lambda)^n 
+      \frac{\partial^{2n} \psi_0(\bm{r})}{\partial y^{2n}} 
+    \right].
+```
+Taking the 2D Fourier transform $\Psi(\bm{k}) = \mathscr{F}_{\bm{r} \rightarrow \bm{k}}\{ \psi(\bm{r}) \}$ of both sides and using the fact that the x and y derivatives are orthogonal, we get
+```{math}
+:label: eq:prop01
+\begin{aligned}
+\Psi(\bm{k})
 
+    &= 
+    \left[
+      \sum_{m=0}^\infty 
+      (\ii \Lambda)^m 
+      (\ii 2 \pi k_x)^{2m}
+    \right]
+    \left[
+      \sum_{n=0}^\infty 
+      (\ii \Lambda)^n 
+      (\ii 2 \pi k_y)^{2n}
+    \right]
+    \Psi_0(\bm{k}) \\
+    
+    &=
+    \left[
+      \sum_{m=0}^\infty 
+      (-\ii 4 \pi^2 \Lambda {k_x}^2)^m 
+    \right]
+    \left[
+      \sum_{m=0}^\infty 
+      (-\ii 4 \pi^2 \Lambda {k_y}^2)^m 
+    \right]
+    \Psi_0(\bm{k}) \\
 
+    &=
+    \left[
+      \sum_{m=0}^\infty 
+      (-\ii \pi \lambda \Delta z {k_x}^2)^m 
+    \right]
+    \left[
+      \sum_{m=0}^\infty 
+      (-\ii \pi \lambda \Delta z {k_y}^2)^m 
+    \right]
+    \Psi_0(\bm{k}) \\
 
-If there are still remaining slices that the electron wave has not passed through, we alternate steps 3 and 4 until the prope wavefunction reaches the output surface of the sample, where it is referred to as the `exit wave`.
+    &=
+    \exp\left(
+      -\ii \pi \lambda \Delta z {k_x}^2 
+    \right)
+    \exp\left(
+      -\ii \pi \lambda \Delta z {k_y}^2
+    \right)
+    \Psi_0(\bm{k}).
+\end{aligned}
+```
+We can now write the final propagation operator by combining ${k_x}^2+{k_y}^2=|\bm{k}|^2$ to get
+```{math}
+:label: eq:prop
+\Psi(\bm{k})
+  =
+  \exp\left(
+    -\ii \pi \lambda \Delta z |\bm{k}|^2 
+  \right)
+  \Psi_0(\bm{k}).
+```
+
+If there are still remaining slices that the electron wave has not passed through, we alternate steps 4 and 5 until the prope wavefunction reaches the output surface of the sample, where it is referred to as the `exit wave`.
+
 
 #### 6 - Transfer Function
 
@@ -158,30 +242,30 @@ For a TEM imaging simulation, we typically use a contrast transfer function (CTF
 
 #### 7 - Detector Functions
 
-Finally .
+Finally, we convert from the complex wavefunction to a real-valued detector measurement. This intensity measurement may be performed in real space for near-field imaging giving $I(\bm{r})$, or in Fourier space for far-field diffraction space measurements giving $I(\bm{k})$. The measured intensity for a pixelated detector is just the magnitude squared of the wavefunction $|\psi(\bm{r})|^2$ or $|\psi(\bm{k})|^2$. To simulated an integrating detector intensity $I_D(\bm{k})$, such as those for BF or DF STEM measurements, we apply a detector function $D(\bm{k})$ to our measured intensity using the expression
+```{math}
+:label: eq:detector_function
+I_D(\bm{R})
+    =
+    \int_{\bm{k}} 
+    |\psi(\bm{R},\bm{k})|^2
+    D(\bm{k})
+    d\bm{k},
+```
+where $\bm{R}$ is the position of the STEM probe, and $D(\bm{k})$ is usually an array of zeroes and ones defining the detector shape.
 
-
-
-
-
-Unfortunately, even with the above approximations, [](#eq:Shrodinger_simple)
-
-
-
-
- is to solve the *transmission* operator by calculating the interaction of the electron beam inside a thin slice
-
-is to find a subset of the atoms 
-
- take a thin *slice* of the sample along the beam direction by selecting a subset of atoms 
-
-
-
-
-
-
-This algorithm is known as the multislice method because 
-
+Because we're performing a simulation, we do not need to used a fixed detector geometry. We could instead define variable detectors such as a set of concentric annular ring detectors with a spacing $\Delta k$, using the expression
+```{math}
+:label: eq:detector_annular_rings
+I(\bm{R},n)
+    =
+    \int_{n \Delta k}^{(n+1) \Delta k} 
+    \frac{1}{2 \pi}
+    \int_0^{2 \pi} 
+    |\psi(\bm{R},\bm{k})|^2
+    d\theta dk',
+```
+where $\theta$ is the annular coordinate and $k'$ is the radial coordinate for $\bm{k}$-space.
 
 
 
