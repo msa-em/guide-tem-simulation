@@ -2,7 +2,7 @@
 title: Inputs and Simulation Parameters
 numbering:
   enumerator: 1.%s
-label: sim_inputs_page
+label : sim_inputs_page
 ---
 
 text
