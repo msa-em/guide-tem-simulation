@@ -87,6 +87,8 @@ project:
     - format: meca
   exclude:
     - README.md
+    - 06_sim_inputs.md
+    - 11_errors.md
     - main.md
     - original/*
   abbreviations:
