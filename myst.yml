@@ -8,12 +8,12 @@ project:
   thumbnail: thumbnail.png
   banner: banner.png
   github: https://github.com/msa-em/guide-tem-simulation
-  jupyter: true
-  #  jupyter:
-  #    binder:
-  #      url: https://y2j74k9mn0bz.curvenote.dev/services/binder/
-  #      repo: msa-em/guide-tem-simulation
-  #      ref: main
+  # jupyter: true
+  jupyter:
+    binder:
+      url: https://y2j74k9mn0bz.curvenote.dev/services/binder/
+      repo: msa-em/guide-tem-simulation
+      ref: main
   # jupyter:
   #   server:
   #     url: 'http://localhost:8888'
@@ -81,10 +81,12 @@ project:
     4D-STEM: four dimensional scanning transmission electron microscopy
     BF: bright-field
     CPU: central processing unit
+    CTF: contrast transfer function
     DF: dark-field
     DFT: discete Fourier transform
     GPU: graphics processing unit
     FFT: fast Fourier transform
+    MTF: microscope transfer function
     STEM: scanning transmission electron microscopy
     TEM: transmission electron microscopy
 site:
