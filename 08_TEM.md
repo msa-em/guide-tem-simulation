@@ -18,14 +18,14 @@ After building an atomic potential as described in the [](#algorithms_page), the
 ```{figure} #app:tem_imaging
 :name: fig_tem_phase
 :placeholder: ./static/tem_imaging.png
-**TEM imaging of SrTiO$_$ grains**: 
+**TEM imaging of SrTiO$_3$ grains**: 
 ```
 
 
 
 ### Diffraction 
 
-```{figure}
+```{figure} #app:tem_diffraction
 :name: fig_tem_diffraction
 :placeholder: ./static/tem_diffraction.png
 **TEM diffraction of STO as a function of thickness**: 
@@ -41,9 +41,7 @@ In TEM, aberrations modify the exit wave ({math}`\Psi_{exit}`) after the multisl
 ```{math}
 :label: eq:TEM_aberrations
 
-\begin{align} 
-    \Psi_{image}(\bm{k}) = \Psi_{exit}(\bm{k}) \mathrm{e}^{-i\chi(\bm{k})},
-\end{align}
+\Psi_{image}(\bm{k}) = \Psi_{exit}(\bm{k}) \mathrm{e}^{-i\chi(\bm{k})},
 ```
 
 One example of the importance of aberrations and wavfunction modification is shown in [](#tem_contrast). Although the wavfunction at the imaging plane ({math}`\Psi_{image}(\bm{k}`)) may be complex, only the intensity of the exit wave is measured by detectors. Weakly scattering samples, impart very little ampltidue contrast on the incident beam, so most of the structural information is encoded in the phase of the exit wave. This is especially well known in the case of imaging of biological materials, as these structures are beam-sensitive and composed of low atomic number (weakly scattering elements). This effect is evident in the left pannel of [](#tem_contrast), where as the dose decreases, it is very challenging to observe the simulated covid spike protein.
@@ -51,7 +49,7 @@ One example of the importance of aberrations and wavfunction modification is sho
 ```{figure} #app:tem_contrast
 :name: fig_tem_phase
 :placeholder: ./static/tem_contrast.png
-**TEM imaging of covid spike protein **: (left) In focus, (middle) defocued, and (right) Zernike phase plate TEM images. [Covid structure](https://www.rcsb.org/structure/3jcl) from {cite}`walls2016cryo`
+**TEM imaging of covid spike protein**: (left) In focus, (middle) defocued, and (right) Zernike phase plate TEM images. [Covid structure](https://www.rcsb.org/structure/3jcl) from {cite}`walls2016cryo`
 ```
 
 For the same, dose the image contrast can be increased by modfying the wavefunctions through the introduction of aberrations. This is most often done with defocus, which is illustrated in the middle pannel. The resulting image has improved contrast, making it easier to visualize the covid spike protein. The middle pannel shows the defocused image, but the aberrations can often be corrected for later in post-processing. 
