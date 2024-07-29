@@ -26,9 +26,9 @@ i^2 = -1.
 Examples of complex numbers include $3+5i$, $4/5-(9/7)i$, $-0.23+4.33i$, and $1+\sqrt{5}i$. [](#fig_complex) shows examples of complex numbers. Complex numbers are enormously powerful, and essential when performing calclations using [quantum mechanics](wiki:Quantum_mechanics). 
 
 
-```{figure} 
+```{figure} #app:complex_numbers
 :name: fig_complex
-:placeholder: ./static/complex_numbers.png
+:placeholder: ./figures/complex_numbers.png
 **Complex numbers.** Every complex value consists of a real and an imaginary component, which can be used to compute the magnitude and phase of each value.
 ```
 
