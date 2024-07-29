@@ -2,6 +2,7 @@ name: guide-tem-simulation
 channels:
   - conda-forge
 dependencies:
+  - 'python<3.12'
   - 'numpy<2'
   - scipy
   - h5py

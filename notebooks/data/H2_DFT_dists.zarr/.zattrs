@@ -3,11 +3,12 @@
         "ensemble_axes_metadata": [
             {
                 "_concatenate": true,
-                "_default_type": null,
+                "_default_type": "index",
                 "_ensemble_mean": false,
                 "_squeeze": false,
-                "_tex_label": null,
                 "label": "",
+                "tex_label": null,
+                "tex_units": null,
                 "type": "OrdinalAxis",
                 "units": null,
                 "values": [

@@ -41,7 +41,7 @@ where $\bm{r}^{\prime}$ now denotes the location of a scattering center, and the
 To describe the propagation of these waves in free space, the imaginary term in the exponential describes periodic variation. Thus for any fixed sum of the spatial and temporal terms in the exponent, the wavefunction has the same value; these represent the planes (or shells) of constant amplitude. To calculate the wave in an arbitrary position, we can simply substitute the new spatial location and time arguments to calculate the resulting amplitude.
 
 (bound-systems-ts)=
-## Bound Systems: The Schrödinger Equation (TS)
+## Bound Systems: The Schrödinger Equation
 
 To derive the wavefunction of a bound system, we need to solve the quantum "equation of motion" for the electron(s) in the corresponding confining potential: this is the Schrödinger equation. The Schrödinger equation gives the fundamental mathematical description of quantum systems, describing the time-evolution of their wavefunction. The equation for a single non-relativistic particle can in the position representation be written as
 
@@ -62,7 +62,7 @@ The equation can only be solved analytically for a handful of simple cases, of w
 where wavefunctions $\psi(\bm{r})$ are the eigenvectors and energies $E$ the eigenvalues of the system.
 
 (electrostatic-potentials-ts)=
-## Electrostatic Potentials (TS)
+## Electrostatic Potentials
 
 The electrostatic potential of a specimen determines not only how the electrons of the system are bound, but also how transmitting electrons scatter via the Lorentz force. It therefore connects the properties of the material to the resulting images or diffraction patterns. The electrostatic potential is fundamentally speaking derived from the electron density of the atoms in a specimen, which is described by their quantum mechanical many-body wavefunction. However, this is only rarely analytically solvable, and various approximations may be needed.
 
@@ -145,10 +145,10 @@ By further assuming that the detector is far from the scatterer, which allows us
 By substituting this to [](#eq:scattering_schrodinger) we get
 
 ```{math}
-\begin{align}
+\begin{aligned}
 \psi(\bm{r}) &\simeq \mathrm{e}^{\mathrm{i} k_{0} \cdot \bm{r}}-\frac{m}{2 \pi \hbar^{2}} \int V\left(\bm{r}^{\prime}\right) \mathrm{e}^{\mathrm{i} k_{0} \cdot \bm{r}^{\prime}} \frac{\mathrm{e}^{\mathrm{i} k \cdot\left(\bm{r}-\bm{r}^{\prime}\right)}}{|\bm{r}|} \mathrm{d}^{3} \bm{r}^{\prime}\\
 &=\mathrm{e}^{\mathrm{i} k_{0} \cdot \bm{r}}-\frac{m}{2 \pi \hbar^{2}} \frac{\mathrm{e}^{\mathrm{i} \bm{k} \cdot \bm{r}}}{|\bm{r}|} \int V\left(\bm{r}^{\prime}\right) \mathrm{e}^{\mathrm{i}\left(\bm{k}_{0}-\bm{k}\right) \cdot \bm{r}^{\prime}} \mathrm{d}^{3} \bm{r}^{\prime}.
-\end{align}
+\end{aligned}
 ```
 
 By further defining $\Delta \bm{k} \equiv \bm{k}-\bm{k}_{0}$, we can write the scattered part of the wave as
@@ -167,7 +167,7 @@ f(\Delta \bm{k}) \equiv-\frac{m}{2 \pi \hbar^{2}} \int V\left(\bm{r}^{\prime}\ri
 is called the atomic form factor (or electron scattering factor {cite:p}`kirkland_advanced_2010` and it describes the angular distribution of scattered intensity. In the first Born approximation it corresponds to the Fourier transform of the scattering potential ($f(\Delta \bm{k})=\mathcal{F}_k[V(r)]$).
 
 (atomic-form-factors-ts)=
-### Atomic form factors (TS)
+### Atomic form factors
 
 The atomic form factors thus describe the angular amplitude for scattering of a single electron of by a single atom. While the first Born approximation is inadequate for describing real specimens (as electrons typically scatter multiple times when passing through a crystal), this description is quite useful since it relates the three-dimensional Fourier transform of the atomic potential to the scattering amplitude.
 
@@ -180,7 +180,10 @@ V(\bm{r})=-\frac{Z e^{2}}{|\bm{r}|}+\int_{-\infty}^{+\infty} \frac{e^{2} \rho\le
 By substituting this into [](#eq:formfactor) and defining a new variable $\bm{R} \equiv \bm{r} - \bm{r}^{\prime}$, so that $\bm{r} = \bm{R} - \bm{r}^{\prime}$ and rearranging, we get
 
 ```{math}
-f(\Delta \bm{k})=\frac{m Z e^{2}}{2 \pi \hbar^{2}} \int_{-\infty}^{+\infty} \frac{1}{|\bm{r}|} \mathrm{e}^{-\mathrm{i} \Delta k \cdot \bm{r}} \mathrm{d}^{3} \bm{r} -\frac{m e^{2}}{2 \pi \hbar^{2}} \int_{-\infty}^{+\infty} \frac{1}{|\bm{R}|} \mathrm{e}^{-\mathrm{i} \Delta \bm{k} \cdot \bm{R}} \mathrm{d}^{3} \bm{R} \int_{-\infty}^{+\infty} \rho\left(\bm{r}^{\prime}\right) \mathrm{e}^{-\mathrm{i} \Delta \bm{k} \cdot \bm{r}^{\prime}} \mathrm{d}^{3} \bm{r}^{\prime}.
+\begin{aligned}
+f(\Delta \bm{k})=&\frac{m Z e^{2}}{2 \pi \hbar^{2}} \int_{-\infty}^{+\infty} \frac{1}{|\bm{r}|} \mathrm{e}^{-\mathrm{i} \Delta k \cdot \bm{r}} \mathrm{d}^{3} \bm{r} \\
+-&\frac{m e^{2}}{2 \pi \hbar^{2}} \int_{-\infty}^{+\infty} \frac{1}{|\bm{R}|} \mathrm{e}^{-\mathrm{i} \Delta \bm{k} \cdot \bm{R}} \mathrm{d}^{3} \bm{R} \int_{-\infty}^{+\infty} \rho\left(\bm{r}^{\prime}\right) \mathrm{e}^{-\mathrm{i} \Delta \bm{k} \cdot \bm{r}^{\prime}} \mathrm{d}^{3} \bm{r}^{\prime}.
+\end{aligned}
 ```
 
 The two first integrals are simply Fourier transforms of $1/r$ that each yield $4 \pi / \Delta k^2$, giving the general expression for the electron scattering factor of an atom as
@@ -267,5 +270,6 @@ Although IAM potentials are useful for many purposes, they do neglect chemical b
 
 ```{figure} #H2_potential
 :name: fig:H2_potential
+:placeholder: ./figures/dft_iam_diff.png
 The difference between the indepdendent atom model potential to the DFT potential for the hydrogen molecule as a function of the distance between the H atoms.
 ```
