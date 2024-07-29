@@ -4,6 +4,8 @@ numbering:
   enumerator: 1.%s
 ---
 
+Hello, Steve!
+
 This article covers everything you need to know to simulate images for [transmission electron microscopy](wiki:Transmission_electron_microscopy) (TEM) and [scanning TEM](wiki:Scanning_transmission_electron_microscopy) (STEM) experiments [@pennycook2011scanning; @carter2016transmission]. We focus on modern [Python](wiki:Python_(programming_language)) implementations centered around the [numpy](wiki:NumPy) {cite:p}`harris2020array` and [cupy](wiki:CuPy) {cite:p}`nishino2017cupy` libraries, for CPU and GPU calculations respectively. 
 
 
