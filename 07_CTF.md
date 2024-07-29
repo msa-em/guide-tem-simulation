@@ -16,7 +16,7 @@ This deviation is typically expressed as a phase error or the aberration functio
 
 Another, possibly more intuitive way of framing the phase error is the point spread function 
 ```{math}
-    \mathrm{PSF}(\bm{r}) = F \mathrm{e} ^ {-i \chi(\bm{k})} ,
+    \mathrm{PSF}(\bm{r}) = \mathscr{F}^{-1}_{\bm{k} \rightarrow \bm{r}}\left\{ \mathrm{e} ^ {-i \chi(\bm{k})} \right\} ,
 ```
 the point spread function describes how an imaging system responds to a point source. In STEM, the PSF would be the image of the probe, given an infinite objective aperture, in HRTEM the PSF would be how a perfect point source is imaged by an objective lens with an infinite collection angle.  
 
@@ -31,3 +31,9 @@ For an uncorrected microscope the dominant aberration is ther third order spheri
     \chi(k) \approx \frac{2\pi}{\lambda}\left( \frac{\lambda^2 k^2}{2} \Delta f + \frac{\lambda^4 k^4}{4} C_s \right) \quad .
 ```
 Here we used the common aliases of the aberration coefficients, so $C10 = -\Delta f$ is the negative defocus and $C_{30} = C_s$ is the third order spherical aberration. 
+
+```{figure} #app:ctf_psf
+:name: fig_ctf_psf
+:placeholder: ./figures/ctf_psf.png
+**Interactive widget showing the influence of common aberrations on the point spread function (PSF) and contact transfer function (CTF) **: 
+```
