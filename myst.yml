@@ -8,12 +8,12 @@ project:
   thumbnail: thumbnail.png
   banner: banner.png
   github: https://github.com/msa-em/guide-tem-simulation
-  # jupyter: true
-  jupyter:
-    binder:
-      url: https://y2j74k9mn0bz.curvenote.dev/services/binder/
-      repo: msa-em/guide-tem-simulation
-      ref: main
+  jupyter: true
+  #  jupyter:
+  #    binder:
+  #      url: https://y2j74k9mn0bz.curvenote.dev/services/binder/
+  #      repo: msa-em/guide-tem-simulation
+  #      ref: main
   # jupyter:
   #   server:
   #     url: 'http://localhost:8888'
@@ -38,6 +38,16 @@ project:
       orcid: 0000-0002-7117-066X
       email: sribet@lbl.gov
       affiliations: [ncem]
+    - name: Georgios Varnavides
+      corresponding: true
+      email: gvarnavides@berkeley.edu
+      orcid: 0000-0001-8338-3323
+      affiliations:
+        - id: miller
+          department: Miller Institute for Basic Research in Science
+          institution: University of California, Berkeley
+          address: 468 Donner Lab, Berkeley, CA, USA, 94720
+          ror: 01an7q238
     - name: Alexander Rakowski
       corresponding: true
       orcid: 0000-0003-4565-8642
@@ -52,6 +62,7 @@ project:
           department: Faculty of Physics
           institution: University of Vienna
           address: Boltzmanngasse 5, Vienna, 1090, Austria
+          ror: 03prydq77
     - name: Toma Susi
       corresponding: true
       orcid: 0000-0003-2513-573X
@@ -66,6 +77,7 @@ project:
           department: Ian Holmes Imaging Centre, Bio21 Institute
           institution: The University of Melbourne
           address: 30 Flemington Rd, Parkville VIC 3052, Australia
+          ror: 01ej9dk98
   open_access: true
   requirements:
     - 'environment.yml'
