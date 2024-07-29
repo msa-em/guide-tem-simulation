@@ -267,32 +267,3 @@ I(\bm{R},n)
 ```
 where $\theta$ is the annular coordinate and $k'$ is the radial coordinate for $\bm{k}$-space.
 
-
-
-(bloch-wave-method)=
-### The Bloch Wave Method
-
-text
-
-
-(prism-method)=
-### PRISM
-
-text
-
-
-(other-method)=
-### Other Methods
-
-text
-
-
-
-<!-- ```{figure} #app:fft_1d
-
-```
-
-```{figure} #app:probe_size
-
-```
- -->
