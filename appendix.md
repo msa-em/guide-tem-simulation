@@ -7,7 +7,11 @@ numbering:
 
 +++ {"part":"appendix"}
 (app:constants)=
-###  numerical values of constants
+
+### Unit conventions
+*ab*TEM and ASE uses the same [unit conventions](https://wiki.fysik.dtu.dk/ase/ase/units.html), as defined in the `ase.units` module. Thus, electron volts (eV), Ångström (Å), and atomic mass units are defined as 1.0. For convenience, user-defined input angles are in mrad.
+
+### Numerical values of constants
 
 The values of commonly used constants in SI units are
 
