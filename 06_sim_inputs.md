@@ -6,3 +6,6 @@ label : sim_inputs_page
 ---
 
 text
+
+(atomic-models)=
+### Building atomic models
