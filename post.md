@@ -8,7 +8,7 @@ numbering:
 ## STEM Post-Processing
 STEM simulations usually requires some post-processing, we apply some of the most common steps post-processing step in this tutorial.
 
-For these examples, we use an STO/LTO heterointerface as a specimen. The structure was built earlier in the [simulation inputs](./06_sim_inputs.md) chapter, and simple BF/ADF images simulated in the chapter on [STEM](./09_STEM.md).
+For these examples, we use an STO/LTO heterointerface as a specimen. The structure was built earlier in the [simulation inputs](./sim_inputs.md) chapter, and simple BF/ADF images simulated in the chapter on [STEM](./STEM.md).
 
 #### Interpolation
 We can save a great deal of computational effort by scanning at the Nyquist frequency [https://en.wikipedia.org/wiki/Nyquist_frequency], which is information-theoretically guaranteed to be sufficient -- but the result is visually quite pixelated. To address this, we can interpolate the images to a sampling of 0.05 Å. *ab*TEM’s default interpolation algorithm is Fourier-space padding, but spline interpolation is also available, which is more appropriate if the image in non-periodic.
