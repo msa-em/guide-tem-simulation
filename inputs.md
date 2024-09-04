@@ -5,8 +5,6 @@ numbering:
 label : sim_inputs_page
 ---
 
-text
-
 (specimen-models)=
 ## Specimen models
 
@@ -24,7 +22,9 @@ The `Atoms` object defines a collection of atoms. To define `Atoms` from scratch
 
 For example, to create a basic model of the N<sub>2</sub> molecule, we could define:
 
-`atoms = ase.Atoms("N2", positions=[(0.0, 0.0, 0.0), (1.0, 0.0, 0.0)], cell=[6, 6, 6])`
+```Python
+atoms = ase.Atoms("N2", positions=[(0.0, 0.0, 0.0), (1.0, 0.0, 0.0)], cell=[6, 6, 6])
+```
 
 All these attributes of the `Atoms` object are stored in underlying NumPy arrays,   which can be directly modified if desired. Convenient arithmetic operations also directly work for the `Atoms` object, so structures can be easily combined to create more complex specimens.
 
@@ -32,7 +32,9 @@ All these attributes of the `Atoms` object are stored in underlying NumPy arrays
 
 ASE can import all common atomic-structure formats (full list [here](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)). Below we import a `.cif`-file defining a unit cell of strontium titanate (SrTiO<sub>3</sub>) that we provide with this text and will use in further examples.
 
-`srtio3 = ase.io.read("srtio3.cif")`
+```Python
+srtio3 = ase.io.read("srtio3.cif")
+```
 
 ### Manipulating atoms
 *ab*TEM always assumes that the imaging electrons propagate along the $z$-axis in the direction from _negative to positive_ coordinate values. Hence, to choose the zone axis, we need to manipulate the atoms so they are properly aligned.
@@ -45,4 +47,13 @@ In the widget below, we have oriented the strontium titanate structure along the
 :name: fig_sto_supercell
 :placeholder: ./static/sto_supercell.png
 **Interactive widget showing supercell construction for the STO(110) supercell.
+```
+
+Since the positions and atomic numbers are just `NumPy` arrays, they can be modified in-place. Below, we create an SrTiO<sub>3</sub>/LaTiO<sub>3</sub> interface by changing the atomic numbers of the Sr atoms with a $y$-coordinate less than $7.5 \ \mathrm{Å}$ in a (3,4,10) supercell oriented along the (110) zone axis. This interface created from a will be later used for [STEM image simulations](#stem-image-simulation).
+
+```python
+sto_lto = repeated_srtio3.copy()
+mask = sto_lto.symbols == "Sr"
+mask = mask * (sto_lto.positions[:, 1] < 7.5)
+sto_lto.numbers[mask] = 57
 ```

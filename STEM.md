@@ -104,11 +104,12 @@ It is important to remember the difference between the wavefunction sampling and
 Aluminum, iron and gold nanoparticles on a carbon film: **Left** image from a circular detector. **Middle** image from an annular detector **Right**  differential phase contrast reconstruction. Notice how changing the collection angles impacts the contrast and signal to noise. 
 ```
 
+(stem-image-simulation)=
 #### Image simulation: STO/LTO
 
 Scanning imaging modes such as STEM works by rastering an electron probe across a sample pixel by pixel and recording the scattering signal. The computational cost of the simulation is directly proportional to the number of scan pixels, each requiring a separate multislice simulation. For periodic speciments, even though the potential needs to be large enough to fit the probe, there is no need to scan over repated unit cells as tiling afterwards can yield the same result. 
 
-As an example, we simulate the BF (0 to 20 mrad), MAADF (40 to 100 mrad) and HAADF (100 to 180 mrad) images of a STO/LTO interface that we built in the [simulation inputs](./sim_inputs.md) chapter. Note that since the structure repeats in the $x$-direction, we only scan over the unit cell, as shown in [](#fig_stem_specimen) below. The images simulated with a primary beam energy of 150 keV, a defocus of 50 Å, and a probe convergence-semiangle of 20 mrad are shown in [](#fig_stem_sto-lto_image) below. Note that these are quite pixelated since we simulated at Nyqvist sampling to save computational effort; see [post-processing](./post.md) for how these are interpolated to a higher resolution.
+As an example, we simulate the BF (0 to 20 mrad), MAADF (40 to 100 mrad) and HAADF (100 to 180 mrad) images of a STO/LTO interface that we built in the [simulation inputs](./sim_inputs.md) chapter. Note that since the structure repeats in the $x$-direction, we only scan over the unit cell, as shown in [](#fig_stem_specimen) below. The images simulated with a primary beam energy of 150 keV, a defocus of 50 Å, and a probe convergence-semiangle of 20 mrad are shown in [](#fig_stem_image) below. Note that these are quite pixelated since we simulated at Nyqvist sampling to save computational effort; see [post-processing](./post.md) for how these are interpolated to a higher resolution.
 
 ```{figure} #app:stem_sto-lto_scan
 :name: fig_stem_specimen
@@ -118,7 +119,7 @@ A SrTiO<sub>3</sub>/LaTiO<sub>3</sub> (STO/LTO) interface model. The red overlai
 
 ```{figure} #app:stem_sto-lto_image
 :name: fig_stem_image
-:placeholder: ./static/stem_image.png
+:placeholder: ./static/stem_images.png
 Bright-field (BF), medium-angle annular dark-field (MAADF), and high-angle annular dark-field (HAADF) imges of the SrTiO<sub>3</sub>/LaTiO<sub>3</sub> (STO/LTO) interface.
 ```
 
