@@ -46,7 +46,7 @@ In the widget below, we have oriented the strontium titanate structure along the
 ```{figure} #app:sto_supercell
 :name: fig_sto_supercell
 :placeholder: ./static/sto_supercell.png
-**Interactive widget showing supercell construction for the STO(110) supercell.
+**Interactive widget showing supercell construction for the STO(110) supercell**:
 ```
 
 Since the positions and atomic numbers are just `NumPy` arrays, they can be modified in-place. Below, we create an SrTiO<sub>3</sub>/LaTiO<sub>3</sub> interface by changing the atomic numbers of the Sr atoms with a $y$-coordinate less than $7.5 \ \mathrm{Å}$ in a (3,4,10) supercell oriented along the (110) zone axis. This interface created from a will be later used for [STEM image simulations](#stem-image-simulation).
