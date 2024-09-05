@@ -10,9 +10,9 @@ numbering:
 #todo: add missing citations
 
 ### Wavefunctions
-After building an atomic potential as described in the [](#algorithms_page), the first step in a TEM simulation is to choose the wavefunction ({math}`\Psi`) for the simulation. The simpilest case for the incident beam is to set {math}`\Psi` to unity everywhere in the plane, which means perfectly even illumination across the sample. However, it is possible to introduce more complications, such as a slightly [titled plane wave](https://abtem.readthedocs.io/en/main/user_guide/walkthrough/multislice.html#small-angle-beam-tilt). The sampling is set by the gridpoint and extent as described in seciton [](#sim_inputs_page).
+After building an atomic potential as described in the [](#algorithms_page), the first step in a TEM simulation is to choose the wavefunction ({math}`\Psi`) for the simulation. The simplest case for the incident beam is to set {math}`\Psi` to unity everywhere in the plane, which means perfectly even illumination across the sample. However, it is possible to introduce more complications, such as a slightly [titled plane wave](https://abtem.readthedocs.io/en/main/user_guide/walkthrough/multislice.html#small-angle-beam-tilt). The sampling is set by the gridpoint and extent as described in seciton [](#sim_inputs_page).
 
-In [](#fig_potential_wave_image) we show an interactive visualization of the potential, the corresponding exit wave function, and the resulting image with a reasonable [contrast transfer function](#CTF_page) applied, as a function of the slices through the specimen.
+In [](#fig_potential_wave_image) we show an interactive visualization of the potential of the STO/LTO interface we created in [](#manipulating-atoms), the corresponding exit wave function, and the resulting image with a reasonable [contrast transfer function](#CTF_page) applied, as a function of the slices through the specimen.
 
 ```{figure} #app:tem_potential_wave_image
 :name: fig_potential_wave_image
