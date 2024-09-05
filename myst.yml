@@ -127,6 +127,7 @@ project:
         - file: notebooks/06.1_Atoms_STO-LTO.ipynb
         - file: notebooks/07_ctf_psf_widget.ipynb
         - file: notebooks/07.2_ctf_lineplot_widget.ipynb
+        - file: notebooks/08_simple_TEM_imaging.ipynb
         - file: notebooks/08.1_TEM_imaging.ipynb
         - file: notebooks/08.2_TEM_diffraction.ipynb
         - file: notebooks/08.3_TEM_phase_plate.ipynb
