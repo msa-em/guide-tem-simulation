@@ -126,7 +126,7 @@ We can also include spatial coherence in a [TEM simulation](#tem_sims) by perfor
 For a [STEM simulation](#stem_sims), we may need to calculate thousands or even millions of initial conditions for the electron probe, as each unique STEM probe position requires another simulation.
 
 
-#### 4 - Transmisson Operator
+#### 4 - Transmission Operator
 
 Following {cite:t}`kirkland2020`, if we assume a slice is infinitesimal thickness, we can set the ${\nabla_{xy}}^2$ term from [](#eq:Shrodinger_simple) to zero and obtain the solution
 ```{math}
