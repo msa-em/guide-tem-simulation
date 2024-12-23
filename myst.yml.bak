@@ -1,0 +1,52 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  title: A Practical Guide to Scanning and Transmission Electron Microscopy Simulations
+  short_title: Guide to STEM/TEM Sims
+  description: The goal of the text is to enable readers to have an understanding of both the theory and practical applications of S/TEM image simulation. After reading, you should feel comfortable in devising, preparing and running S/TEM image simulations, and be able to critically assess simulated images in literature.
+  thumbnail: thumbnail.png
+  banner: banner.png
+  keywords: []
+  github: https://github.com/msa-eom/guide-tem-simulation
+  # bibliography: []
+  authors:
+    - name: Colin Ophus
+      corresponding: true
+      email: cophus@gmail.com
+      orcid: 0000-0003-2348-8558
+      affiliations:
+        - National Center for Electron Microscopy, Molecular Foundry, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, USA, 94720
+    - name: Stephanie M Ribet
+      corresponding: true
+      email: sribet@lbl.gov
+      affiliations:
+        - National Center for Electron Microscopy, Molecular Foundry, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, USA, 94720
+    - name: Alexander Rakowski
+      corresponding: true
+      email: arakowski@lbl.gov
+      affiliations:
+        - National Center for Electron Microscopy, Molecular Foundry, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA, USA, 94720
+    - name: Jacob Madsen
+      corresponding: true
+      email: jacob.madsen@univie.ac.at
+      affiliations:
+        - University of Vienna, Faculty of Physics, Boltzmanngasse 5, Vienna, 1090, Austria
+    - name: Toma Susi
+      corresponding: true
+      email: toma.susi@univie.ac.at
+      affiliations:
+        - University of Vienna, Faculty of Physics, Boltzmanngasse 5, Vienna, 1090, Austria
+    - name: Hamish G Brown
+      corresponding: true
+      email: hgbrown@unimelb.edu.au
+      affiliations:
+        - Ian Holmes Imaging Centre, Bio21 Institute, The University of Melbourne, Australia
+  thebe: true
+    local: true
+      url: http://localhost:8888
+      token: test-secret
+      kernelName: mystmd
+site:
+  template: book-theme
+  domains:
+    - microscopy-EM000002.curve.space
