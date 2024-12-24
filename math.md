@@ -124,11 +124,19 @@ where $F_k$ is the $k$'th sample of $F(k)$. Both $f(x)$ and $F(k)$ can be comple
 ```{figure} #app:fft_1d
 :name: fig:fft_1d
 :placeholder: ./static/fft_1d.png
-**Discrete 1D Fourier Transform.**
+**Interactive discrete 1D Fourier Transform.**
 ```
 
 
 (fast_fourier_transform)=
 ## 2D Fast Fourier Transform
 
+2D FFT section
 
+
+
+```{figure} #app:fft_2d
+:name: fig:fft_2d
+:placeholder: ./static/fft_2d.png
+**Interactive discrete 2D Fourier Transform.**
+```
