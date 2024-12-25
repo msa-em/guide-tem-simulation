@@ -129,14 +129,157 @@ where $F_k$ is the $k$'th sample of $F(k)$. Both $f(x)$ and $F(k)$ can be comple
 
 
 (fast_fourier_transform)=
-## 2D Fast Fourier Transform
+## 2D Fourier Transforms
 
-2D FFT section
-
+When simulating TEM images, diffraction patterns, and other wavefunctions, we are typically working with 2D arrays. Thus we need to expand our previous definition of the DFT to work in 2 dimensions. However, because the DFT transformation is orthogonal over different Cartesian coordinates, we can compute a 2D DFT by simply sequentially multiplying the two transformations, giving
+```{math}
+:label: eq:dft_2d_xy
+\begin{aligned}
+  F(k_x, k_y) 
+  &= \mathscr{F}_{x \rightarrow k_x}\{
+    \mathscr{F}_{y \rightarrow k_y}\{
+      f(x,y)
+    \} 
+  \} 
+  \\
+  &= \sum_{m=0}^{M-1} \sum_{n=0}^{N-1} 
+    f_{nm}
+    \exp\left(
+      -2 i \pi k_x m / M
+    \right) 
+    \exp\left(
+      -2 i \pi k_y n / N
+    \right), 
+\end{aligned}
+```
+where $f_{nm}$ is the pixel at indices $(m,n)$ for the function $f(x,y)$, which has $(M,N)$ total number of pixels in the $x$ and $y$ directions respectively. We can simplify this notation by combining the two sequential operations into one operator, giving the forward and inverse transforms
+```{math}
+:label: eq:dft_2d
+\begin{aligned}
+  F(\bm{k}) 
+  &= \mathscr{F}_{r \rightarrow k}\{
+      f(\bm{r})
+  \} 
+  \\
+  f(\bm{r}) 
+  &= \mathscr{F}_{k \rightarrow r}\{
+      F(\bm{k})
+  \},
+\end{aligned}
+```
+where $\bm{r} = (x,y)$ and $\bm{k} = (k_x,k_y)$\ are the 2D coordinate systems for real and diffraction space respectively. As in the 1D case, in practice we use the FFT algorithm to compute these transforms with small computational overhead. 
+[](fig:fft_2d) shows an interactive version of the forward and and inverse 2D FFT. 
 
 
 ```{figure} #app:fft_2d
 :name: fig:fft_2d
 :placeholder: ./static/fft_2d.png
-**Interactive discrete 2D Fourier Transform.**
+**Interactive discrete 2D Fourier Transform.** Left panel shows diffraction space, right shows real space upsampled by 4x. Both images have been FFT-shifted, with origins shown as a red `+` symbol. Amplitude is shown as the pixel values, while phase is shown as a periodic colorwheel.
 ```
+
+On the left panel of [](fig:fft_2d), you can click to swap individual pixels between 0 and 1 in Fourier space, while observing the response on the real space function. On the right panel, you can click and drag to shift the function by a distance $\Delta \bm{r}$, which is applied by using the Fourier shift theorem as
+```{math}
+f(\bm{r} - \Delta \bm{r}) =
+  \mathscr{F}_{k \rightarrow r}\{
+    \mathscr{F}_{r \rightarrow k}\{
+      f(\bm{r})
+    \}
+    \exp( -2i \pi \bm{k} \, \cdot \Delta \bm{r} )  
+  \},  
+``` 
+where $\exp( -2i \pi \bm{k} \, \cdot \Delta \bm{r} )$ is the expression corresponding to a plane wave. If you try dragging the real space function in [](fig:fft_2d) a short distance, you will see the characteristic coloring of a plane wave, a periodically repeating rainbow function.
+
+A deep understanding of the 2D Fourier transform is essential to both simulate and understand TEM experiments. Therefore in [](#tab:fft_pairs) we provide a table of  Fourier transform pairs which are important for TEM. Note that for simplicity we have omitted some details such as some of the numerical prefactors in front of each function.
+
+## Fourier transform pairs
+
+:::{list-table} 2D Fourier transform pairs important in TEM simulation and analysis.
+:label: tab:fft_pairs
+:widths: 20 40 40 20
+:header-rows: 2
+
+* - Diffraction space
+  - 
+  - Real space
+  - 
+
+* - Name
+  - Function
+  - Function
+  - Name
+
+* - Delta Dirac 
+  - $\delta(\bm{k})$
+  - 1
+  - plane wave along optic axis
+
+* - Shifted Dirac function
+  - $\delta(\bm{\bm{k} - \bm{k}_0})$
+  - $\exp(-2i \pi \, \bm{r} \cdot \bm{k}_0)$
+  - plane wave tilted to $\bm{k}_0$
+
+* - Plane wave mult.
+  - $F(\bm{k}) \exp(-2i \pi \bm{k} \cdot \Delta \bm{r})$
+  - $f(\bm{r} - \Delta \bm{r})$
+  - Shifted function
+
+* - Circular aperture
+  - $u(|\bm{k}| - k_{\rm{max}})$
+  - $\frac{J_1(2 \pi k_{\rm{max}} |\bm{r}| )}{\pi k_{\rm{max}} |r|}$
+  - Airy disk function
+
+* - defocus operator
+  - $\exp(-i\pi \lambda |\bm{k}|^2 C_1)$
+  - $\exp
+  \left(
+    i \frac{\pi |\bm{r}|^2}{\lambda C_1}
+    \right)$
+  - Fresnel quadratic phase factor
+
+* - Gaussian envelope
+  - $\exp
+  \left(
+    -\frac{|\bm{k}|^2}{2 \sigma^2}
+  \right)$
+  - $\exp
+  \left(
+    -2 \pi^2 \sigma^2 |\bm{r}|^2
+  \right)$
+  - Gaussian envelope
+
+* - Lorentzian envelope
+  - $\frac{\gamma^2}{\gamma^2 + |\bm{k}|^2}$
+  - c
+  - d
+* - a
+  - b
+  - c
+  - d
+* - a
+  - b
+  - c
+  - d
+* - a
+  - b
+  - c
+  - d
+* - a
+  - b
+  - c
+  - d  
+:::
+
+
+<!-- <table>
+  <tr>
+    <td>One</td>
+    <td>Two</td>
+  </tr>
+  <tr>
+    <td colspan="2">Three</td>
+  </tr>
+</table> -->
+
+
+
+
