@@ -193,13 +193,13 @@ A deep understanding of the 2D Fourier transform is essential to both simulate a
 
 ## Fourier transform pairs
 
-:::{list-table} 2D Fourier transform pairs important in TEM simulation and analysis.
+:::{list-table} 2D Fourier transform pairs important in TEM simulation and analysis. Note that these transform pairs assume that both $\bm{r}$ and $\bm{k}$ are 2D, i.e. $\bm{r}=(x,y)$ and $\bm{k}=(k_x,k_y)$.
 :label: tab:fft_pairs
 :widths: 20 40 40 20
 :header-rows: 2
 
-* - Diffraction space
-  - 
+* - 
+  - Diffraction space
   - Real space
   - 
 
@@ -214,16 +214,22 @@ A deep understanding of the 2D Fourier transform is essential to both simulate a
   - plane wave along optic axis
 
 * - Shifted Dirac function
-  - $\delta(\bm{\bm{k} - \bm{k}_0})$
+  - $\delta(\bm{k} - \bm{k}_0)$
   - $\exp(-2i \pi \, \bm{r} \cdot \bm{k}_0)$
   - plane wave tilted to $\bm{k}_0$
 
-* - Plane wave mult.
+* - diffraction spot pair
+  - $\delta(\bm{k} - \bm{k}_0) + \delta(\bm{k} + \bm{k}_0)$
+  - $\cos(-2 \pi \, \bm{r} \cdot \bm{k}_0)$
+  - cosine wave
+
+
+* - plane wave mult.
   - $F(\bm{k}) \exp(-2i \pi \bm{k} \cdot \Delta \bm{r})$
   - $f(\bm{r} - \Delta \bm{r})$
   - Shifted function
 
-* - Circular aperture
+* - circular aperture
   - $u(|\bm{k}| - k_{\rm{max}})$
   - $\frac{J_1(2 \pi k_{\rm{max}} |\bm{r}| )}{\pi k_{\rm{max}} |r|}$
   - Airy disk function
@@ -247,28 +253,18 @@ A deep understanding of the 2D Fourier transform is essential to both simulate a
   \right)$
   - Gaussian envelope
 
-* - Lorentzian envelope
+* - exponential decay
+  - $\exp(-\lambda |\bm{k}|)$
+  - $\frac{\lambda^3}{(\lambda^2 + |\bm{r}|^2)^{3/2}}$
+  - 3D Lorentzian function
+
+* - Lorentzian function
   - $\frac{\gamma^2}{\gamma^2 + |\bm{k}|^2}$
-  - c
-  - d
-* - a
-  - b
-  - c
-  - d
-* - a
-  - b
-  - c
-  - d
-* - a
-  - b
-  - c
-  - d
-* - a
-  - b
-  - c
-  - d  
+  - $K_0(2 \pi \gamma |\bm{r}|)$
+  - Modified Bessel func., $2^{\rm{nd}}$ kind
 :::
 
+Additional transform pairs can be found in the [Wikipedia table of important Fourier transforms](wiki:Fourier_transform#Tables_of_important_Fourier_transforms).
 
 <!-- <table>
   <tr>
