@@ -14,7 +14,7 @@ label : algorithms_page
 (numerical-solutions-of-the-schrodinger-equation)=
 ## Numerical Solutions of the Schrödinger Equation
 
-As discussed in [](#physics_page), the [Schrödinger equation](wiki:Schrödinger_equation) typically cannot be solved analytically in complex systems. Therefore, in order to perform electron scattering simulations, we must calculate numerical solutions of [](#eq:Schrodinger_time) for electron waves. First, we define the {cite:t}`debroglie1925recherches` wavelength of a free electrons (corrected for relativistic effects) as
+As discussed in [](#physics_page), the [Schrödinger equation](wiki:Schrödinger_equation) typically cannot be solved analytically in complex systems. Therefore, in order to perform electron scattering simulations, we must calculate numerical solutions of Equation [](#eq:Schrodinger_time) for electron waves. First, we define the {cite:t}`debroglie1925recherches` wavelength of a free electrons (corrected for relativistic effects) as
 
 ```{math}
 :label: eq:wavelength
@@ -32,7 +32,29 @@ Next, we define the electron-potential interaction constant as (the numerical va
 \sigma = \frac{2 \pi \, m \, e \, \lambda}{h^2}.
 ```
 
-In our simulations, we will assume the {math}`z`-position coordinate of the wavefunction {math}`\psi(\bm{r})` is alone sufficient to describe its propagation in both time and space, and therefore drop the {math}`t` coordinate. Substituting [](#eq:wavelength) and [](#eq:interaction_constant) into [](#eq:Schrodinger_time), we obtain {cite:p}`kirkland2020`
+In our simulations, we will assume the {math}`z`-position coordinate of the wavefunction {math}`\psi(\bm{r})` is alone sufficient to describe its propagation in both time and space. Starting from Equaton [](#eq:Schrodinger_time) and assuming steady-state conditions with $V(\bm{r}, t) = V(\bm{r})$, we replace $\psi(\bm{r}, t)$ with $\psi(\bm{r}) e^{-\ii E t / \hbar}$ and separate the time dependence. This gives the time-independent Schrödinger equation:
+
+```{math}
+\left[-\frac{\hbar^2}{2m} \nabla^2 + e V(\bm{r}) \right] \psi(\bm{r}) = E \psi(\bm{r}),
+```
+where $V(\bm{r})$ is the crystal potential, and $E$ is the total energy of the electron. Substituting $\lambda $ and $\sigma$ into the equation and rearranging in terms of the electron’s wavevector $k_0 = 1/\lambda$, we obtain:
+
+```{math}
+:label: eq:schrodinger_start
+\left[\nabla^2 + 4\pi^2 k_0^2\right] \psi(\bm{r}) = -4\pi^2 \sigma V(\bm{r}) \psi(\bm{r}),
+```
+This 3D time-independent Schrödinger equation serves as the foundation for deriving numerical electron scattering algorithms. 
+
+
+(multislice-method)=
+## The Multislice Method
+
+By a wide margin, the most common algorithm used for electron scattering simulations is the multislice method, first described by {cite:t}`cowley1957scattering`.
+In this method, we make two assumptions:
+- The $\partial^2 / \partial z^2$ term in the Laplacian can be neglected, as the wavefunction's variation along the $z$-axis is much slower compared to its variation in the transverse $(x, y)$ directions.
+- The longitudinal wavevector $k_0$ is much larger than the contributions from transverse components of the wavefunction, i.e., $k_0 \gg |{\nabla_{xy}}^2|$.
+
+With these assumptions, we can substitute Equations [](#eq:wavelength) and [](#eq:interaction_constant) into Equation [](#eq:schrodinger_start) to obtain {cite:p}`kirkland2020`
 
 ```{math}
 :label: eq:Shrodinger_electron
@@ -43,14 +65,8 @@ In our simulations, we will assume the {math}`z`-position coordinate of the wave
     \ii \sigma V(\bm{r}) \psi(\bm{r}),
 ```
 
-where {math}`{\nabla_{xy}}^2 = \partial^2/\partial x^2 + \partial^2/\partial y^2`. To perform electron scattering simulations, we numerically solve Equation [](#eq:Shrodinger_electron) using one of the methods described below.
+where {math}`{\nabla_{xy}}^2 = \partial^2/\partial x^2 + \partial^2/\partial y^2`. 
 
-
-
-(multislice-method)=
-## The Multislice Method
-
-By a wide margin, the most common algorithm used for electron scattering simulations is the multislice method, first described by {cite:t}`cowley1957scattering`.
 Equation [](#eq:Shrodinger_electron) shows the overall numerical recipe we will use; when the wavefunction {math}`\psi_0(\bm{r})` is at position {math}`z_0`, we will evaluate the operators on the right hand side over a distance {math}`\Delta z` to calculate the new wavefunction {math}`\psi(\bm{r})` at position {math}`z_0 + \Delta z`. {cite:t}`kirkland2020` gives the formal operator solution to [](#eq:Shrodinger_electron) as
 
 ```{math}
@@ -91,8 +107,8 @@ V_{\Delta z}(\bm{r})
     V(\bm{r}) dz,
 ```
 
-is a thin slice of the potential as described in [](#isolated-atomic-potentials) or [](#dft-potentials).
-Unfortunately, even with the above approximations, [](#eq:Shrodinger_simple) cannot be solved in closed form due to the two non-commuting operators. 
+is a thin slice of the potential as described in Equation [](#isolated-atomic-potentials) or [](#dft-potentials).
+Unfortunately, even with the above approximations, Equation [](#eq:Shrodinger_simple) cannot be solved in closed form due to the two non-commuting operators. 
 Instead, we solve it numerically by using a split-step method, where we alternate between solving each operator independently.
 The steps of the multislice method are detailed below.
 
@@ -279,229 +295,107 @@ The Bloch wave method is particularly advantageous for periodic systems, as it r
 This approach requires careful numerical handling of eigenvalue decomposition and the summation over a sufficiently large number of reciprocal lattice vectors to ensure convergence.
 
 
-### 1 - The Bloch Wave Ansatz
+### 1 - Bloch Wave Expansion
 
-When applying Equation [](#eq:Shrodinger_electron) to crystalline samples, $V(\bm{r})$ is periodic in the lateral plane.
-This periodicity of the crystal allows the wavefunction inside it to be expressed as a sum of plane waves:
-```{math}
-\psi(\bm{r}) 
-    = 
-\sum_n 
-    \alpha_n b_n(\bm{k}_n, \bm{r}),
-```
-where $b_n(\bm{k}_n, \bm{r})$ is the $n^{\rm{th}}$ wavefunction with the associated coefficient $\alpha_n$, and the set of these wavefunctions forms a complete basis. 
-In a Bloch wave expansion, we assume that each of these wavefunctions will satisfy the Schrödinger equation inside the specimen. 
-The set of Bloch wave coefficeints coefficient $\alpha_n$ can represent any arbitrary wavefunnction, but only one particular set of $\alpha_n$ values will match the incident wavefunction at the sample surface.
-
-
-
+The electron wavefunction $\psi(\bm{r})$ inside a crystal can be expressed as a linear combination of Bloch waves, $b_j(\bm{k}_j, \bm{r})$, which satisfy the periodicity of the crystal potential:
 
 ```{math}
-\psi(\bm{r}) 
-= 
-\sum_{\bm{g}} c_{\bm{g}}(z) \exp(2 \pi \ii (\bm{k_0} + \bm{g}) \cdot \bm{r}),
+\psi(\bm{r}) = \sum_j \alpha_j b_j(\bm{k}_j, \bm{r}),
 ```
-
-where $\bm{k_0}$ is the incident wavevector, $\bm{g}$ are the reciprocal lattice vectors, and $c_{\bm{g}}(z)$ are the expansion coefficients describing the contribution of each Bloch state.
-
-### 2 - Bloch Waves in the Schrödinger Equation
-
-Substituting the Bloch wave ansatz into Equation [](#eq:Shrodinger_electron) and projecting onto a specific plane wave $\exp(2 \pi \ii (\bm{k_0} + \bm{g}) \cdot \bm{r})$, we isolate the evolution equation for the coefficients $c_{\bm{g}}(z)$:
+where
 
 ```{math}
-\frac{\partial}{\partial z} c_{\bm{g}}(z)
-=
--\ii \lambda \pi |\bm{g}_{xy} + \bm{k}_{xy}|^2 c_{\bm{g}}(z) 
-+ 
-\ii \sigma \sum_{\bm{g}'} V_{\bm{g} - \bm{g}'} c_{\bm{g}'}(z),
+b_j(\bm{k}_j, \bm{r}) = e^{2\pi i \bm{k}_j \cdot \bm{r}} \sum_{\bm{g}} c_{\bm{g},j} e^{2\pi i \bm{g} \cdot \bm{r}},
 ```
-where $V_{\bm{g} - \bm{g}'}$ are the Fourier coefficients of the crystal potential $V(\bm{r})$. The first term accounts for the propagation of each Bloch wave, while the second term represents the coupling between Bloch states due to the periodic crystal potential.
-In this context, coupling refers to how the periodic crystal potential causes scattering between plane waves with different reciprocal lattice vectors $\bm{g}$ and $\bm{g}'$, redistributing the electron wave amplitude among the Bloch states.
+where
+$\bm{k}_j$ are the Bloch wavevectors,
+$\bm{g}$ are the reciprocal lattice vectors,
+$c_{\bm{g},j}$ are coefficients describing the contribution of each plane wave to the Bloch wave.
+This expansion allows us to represent the electron wavefunction as a superposition of states that inherently respect the periodicity of the crystal.
 
-### 3 - Matrix Formulation
 
-The system of coupled differential equations for $c_{\bm{g}}(z)$ can be written in matrix form:
+### 2 - Bloch Waves and the Schrödinger Equation
+
+We can rewrite Equation [](eq:schrodinger_start) as:
+```{math}
+\left[\nabla^2 + 4\pi^2 k_0^2\right] \psi(\bm{r}) = -4\pi^2 \sigma V(\bm{r}) \psi(\bm{r}),
+```
+where we approximate the second $z$-derivative term for high-energy electrons using $\frac{\partial^2}{\partial z^2} \approx -(2\pi/\lambda)^2$. This approximation assumes the electron wavefunction is dominated by a plane wave propagating along $z$ with wavevector $k_0 = 1 / \lambda$.
+
+To separate the rapidly oscillating component of the wavefunction, we use the substitution $\psi(\bm{r}) = \exp(2\pi i k_0 z) \phi(\bm{r})$, where $\phi(\bm{r})$ represents a slowly varying envelope function. Substituting into the equation yields:
 
 ```{math}
-\frac{\partial}{\partial z} \bm{c}(z)
-=
-\bm{H} \bm{c}(z),
+\left[-\frac{\hbar^2}{2m} \nabla^2 + eV(\bm{r})\right] \phi(\bm{r}) = E \phi(\bm{r}),
 ```
-where $\bm{c}(z)$ is the vector of coefficients $[c_{\bm{g}1}(z), c_{\bm{g}2}(z), \dots]$, and $\bm{H}$ is the Hamiltonian matrix with elements:
+where $E = \hbar^2 k_0^2 / 2m$ is the total energy of the electron. This time-independent Schrödinger equation now describes the interaction of the electron wave with the crystal potential $V(\bm{r})$ in all spatial directions.
+To account for the periodicity of the crystal lattice, we expand $\phi(\bm{r})$ as a sum of Bloch waves:
 
 ```{math}
-H_{\bm{g}, \bm{g}'}
-=
--\ii \lambda \pi |\bm{g}_{xy} + \bm{k}_{xy}|^2 \delta_{\bm{g}, \bm{g}'}
-+
-\ii \sigma V_{\bm{g} - \bm{g}'}.
+\phi(\bm{r}) = \sum_{\bm{g}} c_{\bm{g},j} e^{2\pi i \bm{g} \cdot \bm{r}},
 ```
-
-### 4 - The Input Wavefunction
-
-The initial wavefunction $\Psi_0(\bm{r})$ is incorporated into the Bloch wave expansion by projecting it onto the reciprocal lattice plane waves:
+where $\bm{g}$ are reciprocal lattice vectors, and $c_{\bm{g},j}$ are the coefficients of the expansion. Similarly, the crystal potential is expressed as a Fourier series:
 
 ```{math}
-c_{\bm{g}}(0)
-=
-\int \Psi_0(\bm{r}) \exp(-2 \pi \ii \bm{g} \cdot \bm{r}) \, d\bm{r}.
+V(\bm{r}) = \sum_{\bm{g}} V_{\bm{g}} e^{2\pi i \bm{g} \cdot \bm{r}}.
 ```
-For an incident plane wave with wavevector $\bm{k}_0$, only the term corresponding to $\bm{g} = -\bm{k}_0$ is nonzero. For more complex wavefunctions, such as convergent STEM probes, the projection accounts for the full angular and spatial distribution of the initial beam.
+Substituting these expansions into the Schrödinger equation results in a set of coupled equations for the plane wave coefficients $c_{\bm{g},j}$, which form the basis for Bloch wave simulations.
 
-These coefficients form the initial condition for the matrix differential equation governing the propagation of the Bloch wave coefficients.
 
-### 5 - Propagation of the Wavefunction
+### 3. Eigenvalue Problem
 
-To propagate the wavefunction, we solve the matrix differential equation:
+Inserting the expansions into the Schrödinger equation yields:
 
 ```{math}
-\bm{c}(z)
-=
-\exp(\bm{H} z) \bm{c}_0,
+\sum_{\bm{g}} \left(k_0^2 - |\bm{k}_j + \bm{g}|^2\right) c_{\bm{g},j} e^{2\pi i (\bm{k}_j + \bm{g}) \cdot \bm{r}} 
+= -\sum_{\bm{g},\bm{h}} V_{\bm{g} - \bm{h}} C_{\bm{h},j} e^{2\pi i (\bm{k}_j + \bm{g}) \cdot \bm{r}}.
 ```
-where $\bm{c}_0$ is the vector of initial coefficients from Section 4. The matrix exponential is computed via eigenvalue decomposition:
+By matching coefficients of $\exp^{2\pi i (\bm{k}_j + \bm{g}) \cdot \bm{r}}$, we obtain the eigenvalue equation:
 
 ```{math}
-\bm{H} = \bm{U} \bm{\Lambda} \bm{U}^{-1},
+\left[2k_0 s_{\bm{g}} - 2\gamma_j k_{0,z}\right] c_{\bm{g},j} + \sum_{\bm{h} \neq \bm{g}} V_{\bm{g} - \bm{h}} C_{\bm{h},j} = 0,
 ```
-where $\bm{\Lambda}$ is a diagonal matrix of eigenvalues $\lambda_i$, and $\bm{U}$ contains the corresponding eigenvectors. The matrix exponential becomes:
+where $s_{\bm{g}} = (k_0^2 - |\bm{k}_0 + \bm{g}|^2) / 2k_0$ is the excitation error.
+We solve this set of linear equations to find the eigenvalues $2\gamma_j k_{0,z}$ and eigenvectors $c_{\bm{g},j}$, representing the Bloch wave propagation constants and coefficients.
+
+### 4. Propagation of Bloch Waves
+
+The wavefunction $\psi(\bm{r})$ at depth $z$ is expressed as:
 
 ```{math}
-\exp(\bm{H} z)
-=
-\bm{U} \exp(\bm{\Lambda} z) \bm{U}^{-1},
+\psi(\bm{r}) = \sum_{\bm{g}} \psi_{\bm{g}}(z) e^{2\pi i (\bm{k}_0 + \bm{g}) \cdot \bm{r}},
 ```
-where $\exp(\bm{\Lambda} z)$ is a diagonal matrix with elements $\exp(\lambda_i z)$. The eigenvectors in $\bm{U}$ represent the Bloch waves, and the eigenvalues $\lambda_i$ describe their phase and amplitude evolution through the crystal.
-
-### 6 - The Output Wavefunction
-
-At the sample exit ($z = t$), the wavefunction is reconstructed from the Bloch wave coefficients:
+where $\psi_{\bm{g}}(z)$ propagates according to:
 
 ```{math}
-\psi(\bm{r}, t) 
-= 
-\sum_{\bm{g}} c_{\bm{g}}(t) \exp(2 \pi \ii (\bm{g} + \bm{k}) \cdot \bm{r}),
+\psi_{\bm{g}}(z) = \sum_j \alpha_j c_{\bm{g},j} e^{2\pi i \gamma_j z}.
 ```
-This reconstruction combines all Bloch waves, each modulated by its respective coefficient $c_{\bm{g}}(t)$, to form the final wavefunction. This exit wavefunction can then be used to calculate quantities such as diffraction patterns or real-space images, depending on the simulation objectives.
+The propagation constants $\gamma_j$ determine how each Bloch wave evolves through the crystal.
 
+### 5. The Input Wavefunction
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Substituting the Bloch wave ansatz into Equation [](#eq:Shrodinger_electron) and projecting onto a specific plane wave $\exp(2 \pi \ii (\bm{g} + \bm{k_0}) \cdot \bm{r})$, we isolate the coefficients $c_{\bm{g}}(z)$:
+At the entrance surface ($z=0$), the wavefunction at the entrance surface of the crystal $\psi_{\bm{g}}(0)$ is matched to the incident wavefunction just outside of the crystal $\psi_0(\bm{r})$,
 ```{math}
-\frac{\partial}{\partial z} c_{\bm{g}}(z)
-=
--\ii \lambda \pi |\bm{g}_{xy} + \bm{k}_{xy}|^2 c_{\bm{g}}(z) 
-+ 
-\ii \sigma \sum_{\bm{g}'} V_{\bm{g} - \bm{g}'} c_{\bm{g}'}(z).
+\psi_0(\bm{r}) = \sum_{\bm{g}} \psi_{\bm{g}}(0) e^{2\pi i \bm{g} \cdot \bm{r}},
 ```
-Here, $V_{\bm{g} - \bm{g}'}$ represents the Fourier coefficients of the potential $V(\bm{r})$, capturing the coupling between different Bloch states due to the crystal potential.
-In this context, coupling refers to how the periodic crystal potential causes scattering between plane waves with different reciprocal lattice vectors $\bm{g}$ and $\bm{g}'$, redistributing the electron wave amplitude among the Bloch states.
+where $\psi_{\bm{g}}(0)$ represents the Fourier components of the input wavefunction. These Fourier components serve as the basis for expanding $\psi_0(\bm{r})$ in terms of Bloch waves.
 
-### 3 - Matrix Formulation
-
-The coupled differential equations for $c_{\bm{g}}(z)$ can be written in matrix form as:
-```{math}
-:label: eq:mat_diff
-\frac{\partial}{\partial z} \bm{c}(z)
-=
-\bm{H} \bm{c}(z),
-```
-where $\bm{c}(z)$ is a vector of coefficients $c_{\bm{g}}(z)$, and the Hamiltonian matrix $\bm{H}$ has elements:
-```{math}
-H_{\bm{g}, \bm{g}'}
-=
--\ii \lambda \pi |\bm{g}_{xy} + \bm{k}_{xy}|^2 \delta_{\bm{g}, \bm{g}'}
-+
-\ii \sigma V_{\bm{g} - \bm{g}'}.
-```
-The first term describes the propagation of individual Bloch states, while the second term represents the coupling between states due to the crystal potential.
-
-
-### 4 - Solution via Eigenvalue Decomposition
-
-The solution to Equation [](#eq:mat_diff) is given by:
-```{math}
-\bm{c}(z)
-=
-\exp(\bm{H} z) \bm{c}_0,
-
-```
-where $\bm{c}_0$ represents the initial coefficients determined by the incident wavefunction. To compute $\exp(\bm{H} z)$ efficiently, we perform an eigenvalue decomposition:
+The expansion of $\psi_0(\bm{r})$ into Bloch waves is achieved by determining the weighting coefficients $\alpha_j$, which describe the contribution of each Bloch wave $b_j(\bm{r})$ to the input wavefunction. By solving:
 
 ```{math}
-\bm{H} = \bm{U} \bm{\Lambda} \bm{U}^{-1},
+\alpha_j = \sum_{\bm{g}} c_{\bm{g},j}^* \psi_{\bm{g}}(0),
 ```
-where $\bm{\Lambda}$ is a diagonal matrix of eigenvalues $\lambda_i$, and $\bm{U}$ contains the corresponding eigenvectors. The matrix exponential is then:
+we relate the Bloch wave expansion coefficients $\alpha_j$ to the plane wave coefficients $\psi_{\bm{g}}(0)$ of the input wavefunction and the coupling coefficients $c_{\bm{g},j}$, which describe the relationship between the plane wave and Bloch wave bases.
+
+
+
+### 6. The Output Wavefunction
+
+At the exit surface ($z = z_{\text{max}}$, corresponding to the crystal thickness $t$), the real-space wavefunction $\psi(\bm{r})$ is expressed using the Bloch wave expansion. The wavefunction is given by:
 
 ```{math}
-\exp(\bm{H} z)
-=
-\bm{U} \exp(\bm{\Lambda} z) \bm{U}^{-1}.
+\psi(\bm{r}) = \sum_{j} \alpha_j \left( \sum_{\bm{g}} c_{\bm{g},j} e^{2\pi i \bm{g} \cdot \bm{r}} \right) e^{2\pi i \gamma_j t}.
 ```
+where $\alpha_j$ are the weighting coefficients determined by the input wavefunction, and $c_{\bm{g},j}$ are the Bloch wave coefficients that describe the periodic components of the wavefunction. The plane waves $e^{2\pi i \bm{g} \cdot \bm{r}}$ correspond to reciprocal lattice vectors $\bm{g}$, following the lattice periodicity.
+The term $e^{2\pi i \gamma_j t}$ accounts for the propagation of each Bloch wave through the crystal thickness $t$, with $\gamma_j$ representing the eigenvalues that describe the wavevector components along $z$.
 
-
-### 5 -  The Initial Wavefunction
-
-The Bloch wave method requires incorporating the initial wavefunction $\Psi_0(\bm{r})$ into the expansion coefficients $c_{\bm{g}}(0)$ at the sample entrance. This is achieved by projecting $\Psi_0(\bm{r})$ onto the reciprocal lattice plane waves $\exp(2 \pi \ii \bm{g} \cdot \bm{r})$:
-
-```{math}
-c_{\bm{g}}(0)
-=
-\int \Psi_0(\bm{r}) \exp(-2 \pi \ii \bm{g} \cdot \bm{r}) \, d\bm{r}.
-```
-For a plane wave incident along a specific wavevector $\bm{k}_0$, the initial coefficients are nonzero only for $\bm{g} = -\bm{k}0$, simplifying the expansion. For a more complex wavefunction, such as a convergent STEM probe, this projection must account for the entire angular and spatial distribution of the probe. Once $c{\bm{g}}(0)$ is determined, it serves as the input to the matrix formulation described in the next section.
-
-### 6 - Propagation of the Wavefunction
-
-Next, we propagate the electron wave from one plane to the next by solving the matrix differential equation for $c_{\bm{g}}(z)$:
-
-```{math}
-\frac{\partial}{\partial z} \bm{c}(z)
-=
-\bm{H} \bm{c}(z).
-```
-
-The solution is obtained using the matrix exponential:
-
-```{math}
-\bm{c}(z)
-=
-\exp(\bm{H} z) \bm{c}_0,
-```
-
-where $\bm{c}_0$ represents the initial coefficients determined in Section 5. The matrix exponential can be efficiently computed using eigenvalue decomposition of the Hamiltonian $\bm{H}$ as described earlier.
-
-This step iteratively applies the propagation operator until the wavefunction reaches the desired thickness $z = t$, ensuring the effects of both the crystal potential and free-space propagation are included.
-
-
-
-
-
-<!-- 
-### 5 - Constructing the Exit Wavefunction
-
-After propagating through the crystal thickness $t$, the exit wavefunction is reconstructed by summing the contributions of all Bloch states:
-
-```{math}
-\psi(\bm{r}, z = t) 
-= 
-\sum_{\bm{g}} c_{\bm{g}}(t) \exp(2 \pi \ii (\bm{g} + \bm{k}) \cdot \bm{r}).
-```
-
-The coefficients $c_{\bm{g}}(t)$ incorporate the effects of propagation and coupling, and can be used to compute real-space or diffraction patterns, depending on the simulation requirements.
-
- -->
+Note in particular how the thickness $t$ modulates the contribution of each Bloch wave to the final wavefunction at the exit surface, and how the Bloch wave method can be used to quickly compute output wavefunctions for multiple crystal thicknesses.
