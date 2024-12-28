@@ -4,7 +4,7 @@ numbering:
   enumerator: 1.%s
 ---
 
-Here we briefly outline the mathematical concepts required to run S/STEM simulations. 
+Here we briefly outline the mathematical concepts required to run S/TEM simulations. 
 
 (numbers)=
 ## Scalars, Vectors, Tensors, and Arrays
@@ -47,7 +47,7 @@ In programming, functions which measure this value are often named $\arg(z)$ or 
 :label: eq:euler
 \exp(i z) = \cos(z) + i \sin(z).
 ```
-This expression links complex numbers to the trigonometric functions. This relationship  foreshadows a key upcoming concept where the trigonometric oscillations describe waves, where the physical concept of the complex angle will be mapped onto relative phase shifts of electron waves. We will therefore usually refer to the complex argument as the **phase** of a given complex value.
+This expression links complex numbers to the trigonometric functions. This relationship  foreshadows a key upcoming concept, namely that the trigonometric oscillations describe waves, where the physical concept of the complex angle will be mapped onto relative phase shifts of electron waves. We will therefore usually refer to the complex argument as the **phase** of a given complex value.
 
 As we will see, even though computers internally store complex numbers using real and imaginary components as $z=(a,b)$, it is often more intiutive for us to represent these numbers using their magnitude and phase, i.e. as $|z| \exp{(i \phi)}$.
 
@@ -59,7 +59,7 @@ z^* = a - i b
 or for $z=|z| \exp{(i \phi)}$ as 
 ```{math}
 :label: eq:complex_conjugate_2
-z^* = \exp{(-i \phi)}.
+z^* = |z|\exp{(-i \phi)}.
 ```
 
 
@@ -167,7 +167,7 @@ where $f_{nm}$ is the pixel at indices $(m,n)$ for the function $f(x,y)$, which 
   \},
 \end{aligned}
 ```
-where $\bm{r} = (x,y)$ and $\bm{k} = (k_x,k_y)$\ are the 2D coordinate systems for real and diffraction space respectively. As in the 1D case, in practice we use the FFT algorithm to compute these transforms with small computational overhead. 
+where $\bm{r} = (x,y)$ and $\bm{k} = (k_x,k_y)$ are the 2D coordinate systems for real and diffraction space respectively. As in the 1D case, in practice we use the FFT algorithm to compute these transforms with small computational overhead. 
 [](fig:fft_2d) shows an interactive version of the forward and and inverse 2D FFT. 
 
 
