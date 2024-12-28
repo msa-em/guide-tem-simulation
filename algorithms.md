@@ -314,7 +314,7 @@ $c_{\bm{g},j}$ are coefficients describing the contribution of each plane wave t
 This expansion allows us to represent the electron wavefunction as a superposition of states that inherently respect the periodicity of the crystal.
 
 
-### 2 - Bloch Waves and the Schrödinger Equation
+### 2 - Schrödinger Equation
 
 We can rewrite Equation [](eq:schrodinger_start) as:
 ```{math}
@@ -341,7 +341,7 @@ V(\bm{r}) = \sum_{\bm{g}} V_{\bm{g}} e^{2\pi i \bm{g} \cdot \bm{r}}.
 Substituting these expansions into the Schrödinger equation results in a set of coupled equations for the plane wave coefficients $c_{\bm{g},j}$, which form the basis for Bloch wave simulations.
 
 
-### 3. Eigenvalue Problem
+### 3 - Eigenvalue Problem
 
 Inserting the expansions into the Schrödinger equation yields:
 
@@ -357,7 +357,7 @@ By matching coefficients of $\exp^{2\pi i (\bm{k}_j + \bm{g}) \cdot \bm{r}}$, we
 where $s_{\bm{g}} = (k_0^2 - |\bm{k}_0 + \bm{g}|^2) / 2k_0$ is the excitation error.
 We solve this set of linear equations to find the eigenvalues $2\gamma_j k_{0,z}$ and eigenvectors $c_{\bm{g},j}$, representing the Bloch wave propagation constants and coefficients.
 
-### 4. Propagation of Bloch Waves
+### 4 - Bloch Wave Propagation
 
 The wavefunction $\psi(\bm{r})$ at depth $z$ is expressed as:
 
@@ -371,7 +371,7 @@ where $\psi_{\bm{g}}(z)$ propagates according to:
 ```
 The propagation constants $\gamma_j$ determine how each Bloch wave evolves through the crystal.
 
-### 5. The Input Wavefunction
+### 5 - Input Wavefunction
 
 At the entrance surface ($z=0$), the wavefunction at the entrance surface of the crystal $\psi_{\bm{g}}(0)$ is matched to the incident wavefunction just outside of the crystal $\psi_0(\bm{r})$,
 ```{math}
@@ -388,7 +388,7 @@ we relate the Bloch wave expansion coefficients $\alpha_j$ to the plane wave coe
 
 
 
-### 6. The Output Wavefunction
+### 6 - Output Wavefunction
 
 At the exit surface ($z = z_{\text{max}}$, corresponding to the crystal thickness $t$), the real-space wavefunction $\psi(\bm{r})$ is expressed using the Bloch wave expansion. The wavefunction is given by:
 
