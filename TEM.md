@@ -56,6 +56,8 @@ In [](#fig_tem_Au_diffraction) we show an interactive visualization of the diffr
 %**TEM diffraction of STO as a function of thickness**: 
 %```
 
+
+(id-tem-phase)=
 ### Contrast transfer and phase imaging in TEM
 Thus far we have been considering how to form images and diffraction patterns with perfect incident illumination. However, often we're interested in seeing how aberrations or other beam modifications impact imaging conditions. There are a variety of aberration functions ({math}`\chi(\bm{k})`) we may be interested in including as described in [](#CTF_page).
 
