@@ -41,7 +41,7 @@ srtio3 = ase.io.read("srtio3.cif")
 
 ASE has many tools for manipulating structures, but one particularly useful one is the `surface` function, which can be used for creating a periodic surface (aligned with the $z$-axis) for a given set of Miller indices.
 
-In the widget below, we have oriented the strontium titanate structure along the (110)-direction, and interactively create supercells out of it, with 2 Å of vacuum added at the top and bottom surfaces.
+In the widget below, we have oriented the strontium titanate structure along the (110)-direction and created supercells out of it, with 2 Å of vacuum added at the top and bottom surfaces.
 
 ```{figure} #app:sto_supercell
 :name: fig_sto_supercell

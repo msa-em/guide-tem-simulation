@@ -14,7 +14,7 @@ After building an atomic potential as described in the [](#algorithms_page), the
 
 ### Imaging
 
-A TEM image is simulated by propagating the wavefunction through the specimen potential using the multislice algorithm, which calculates how the wave evolves due to scattering by the specimen atoms and the propagation through it. The resulting exit-wave is complex, but can be visualized via its intensity. For a more realistic image, a [contrast transfer function](#CTF_page) can be applied to model the optics of the microscope; note that this is done after the computationally time-consuming multislice run which described the physics of hte interaction.
+A TEM image is simulated by propagating the wavefunction through the specimen potential using the multislice algorithm (as described in [](#algorithms_page)), which calculates how the wave evolves due to scattering by the specimen atoms and the propagation through it. The resulting exit-wave is complex, but can be visualized via its intensity. For a more realistic image, a [contrast transfer function](#CTF_page) can be applied to model the optics of the microscope. More detials aberrations can be found in [](#CTF_page).  Note that in TEM aberrations are added after the computationally time-consuming multislice calculation, which described the physics of the interaction.
 
 In [](#fig_tem_Au_potential_wave_image) we show an interactive visualization of the potential of gold with a lattice constant of 4.08 Å in the <100> zone axis, the corresponding exit wave function, and the resulting image as a function of depth through the specimen.
 
@@ -56,7 +56,7 @@ In [](#fig_tem_Au_diffraction) we show an interactive visualization of the diffr
 %**TEM diffraction of STO as a function of thickness**: 
 %```
 
-### Contrast transfer and phase contrast STEM
+### Contrast transfer in TEM
 Thus far we have been considering how to form images and diffraction patterns with perfect incident illumination. However, often we're interested in seeing how aberrations or other beam modifications impacts imaging conditions. There are a variety of aberration functions ({math}`\chi(\bm{k})`) we may be interested in including as described in [](#CTF_page).
 
 In TEM, aberrations modify the exit wave ({math}`\Psi_{exit}`) after the multislice simulation: 

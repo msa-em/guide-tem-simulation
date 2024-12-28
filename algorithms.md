@@ -124,7 +124,7 @@ Ideally the atomic coordinates will be periodic in the $(x,y)$ plane, though thi
 
 ### 2 - Potential Slices
 
-Next, we calculate the potential $V(\bm{r})$ for the sample. We compute this potential numerically, either using the parameterization approach shown in [](#isolated-atomic-potentials), or using a DFT calculation as described in [](#dft-potentials).
+Next, we calculate the potential $V(\bm{r})$ for the sample. We compute this potential numerically, either using the parameterization approach shown in [](#isolated-atomic-potentials) or using a DFT calculation as described in [](#dft-potentials).
 We divide the atomic potentials into *slices*, which are thin sections of the sample in the $(x,y)$ plane. 
 Thinner slices will produce more accurate simulations, at the cost of longer computation times.
 Typical slice thicknesses for accurate simulations are 1-2 $\rm{\AA}$, equal to roughly the atomic spacing of most solid materials.
@@ -137,7 +137,7 @@ The effect of both extrinsic and intrinsic magnetic fields can be calculated usi
 
 ### 3 - Initial Wavefunctions
 
-Next, we define the intitial condition of the electron beam wavefunction $\psi(\bm{r})$, described in Sections `insert sections`. In an ideal plane wave TEM or diffraction pattern simulation, we use only a single initial wavefunction. 
+Next, we define the intitial condition of the electron beam wavefunction $\psi(\bm{r})$, described in [](#CTF_page). In an ideal plane wave TEM or diffraction pattern simulation, we use only a single initial wavefunction. 
 We can also include spatial coherence in a [TEM simulation](#tem_sims) by performing a multislice simulation where the initial probe is tilted to a range of incident probe angles, which are then summed incoherently to generate the simulation output.
 For a [STEM simulation](#stem_sims), we may need to calculate thousands or even millions of initial conditions for the electron probe, as each unique STEM probe position requires another simulation.
 
@@ -252,9 +252,9 @@ If there are still remaining slices that the electron wave has not passed throug
 
 ### 6 - Transfer Function
 
-After we have calculated the exit wave, we then need to apply the effects of our microscope optics to this wave and reach the detector plane by using a microscope transfer function (MTF). The MTF could be very simple; for example in either a TEM diffraction simulation or a typical STEM simulation we assume the detector is placed at the far field limit, and therefore only need to Fourier transform the exit wave to reach the detector plane. 
+After we have calculated the exit wave, we then need to apply the effects of our microscope optics to this wave and reach the detector plane by using a microscope transfer function (MTF). The MTF could be very simple; for example, in either a TEM diffraction simulation or a typical STEM simulation, we assume that the detector is placed at the far field limit and that therefore we only need to Fourier transform the exit wave to reach the detector plane. 
 
-For a TEM imaging simulation, we typically use a contrast transfer function (CTF) for the MTF. The CTF can include aplanatic [optical aberrations](wiki:Optical_aberration) such as defocus, spherical aberration, astigmatism, and higher order coherent wave aberrations. It can also include more complex optical affects such as field distortion, image rotation, or planatic aberrations, where the aberrations vary as a function of position. The CTF equations are described in `add section link`.
+For a TEM imaging simulation, we typically use a contrast transfer function (CTF) for the MTF. The CTF can include aplanatic [optical aberrations](wiki:Optical_aberration) such as defocus, spherical aberration, astigmatism, and higher order coherent wave aberrations. It can also include more complex optical affects such as field distortion, image rotation, or planatic aberrations, where the aberrations vary as a function of position. The CTF equations are described in [](#CTF_page).
 
 ### 7 - Detector Functions
 

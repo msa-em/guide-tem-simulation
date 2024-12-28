@@ -10,7 +10,7 @@ label : CTF_page
 
 An ideal lens forms a spherical wave converging on or emerging from a single point. This means that a plane wave will be converted to a spherical wave converging at the focal point of the lens, and the image of a point source is also a point. In STEM we want the objective lens to produce the smallest possible probe and in HRTEM we want the objective lens to produce a perfect magnified image of the sample. In most cases, both of these objectives require that we minimize all aberrations as much as possible. 
 
-However, while the last decades has seen enormous improvements in the optics of electron microscopes, they are far from ideal optical system. Imperfections causes the focused wave front to deviate from the ideal spherical surface. 
+While the last decades has seen enormous improvements in the optics of electron microscopes, S/TEMs are far from ideal optical system. Imperfections causes the focused wave front to deviate from the ideal spherical surface. 
 
 ### Contrast transfer and the point-spread function
 
