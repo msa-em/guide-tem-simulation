@@ -8,8 +8,8 @@ numbering:
 
 `Python` has unarguably become the leading programming language in the scientific community, continually gaining popularity for the past two decades. 
 This is due to `Python` being friendly for beginners, owing to its less strict language structure (dynamic typing, automatic memory management, non-compiled language) and the plethora of tutorials and examples. 
-It also benefits from being open-source, with numerous high quality libraries covering a broad range of applications (numeric calculations, image analysis, machine learning, etc.), including a number of packages dedicated to S/TEM. 
-The diverse and broad scope of the python ecosystem allows for interoperability between different domains, and file formats as well as easily re-purposing existing implementations algorithms to new domains.
+It also benefits from being open-source, with numerous high-quality libraries covering a broad range of applications (numeric calculations, image analysis, machine learning, etc.), including a number of packages dedicated to S/TEM. 
+The diverse and broad scope of the python ecosystem allows for interoperability between different domains and file formats as well as easy re-purposing of existing algorithms to new domains.
 
 There are a number of `Python` codes relevant to S/TEM simulation and analysis:
 - [*ab*TEM](https://github.com/abTEM/abTEM) - all-Python S/TEM image simulation
@@ -17,7 +17,7 @@ There are a number of `Python` codes relevant to S/TEM simulation and analysis:
 - [pyMultislice](https://github.com/HamishGBrown/py_multislice) - S/TEM image simulation 
 - [py4DSTEM](https://github.com/py4dstem/py4DSTEM) - 4D-STEM analysis
 - [liberTEM](https://github.com/LiberTEM/LiberTEM) - 4D-STEM analysis
-- [Hyperspy](https://hyperspy.org/) - General framework for S/TEM analysis.
+- [Hyperspy](https://hyperspy.org/) - general framework for S/TEM analysis.
 - [pyxem](https://github.com/pyxem/pyxem) - 4D-STEM analysis as part of Hyperspy.
 - [Rosetta Scientific Input Output](https://github.com/hyperspy/rosettasciio) - library for microscopy file reading and writing.
 
@@ -75,7 +75,8 @@ f = np.exp(
 )
 ```
 
-Here the modify the $x$ vector, by using square brackets $[,]$ to access indices of the $x$ array, and specifically use `[:,None]` where the first `:` means "all elements" and places these along the 1st dimension (array rows), and the `None` (or alternatively `np.newaxis`) expands the array to become 2D, by adding a new 2nd dimension (array columns). This changes the $x$ array shape `x.shape` from $(200,)$ to $(200,1)$. The similar indexing applied to $y$ changes its array shape `y.shape` from $(200,)$ to $(1,200)$. Finally, when using the addition operator, `Numpy` then *broadcasts* these two arrays from shapes $(200,1)$ to $(1,200)$ to $(200,200)$, which gives the compatible array shapes and allows them to be added together.
+Here the modify the $x$ vector, by using square brackets $[,]$ to access indices of the $x$ array. 
+Specifically we use `[:,None]`, where the first `:` means "all elements" and places these along the 1st dimension (array rows), and the `None` (or alternatively `np.newaxis`) expands the array to become 2D, by adding a new 2nd dimension (array columns). This changes the $x$ array shape `x.shape` from $(200,)$ to $(200,1)$. The similar indexing applied to $y$ changes its array shape `y.shape` from $(200,)$ to $(1,200)$. Finally, when using the addition operator, `Numpy` *broadcasts* these two arrays from shapes $(200,1)$ to $(1,200)$ to $(200,200)$, which gives the compatible array shapes and allows them to be added together.
 
 We might also want to plot the results of our calculation. We can use the `Matplotlib` plotting library to plot this image, for example with the code which produces the result shown in [](#fig:gaussian_plotting_example):
 
@@ -111,7 +112,7 @@ This format is particularly advantageous for iterative workflows where the abili
 Each section of code, called a *cell*, can be executed independently, which makes debugging and refining specific parts of a larger workflow straightforward. 
 The downside of this organizational scheme is that we must carefully check that our code works correctly when all cells are executed sequentially.
 
-Tools like *ab*TEM, interactive notebooks provide an excellent platform to run simulations, tweak their input parameters, and visualize the results.
+For tools like *ab*TEM, interactive notebooks provide an excellent platform to run simulations, tweak their input parameters, and visualize the results.
 For example, users can modify the defocus or aperture size in a simulated STEM image and then immediately see how the results change.
 This interactive approach not only makes learning the software more intuitive but also facilitates efficient experimentation, enabling users to focus on understanding the science.
 The ability to share notebooks further enhances collaboration and reproducibility, as researchers can publish notebooks alongside their papers, allowing readers to verify the results and modify them for their own needs.

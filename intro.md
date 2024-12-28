@@ -15,9 +15,9 @@ The text can be broken into three sections:
 2. Theory of S/TEM simulations.
 3. Practical implementations and considerations for simulation. 
 
-We finish by offer our perspective on the outlook for such simulations.
-The first section consists of a brief overview to the [Python programming language](./code.md), and instructions on how to run the interactive figures.
+We finish by offering our perspective on the outlook for such simulations.
+The first section consists of a brief overview to the [Python programming language](./code.md) and instructions on how to run the interactive figures.
 This is followed by a primer on the [mathematical concepts](./math.md) that underpin image simulations. 
 The second section addresses the theory of S/TEM image simulation, beginning with a discussion on the [underlying physics](./physics.md) of electron-atom interactions, after which the [algorithms](./algorithms.md) used to simulate images are detailed. 
-In the final section the practicalities of image simulation are discussed, covering [creating simulation inputs](./sim_inputs.md), [TEM simulations](./TEM.md), [STEM simulations](./STEM.md), [post-processing](./post.md)simulated images to create more experimentally realistic images, common errors and helpful tips.
+In the final section the practicalities of image simulation are discussed, covering [creating simulation inputs](./sim_inputs.md), [TEM simulations](./TEM.md), [STEM simulations](./STEM.md), [post-processing](./post.md) simulated images to create more experimentally realistic images, common errors and helpful tips.
 Finally we conclude with an outlook for image simulations.
