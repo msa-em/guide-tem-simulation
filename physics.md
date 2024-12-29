@@ -1,5 +1,5 @@
 ---
-title: Physics Concepts
+title: Physical Concepts
 numbering:
   enumerator: 1.%s
 math:

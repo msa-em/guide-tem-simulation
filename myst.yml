@@ -115,8 +115,8 @@ project:
     - file: math.md
     - file: physics.md
     - file: algorithms.md
-    - file: inputs.md
     - file: aberrations.md
+    - file: inputs.md
     - file: TEM.md
     - file: STEM.md
     - file: post.md
