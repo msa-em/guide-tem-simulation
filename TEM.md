@@ -7,8 +7,6 @@ numbering:
 (tem_sims)=
 ## TEM Simulations with Parallel Illumination
 
-#todo: add missing citations
-
 ### Wavefunctions
 After building an atomic potential as described in the [](#algorithms_page), the first step in a TEM simulation is to choose the wavefunction ({math}`\Psi`) for the simulation. The simplest case for the incident beam is to set {math}`\Psi` to unity everywhere in the plane, which means perfectly even illumination across the sample. However, it is possible to introduce more complications, such as a slightly [titled plane wave](https://abtem.readthedocs.io/en/main/user_guide/walkthrough/multislice.html#small-angle-beam-tilt). The sampling is set by the gridpoint and extent as described in seciton [](#sim_inputs_page).
 
@@ -24,14 +22,6 @@ In [](#fig_tem_Au_potential_wave_image) we show an interactive visualization of 
 **Visualization of slicing through the specimen for the potential, the exit wave, and the image with a CTF applied.**
 ```
 
-%#### Imaging example 
-%
-%```{figure} #app:tem_imaging
-%:name: fig_tem_phase
-%:placeholder: ./static/tem_imaging.png
-%**TEM imaging of SrTiO$_3$ grains**: 
-%```
-
 ### Electron diffraction patterns
 
 Instead of an image, we can instead simulate a selected area diffraction (SAD) experiment by using the `DiffractionPatterns`method. We use `block_direct=True` to block the direct beam, which typically has a much higher intensity than the scattered beams, making it show it on the same scale. In a real experiment, you may similarly use a central beam stop in order to to visualize the scattered beams.
@@ -42,20 +32,11 @@ We can use the `index_diffraction_spots` method to create a represention of SAD 
 
 In [](#fig_tem_Au_diffraction) we show an interactive visualization of the diffraction intensities and indexed diffraction spots as function of the depth through the specimen. We see that the {100} reflections are extinguished, as is expected from the selection rules of an F-centered crystal. We can also observe that the <220> spots end up with significantly higher intensity than the <200> spots; this is due to dynamical scattering — which is accounted for by the multislice algorithm.
 
-```{figure} #app:tem_Au_potential_wave_image
+```{figure} #app:tem_Au_diffraction
 :name: fig_tem_Au_diffraction
 :placeholder: ./static/tem_Au_diffraction.png
 **Visualization of redistribution of diffraction intensity as function of depth through an Au <100> specimen, and the Miller indexing of the resulting diffraction spots.**
 ```
-
-%#### Diffraction example
-%
-%```{figure} #app:tem_diffraction
-%:name: fig_tem_diffraction
-%:placeholder: ./static/tem_diffraction.png
-%**TEM diffraction of STO as a function of thickness**: 
-%```
-
 
 (id-tem-phase)=
 ### Contrast transfer and phase imaging in TEM
@@ -83,4 +64,4 @@ In TEM, aberrations modify the exit wave ({math}`\Psi_{exit}`) after the multisl
 
 For the same dose, the image contrast can be increased by modfying the wavefunctions by way of aberrations. This is most often done with defocus, which is illustrated in the middle pannel [](#fig_tem_phase). The resulting image has improved contrast, making it easier to visualize the covid spike protein. The middle pannel shows the defocused image, and the aberrations can often be corrected for later in post-processing. 
 
-The phase of the spike protein can also be image through the introduction of a phase plate after the sample. This simulation ([](#fig_tem_phase) right) shows a Zernike phase plate, where electrons scattered to higher angles, gain an extra phase shift. This high-contrast image is free of aberrations, making it easy to see the spike protein. However, changing the slides on the widget highlgihts some of the challenges of phase contrast imaging with a phase plate. The best transfer of information occurs with a phase plate that approximtes a delta function, meaning all the electrons exepct those in the very center of the aperature get an extra $\pi/2$ phase shift. However, as the size of the hole increases or the phase shift changes, the transfer of information gets worse.
+The phase of the spike protein can also be image through the introduction of a phase plate after the sample. This simulation ([](#fig_tem_phase) right) shows a Zernike phase plate {cite:p}`zernike1942phase`, where electrons scattered to higher angles, gain an extra phase shift. This high-contrast image is free of aberrations, making it easy to see the spike protein. However, changing the slides on the widget highlgihts some of the challenges of phase contrast imaging with a phase plate. The best transfer of information occurs with a phase plate that approximtes a delta function, meaning all the electrons exepct those in the very center of the aperature get an extra $\pi/2$ phase shift. However, as the size of the hole increases or the phase shift changes, the transfer of information gets worse.
