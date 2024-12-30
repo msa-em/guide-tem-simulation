@@ -13,18 +13,18 @@ The diverse and broad scope of the python ecosystem allows for interoperability 
 
 There are a number of `Python` codes relevant to STEM simulation and analysis:
 - [*ab*TEM](https://github.com/abTEM/abTEM) - all-Python STEM image simulation
-- [pyPrismatic](https://prism-em.com/tutorial-python/) - image simulation (Python wrapper to C++ package Prismatic)
+- [pyPrismatic](https://prism-em.com/tutorial-python/) - STEM image simulation (Python wrapper to C++ package Prismatic)
 - [pyMultislice](https://github.com/HamishGBrown/py_multislice) - STEM image simulation 
 - [py4DSTEM](https://github.com/py4dstem/py4DSTEM) - 4D-STEM analysis
 - [liberTEM](https://github.com/LiberTEM/LiberTEM) - 4D-STEM analysis
-- [Hyperspy](https://hyperspy.org/) - general framework for STEM analysis.
-- [pyxem](https://github.com/pyxem/pyxem) - 4D-STEM analysis as part of Hyperspy.
+- [Hyperspy](https://hyperspy.org/) - general framework for STEM analysis
+- [pyxem](https://github.com/pyxem/pyxem) - 4D-STEM analysis as part of Hyperspy
 - [Rosetta Scientific Input Output](https://github.com/hyperspy/rosettasciio) - library for microscopy file reading and writing.
 
 The main libraries used in the code examples of this text are:
 - NumPy (np) - fast numerical calculations.
 - CuPy (cp) - drop-in replacement for NumPy to run on GPUs.
-- Numba - just-in-time Python compiler for scientific and array-oriented computing.
+- Numba (nb) - just-in-time Python compiler for scientific and array-oriented computing.
 - matplotlib - plotting and visualization.
 - ipywidgets - making interactive figures.
 - Atomic Simulation Environment (ASE) - creating and visualizing atomic structures.
@@ -39,7 +39,6 @@ That is indeed what *ab*TEM has been able to achieve, which has made it one of t
 Most python scripts begin with importing necessary libraries. 
 A *library* is a collection of pre-written code that provides tools, functions, and methods to perform specific tasks, such as mathematical operations, data visualization, or file manipulation, without requiring the user to write everything from scratch.
 We can import libraries and alias them (meaning we substitute as a short form name to reduce typing) using this syntax:
-
 
 ```python
 import numpy as np
@@ -112,10 +111,7 @@ Note that here we have moved the default origin for arrays from the upper left c
 This change of origin is a common source of errors for `Python` newcomers, as in mathematics generally (and `Numpy` specifically) we typically place the origin in the upper left corner, while most plotting functions generally (and `Matplotlib` specifically) place it in the lower left. 
 We should remember however that the directions are only display and plotting conventions; internally the entries in our 2D `Numpy` arrays are always self-consistent when being accessed using the `[index_0,index_1]` convention.
 
-
-
 ## Python Notebooks
-
 
 'Python' notebooks, such as those popularized by 'Jupyter', are a versatile tool for scientific computation and exploration. 
 They allow users to combine code, text, mathematics (using LaTeX), and visualizations in a single document. 
@@ -131,4 +127,5 @@ The ability to share notebooks further enhances collaboration and reproducibilit
 In this article, we use computable Jupyter notebooks alongside the text to ensure reproducibility.
 You can inspect all the source code under the `Notebooks` directory on the table of contents.
 In addition, we use the `ipywidgets` and `ipympl` libraries to make the code *interactive* using sliders and cursor callback functions.
-Interactive figures will be easy to spot and, after connecting to the remote kernel, should be 
+
+
