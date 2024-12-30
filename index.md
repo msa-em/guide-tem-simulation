@@ -14,7 +14,7 @@ text
 ## Acknowledgements
 
 We are heavily indebted to the various excellent textbooks on electron microscopy, in particular [Advanced Computing in Electron Microscopy
-](doi:10.1007/978-3-030-33260-0) by Earl Kirkland. Work at the Molecular Foundry was supported by the Office of Science, Office of Basic Energy Sciences, of the U.S. Department of Energy under Contract No. DE-AC02-05CH11231, and work at University of Vienna by the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation program (Grant Agreement No. 756277-ATMEN).
+](doi:10.1007/978-3-030-33260-0) by Earl Kirkland. Work at the Molecular Foundry was supported by the Office of Science, Office of Basic Energy Sciences, of the U.S. Department of Energy under Contract No. DE-AC02-05CH11231, and at the University of Vienna by the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation program (Grant Agreement No. 756277-ATMEN).
 
 +++
 
