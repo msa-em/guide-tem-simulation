@@ -18,6 +18,6 @@ The text can be broken into three sections:
 We finish by offering our perspective on the outlook for such simulations.
 The first section consists of a brief overview to the [Python programming language](./code.md) and instructions on how to run the interactive figures.
 This is followed by a primer on the [mathematical concepts](./math.md) that underpin image simulations. 
-The second section addresses the theory of S/TEM image simulation, beginning with a discussion on the [underlying physics](./physics.md) of electron-atom interactions, after which the [algorithms](./algorithms.md) used to simulate images are detailed. 
-In the final section the practicalities of image simulation are discussed, covering [creating simulation inputs](./sim_inputs.md), [TEM simulations](./TEM.md), [STEM simulations](./STEM.md), [post-processing](./post.md) simulated images to create more experimentally realistic images, common errors and helpful tips.
-Finally we conclude with an outlook for image simulations.
+The second section addresses the theory of S/TEM image simulation, beginning with a discussion on the [underlying physics](./physics.md) of electron-atom interactions, after which the [algorithms](./algorithms.md) used to simulate images are detailed. Finally, [wave aberrations](./aberrations.md) that are vital for undertanding contrast formation are briefly described. 
+In the final section the practicalities of image simulation are discussed, covering [creating simulation inputs](./inputs.md) before turning to [TEM simulations](./TEM.md) and [STEM simulations](./STEM.md) in turn, including some helpful tips on how to save computational effort while creating more experimentally realistic images.
+Finally we conclude with an outlook for simulations of this kind, which play an increasingly important role in modern research.
