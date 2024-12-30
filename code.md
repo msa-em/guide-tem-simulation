@@ -6,25 +6,25 @@ numbering:
 
 ## Overview
 
-`Python` has unarguably become the leading programming language in the scientific community, continually gaining popularity for the past two decades. 
-This is due to `Python` being friendly for beginners, owing to its less strict language structure (dynamic typing, automatic memory management, non-compiled language) and the plethora of tutorials and examples. 
-It also benefits from being open-source, with numerous high-quality libraries covering a broad range of applications (numeric calculations, image analysis, machine learning, etc.), including a number of packages dedicated to S/TEM. 
+`Python` has unarguably become the leading programming language in the scientific community, continually gaining popularity over the past two decades. 
+This is due its friendliness for beginners, owing to its less strict language structure (dynamic typing, automatic memory management, non-compiled language) and the plethora of tutorials and examples. 
+ `Python` also benefits from being open-source, with numerous high-quality libraries covering a broad range of applications (numeric calculations, image analysis, machine learning, etc.), including a number of packages dedicated to S/TEM. 
 The diverse and broad scope of the python ecosystem allows for interoperability between different domains and file formats as well as easy re-purposing of existing algorithms to new domains.
 
 There are a number of `Python` codes relevant to S/TEM simulation and analysis:
-- [*ab*TEM](https://github.com/abTEM/abTEM) - all-Python S/TEM image simulation
+- [*ab*TEM](https://github.com/abTEM/abTEM) - all-Python image simulation (basis for this article)
 - [pyPrismatic](https://prism-em.com/tutorial-python/) - image simulation (Python wrapper to C++ package Prismatic)
-- [pyMultislice](https://github.com/HamishGBrown/py_multislice) - S/TEM image simulation 
+- [pyMultislice](https://github.com/HamishGBrown/py_multislice) - alternative Python image simulation API
 - [py4DSTEM](https://github.com/py4dstem/py4DSTEM) - 4D-STEM analysis
 - [liberTEM](https://github.com/LiberTEM/LiberTEM) - 4D-STEM analysis
-- [Hyperspy](https://hyperspy.org/) - general framework for S/TEM analysis.
-- [pyxem](https://github.com/pyxem/pyxem) - 4D-STEM analysis as part of Hyperspy.
-- [Rosetta Scientific Input Output](https://github.com/hyperspy/rosettasciio) - library for microscopy file reading and writing.
+- [Hyperspy](https://hyperspy.org/) - general framework for S/TEM analysis
+- [pyxem](https://github.com/pyxem/pyxem) - 4D-STEM analysis as part of Hyperspy
+- [Rosetta Scientific Input Output](https://github.com/hyperspy/rosettasciio) - library for microscopy file reading and writing
 
 The main libraries used in the code examples of this text are:
 - NumPy (np) - fast numerical calculations.
 - CuPy (cp) - drop-in replacement for NumPy to run on GPUs.
-- Numba - just-in-time Python compiler for scientific and array-oriented computing.
+- Numba (nb) - just-in-time Python compiler for scientific and array-oriented computing.
 - matplotlib - plotting and visualization.
 - ipywidgets - making interactive figures.
 - Atomic Simulation Environment (ASE) - creating and visualizing atomic structures.
@@ -39,7 +39,6 @@ That is indeed what *ab*TEM has been able to achieve, which has made it one of t
 Most python scripts begin with importing necessary libraries. 
 A *library* is a collection of pre-written code that provides tools, functions, and methods to perform specific tasks, such as mathematical operations, data visualization, or file manipulation, without requiring the user to write everything from scratch.
 We can import libraries and alias them (meaning we substitute as a short form name to reduce typing) using this syntax:
-
 
 ```python
 import numpy as np
@@ -105,14 +104,14 @@ Note that here we have moved the default origin for arrays from the upper left c
 
 ## Interactive Python Notebooks
 
-
-Interactive 'Python' notebooks, such as those provided by 'Jupyter', are a versatile tool for scientific computation and exploration. 
+Interactive `Python` notebooks, such as those provided by `Jupyter`, are a versatile tool for scientific computation and exploration. 
 They allow users to combine code, text, mathematics (using LaTeX), and visualizations in a single, interactive document. 
 This format is particularly advantageous for iterative workflows where the ability to test new ideas, visualize intermediate results, and document findings is critical. 
 Each section of code, called a *cell*, can be executed independently, which makes debugging and refining specific parts of a larger workflow straightforward. 
 The downside of this organizational scheme is that we must carefully check that our code works correctly when all cells are executed sequentially.
 
 For tools like *ab*TEM, interactive notebooks provide an excellent platform to run simulations, tweak their input parameters, and visualize the results.
-For example, users can modify the defocus or aperture size in a simulated STEM image and then immediately see how the results change.
+For example, users can modify the defocus or aperture size in a simulated STEM image and then immediately see how the results change. 
+Further, with the use of `ipywidgets`, interactive visualizations with intuitive graphical controls can be easily created.
 This interactive approach not only makes learning the software more intuitive but also facilitates efficient experimentation, enabling users to focus on understanding the science.
 The ability to share notebooks further enhances collaboration and reproducibility, as researchers can publish notebooks alongside their papers, allowing readers to verify the results and modify them for their own needs.
