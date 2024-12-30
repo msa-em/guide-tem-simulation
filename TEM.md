@@ -59,7 +59,13 @@ In [](#fig_tem_Au_diffraction) we show an interactive visualization of the diffr
 
 (id-tem-phase)=
 ### Contrast transfer and phase imaging in TEM
-Thus far we have been considering how to form images and diffraction patterns with perfect incident illumination. However, often we're interested in seeing how aberrations or other beam modifications impact imaging conditions. There are a variety of aberration functions ({math}`\chi(\bm{k})`) we may be interested in including as described in [](#CTF_page).
+Thus far we have been considering how to form images and diffraction patterns with perfect incident illumination and at infinite dose. However, often we're interested in simulating TEM experiments under more realistic conditions.  
+
+One example of the importance of aberrations and wavfunction modification is shown in [](#fig_tem_phase). Although the wavfunction at the imaging plane ({math}`\Psi_{image}(\bm{k}`)) may be complex, only the intensity of the exit wave is measured by detectors. Weakly scattering samples impart very little ampltidue contrast on the incident beam, so most of the structural information is encoded in the phase of the exit wave. This is especially well known in the case of imaging of biological materials, as these structures are beam-sensitive and composed of low atomic number (weakly scattering elements). This effect is evident in the left pannel of [](#fig_tem_phase); as the dose decreases, it is very challenging to observe the simulated covid spike protein.
+
+Note that simulations described thus far are performed to the limit of infinite electron dose. Leaving aside other factors, the main source of noise in S/TEM is so-called shot noise arising from the discrete nature of electrons. We can effectively emulate finite dose by drawing random numbers from a Poisson distribution for every pixel. We apply this so-called Poisson noise corresponding a dose per area, for example in the [](#fig_tem_phase).
+
+We may also be interested in seeing how aberrations or other beam modifications impact imaging conditions. There are a variety of aberration functions ({math}`\chi(\bm{k})`) we may be interested in including as described in [](#CTF_page).
 
 In TEM, aberrations modify the exit wave ({math}`\Psi_{exit}`) after the multislice simulation: 
 
@@ -69,8 +75,6 @@ In TEM, aberrations modify the exit wave ({math}`\Psi_{exit}`) after the multisl
 \Psi_{image}(\bm{k}) = \Psi_{exit}(\bm{k}) \mathrm{e}^{-i\chi(\bm{k})},
 ```
 
-One example of the importance of aberrations and wavfunction modification is shown in [](#fig_tem_phase). Although the wavfunction at the imaging plane ({math}`\Psi_{image}(\bm{k}`)) may be complex, only the intensity of the exit wave is measured by detectors. Weakly scattering samples impart very little ampltidue contrast on the incident beam, so most of the structural information is encoded in the phase of the exit wave. This is especially well known in the case of imaging of biological materials, as these structures are beam-sensitive and composed of low atomic number (weakly scattering elements). This effect is evident in the left pannel of [](#fig_tem_phase); as the dose decreases, it is very challenging to observe the simulated covid spike protein.
-
 ```{figure} #app:tem_contrast
 :name: fig_tem_phase
 :placeholder: ./static/tem_contrast.png
@@ -79,4 +83,4 @@ One example of the importance of aberrations and wavfunction modification is sho
 
 For the same dose, the image contrast can be increased by modfying the wavefunctions by way of aberrations. This is most often done with defocus, which is illustrated in the middle pannel [](#fig_tem_phase). The resulting image has improved contrast, making it easier to visualize the covid spike protein. The middle pannel shows the defocused image, and the aberrations can often be corrected for later in post-processing. 
 
-The phase of the spike protein can also be image through the introduction of a phase plate after the sample. This simulation ([](#fig_tem_phase) right) shows a Zernike phase plate, where electrons scattered to higher angles, gain an extra phase shift. This high-contrast image is free of aberrations, making it easy to see the spike protein. However, changing the slides on the widget highlgihts some of the challenges of phase contrast imaging with a phase plate. The best transfer of informaiton occurs with a phase plate that approximtes a delta function, meaning all the electrons exepct those in the very center of the aperature get an extra $\pi/2$ phase shift. However, as the size of the hole increases or the phase shift changes, the transfer of information gets worse. 
+The phase of the spike protein can also be image through the introduction of a phase plate after the sample. This simulation ([](#fig_tem_phase) right) shows a Zernike phase plate, where electrons scattered to higher angles, gain an extra phase shift. This high-contrast image is free of aberrations, making it easy to see the spike protein. However, changing the slides on the widget highlgihts some of the challenges of phase contrast imaging with a phase plate. The best transfer of information occurs with a phase plate that approximtes a delta function, meaning all the electrons exepct those in the very center of the aperature get an extra $\pi/2$ phase shift. However, as the size of the hole increases or the phase shift changes, the transfer of information gets worse.

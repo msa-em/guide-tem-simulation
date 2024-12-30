@@ -17,7 +17,7 @@ We can save a great deal of computational effort by scanning at the [Nyquist_fre
 Standard multislice simulations are too idealized to describe a realistic experimental image. For example, a finite Gaussian-shaped source will result in a blurring of the image, and vibrations and other instabilities may further contribute to the blur. It is typical and convenient to approximate these by applying a Gaussian blur with a standard deviation of $0.35 \ \mathrm{\AA}$ (corresponding to a source of approximately that size). However, note that correctly including spatial and temporal incoherence is a bit more complicated and may be necessary for quantitative comparisons with experiment.
 
 #### Noise
-Simulations correspond to the limit of infinite electron dose, which again is not realistic for an experimental image. Leaving aside other factors, the main source of noise in STEM is so-called shot noise arising from the discrete nature of electrons. We can effectively emulate finite dose by drawing random numbers from a Poisson distribution for every pixel. We apply this so-called Poisson noise corresponding a dose per area of $10^5 \ \mathrm{e}^- / \mathrm{\AA}^2$ to form a more realistic image.
+Analogous to the discussion in [](#id-tem-phase), STEM simulations are initially performed at infinite dose, and we need to add Poisson nose to reach more realistic conditions. In this case we add a dose per area of $10^5 \ \mathrm{e}^- / \mathrm{\AA}^2$ to form a more realistic image.
 
 The different STEM post-processing steps can be explored in [](#fig_stem_processing).
 
