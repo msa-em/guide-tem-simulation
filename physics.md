@@ -270,6 +270,6 @@ Although IAM potentials are useful for many purposes, they do neglect chemical b
 
 ```{figure} #H2_potential
 :name: fig:H2_potential
-:placeholder: ./figures/dft_iam_diff.png
-The difference between the indepdendent atom model potential to the DFT potential for the hydrogen molecule as a function of the distance between the H atoms.
+:placeholder: ./static/dft_iam_diff.png
+The difference between the indepdendent atom model potential to the DFT potential for the hydrogen molecule as a function of the distance between the H atoms. Note how there is no difference between the potential close to the atoms when they are further apart: the *ab*TEM implementation has taken care to ensure this, as it is vital for accurate quantitative comparisons.
 ```
