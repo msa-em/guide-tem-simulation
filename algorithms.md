@@ -112,8 +112,8 @@ Unfortunately, even with the above approximations, Equation [](#eq:Shrodinger_si
 Instead, we solve it numerically by using a split-step method, where we alternate between solving each operator independently.
 The steps of the multislice method are detailed below.
 
-
-### 1 - Atomic Coordinates
+### Steps of the Multislice Method
+#### 1 - Atomic Coordinates
 
 We first generate a set of atomic coordinates for our desired sample.
 The atomic coordinates are placed in a *simulation cell*, a [rectangular cuboid](#wiki:Rectangular_cuboid) where all edges vectors are $90^\circ$ apart. 
@@ -121,8 +121,7 @@ We assume the optic axis of the electron beam is along the $z$ axis.
 For each atom, we define the $\bm{r}=(x,y,z)$ position, the atomic number, a thermal vibration parameter, and sometimes the occupancy.
 Ideally the atomic coordinates will be periodic in the $(x,y)$ plane, though this is not always possible.
 
-
-### 2 - Potential Slices
+#### 2 - Potential Slices
 
 Next, we calculate the potential $V(\bm{r})$ for the sample. We compute this potential numerically, either using the parameterization approach shown in [](#isolated-atomic-potentials) or using a DFT calculation as described in [](#dft-potentials).
 We divide the atomic potentials into *slices*, which are thin sections of the sample in the $(x,y)$ plane. 
@@ -134,15 +133,13 @@ When using isolated atomic potentials, we can either take the infinite projected
 We can also add additional electrostatic or electromagnetic fields to the potential slices. Electrostatic fields can be produced by electric fields across the sample or excess charges or holes, and will produce the same phase shifts as the atomic potentials, described by Equation [](#eq:Shrodinger_electron).
 The effect of both extrinsic and intrinsic magnetic fields can be calculated using the [Aharonov–Bohm equation](#wiki:Aharonov–Bohm_effect).
 
-
-### 3 - Initial Wavefunctions
+#### 3 - Initial Wavefunctions
 
 Next, we define the intitial condition of the electron beam wavefunction $\psi(\bm{r})$, described in [](#CTF_page). In an ideal plane wave TEM or diffraction pattern simulation, we use only a single initial wavefunction. 
 We can also include spatial coherence in a [TEM simulation](#tem_sims) by performing a multislice simulation where the initial probe is tilted to a range of incident probe angles, which are then summed incoherently to generate the simulation output.
 For a [STEM simulation](#stem_sims), we may need to calculate thousands or even millions of initial conditions for the electron probe, as each unique STEM probe position requires another simulation.
 
-
-### 4 - Transmission Operator
+#### 4 - Transmission Operator
 
 Following {cite:t}`kirkland2020`, if we assume a slice is infinitesimal thickness, we can set the ${\nabla_{xy}}^2$ term from [](#eq:Shrodinger_simple) to zero and obtain the solution
 ```{math}
@@ -155,8 +152,7 @@ Following {cite:t}`kirkland2020`, if we assume a slice is infinitesimal thicknes
 
 We see from this expression that as the electron wavefuncton passes through a given slice, it will pick up a forward phase shift proportional to $V_{\Delta z}(\bm{r})$. This first Born approximation is quite accurate for high accelerating voltages, for small-to-intermediate atomic number species, and for thin slices. However we may require a more accurate expansion and / or numerical slicing of individual atomic potentals when using very low accelerating voltages or for calculating scattering from high atomic number species.
 
-
-### 5 - Propagation Operator
+#### 5 - Propagation Operator
 
 Next, we need to *propagate* the electron wave from one slice to the next by using the propagation operator in Equation [](#eq:Shrodinger_simple). We assume empty space between slices, setting $V(\bm{r})=0$ in [](#eq:Shrodinger_simple) to get
 
@@ -249,14 +245,13 @@ We can now write the final propagation operator by combining ${k_x}^2+{k_y}^2=|\
 
 If there are still remaining slices that the electron wave has not passed through, we alternate steps 4 and 5 until the prope wavefunction reaches the output surface of the sample, where it is referred to as the `exit wave`.
 
-
-### 6 - Transfer Function
+#### 6 - Transfer Function
 
 After we have calculated the exit wave, we then need to apply the effects of our microscope optics to this wave and reach the detector plane by using a microscope transfer function (MTF). The MTF could be very simple; for example, in either a TEM diffraction simulation or a typical STEM simulation, we assume that the detector is placed at the far field limit and that therefore we only need to Fourier transform the exit wave to reach the detector plane. 
 
 For a TEM imaging simulation, we typically use a contrast transfer function (CTF) for the MTF. The CTF can include aplanatic [optical aberrations](wiki:Optical_aberration) such as defocus, spherical aberration, astigmatism, and higher order coherent wave aberrations. It can also include more complex optical affects such as field distortion, image rotation, or planatic aberrations, where the aberrations vary as a function of position. The CTF equations are described in [](#CTF_page).
 
-### 7 - Detector Functions
+#### 7 - Detector Functions
 
 Finally, we convert from the complex wavefunction to a real-valued detector measurement. This intensity measurement may be performed in real space for near-field imaging giving $I(\bm{r})$, or in Fourier space for far-field diffraction space measurements giving $I(\bm{k})$. The measured intensity for a pixelated detector is just the magnitude squared of the wavefunction $|\psi(\bm{r})|^2$ or $|\psi(\bm{k})|^2$. To simulated an integrating detector intensity $I_D(\bm{k})$, such as those for BF or DF STEM measurements, we apply a detector function $D(\bm{k})$ to our measured intensity using the expression
 ```{math}
@@ -283,6 +278,7 @@ I(\bm{R},n)
 ```
 where $\theta$ is the annular coordinate and $k'$ is the radial coordinate for $\bm{k}$-space.
 
+We will use the multislice method in the rest of this article, so you can proceed to [](wave-aberrations)=, or read below for information on other simulation methods!
 
 
 ## Bloch Wave Simulations
@@ -294,8 +290,8 @@ This reduction in computational cost is possible because in a Bloch wave simulat
 The Bloch wave method is particularly advantageous for periodic systems, as it reduces the computational domain to a single unit cell and directly incorporates crystal symmetry. However, it is less suited for non-periodic systems or those with large-scale defects, where the multislice method is more appropriate.
 This approach requires careful numerical handling of eigenvalue decomposition and the summation over a sufficiently large number of reciprocal lattice vectors to ensure convergence.
 
-
-### 1 - Bloch Wave Expansion
+### Steps of the Bloch Wave Method
+#### 1 - Bloch Wave Expansion
 
 The electron wavefunction $\psi(\bm{r})$ inside a crystal can be expressed as a linear combination of Bloch waves, $b_j(\bm{k}_j, \bm{r})$, which satisfy the periodicity of the crystal potential:
 
@@ -313,8 +309,7 @@ $\bm{g}$ are the reciprocal lattice vectors,
 $c_{\bm{g},j}$ are coefficients describing the contribution of each plane wave to the Bloch wave.
 This expansion allows us to represent the electron wavefunction as a superposition of states that inherently respect the periodicity of the crystal.
 
-
-### 2 - Schrödinger Equation
+#### 2 - Schrödinger Equation
 
 We can rewrite Equation [](eq:schrodinger_start) as:
 ```{math}
@@ -340,8 +335,7 @@ V(\bm{r}) = \sum_{\bm{g}} V_{\bm{g}} e^{2\pi i \bm{g} \cdot \bm{r}}.
 ```
 Substituting these expansions into the Schrödinger equation results in a set of coupled equations for the plane wave coefficients $c_{\bm{g},j}$, which form the basis for Bloch wave simulations.
 
-
-### 3 - Eigenvalue Problem
+#### 3 - Eigenvalue Problem
 
 Inserting the expansions into the Schrödinger equation yields:
 
@@ -357,7 +351,7 @@ By matching coefficients of $\exp^{2\pi i (\bm{k}_j + \bm{g}) \cdot \bm{r}}$, we
 where $s_{\bm{g}} = (k_0^2 - |\bm{k}_0 + \bm{g}|^2) / 2k_0$ is the excitation error.
 We solve this set of linear equations to find the eigenvalues $2\gamma_j k_{0,z}$ and eigenvectors $c_{\bm{g},j}$, representing the Bloch wave propagation constants and coefficients.
 
-### 4 - Bloch Wave Propagation
+#### 4 - Bloch Wave Propagation
 
 The wavefunction $\psi(\bm{r})$ at depth $z$ is expressed as:
 
@@ -371,7 +365,7 @@ where $\psi_{\bm{g}}(z)$ propagates according to:
 ```
 The propagation constants $\gamma_j$ determine how each Bloch wave evolves through the crystal.
 
-### 5 - Input Wavefunction
+#### 5 - Input Wavefunction
 
 At the entrance surface ($z=0$), the wavefunction at the entrance surface of the crystal $\psi_{\bm{g}}(0)$ is matched to the incident wavefunction just outside of the crystal $\psi_0(\bm{r})$,
 ```{math}
@@ -386,9 +380,7 @@ The expansion of $\psi_0(\bm{r})$ into Bloch waves is achieved by determining th
 ```
 we relate the Bloch wave expansion coefficients $\alpha_j$ to the plane wave coefficients $\psi_{\bm{g}}(0)$ of the input wavefunction and the coupling coefficients $c_{\bm{g},j}$, which describe the relationship between the plane wave and Bloch wave bases.
 
-
-
-### 6 - Output Wavefunction
+#### 6 - Output Wavefunction
 
 At the exit surface ($z = z_{\text{max}}$, corresponding to the crystal thickness $t$), the real-space wavefunction $\psi(\bm{r})$ is expressed using the Bloch wave expansion. The wavefunction is given by:
 
