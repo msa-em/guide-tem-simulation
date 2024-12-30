@@ -78,9 +78,6 @@ where
 \end{aligned}
 ```
 
-
-
-
 If {math}`D(\bm{k})` is a small point on the axis then the measurement is a bright field image. If {math}`D(\bm{k})` is a large annulus covering the high angle scattering then the measurement is an annular dark field image.
 
 In [](#fig_stem_processing), we present a visualization for exploring how the integration region of flexible circular and annular detectors influence the image contrast. More discussion of flexible detectors in STEM experiments is in [4D-STEM](#id-4d-stem). For BF imaging, we often use a collection angle just larger than the convergence angle of the incident probe. In annular dark field (ADF) imaging the contrast is approximately $Z^\alpha$, where Z is the atomic number and $\alpha$ is anywhere between 1.3 and 2 depending on the detector geometry {cite:p}`treacy2011z`. In a high angle annular dark field (HAADF) experiment, the contrast is even more strongly dominated by the heavy atoms.  ADF imaging is a linear technqiue and relatively robust to sample thickness, but as can be observed in [](#fig_stem_processing) is not well suited for visualizing light elements. Annular bright field imaging (ABF) uses a colleciton angle matching the outer ring of the bright field disk, and capture signals from both heavy and light elements {cite:p}`okunishi2009visualization`. 
@@ -105,11 +102,13 @@ Aluminum, iron and gold nanoparticles on a carbon film: **Left** image from a ci
 ```
 
 (stem-image-simulation)=
-#### Image simulation: STO/LTO
+### Image Simulation and Post-Processing
+Scanning imaging modes such as STEM works by rastering an electron probe across a sample pixel by pixel and recording the scattering signal. The computational cost of the simulation is directly proportional to the number of scan pixels, each requiring a separate multislice simulation. As mentioned above, for periodic speciments, even though the potential needs to be large enough to fit the probe, there is no need to scan over repated unit cells as tiling afterwards can yield the same result.
 
-Scanning imaging modes such as STEM works by rastering an electron probe across a sample pixel by pixel and recording the scattering signal. The computational cost of the simulation is directly proportional to the number of scan pixels, each requiring a separate multislice simulation. As mentioned above, for periodic speciments, even though the potential needs to be large enough to fit the probe, there is no need to scan over repated unit cells as tiling afterwards can yield the same result. 
+STEM simulations are computationally demanding, but it is typically not required to use as many pixels in simulations as there are in experimental images. A sparse sampling can usually be interpolated to save a lot of computational effort, and blurring, tiling and applying noise can be done after the simulation is completed. We apply some of the most common steps post-processing step in this tutorial.
 
-As an example, we simulate the BF (0 to 20 mrad), MAADF (40 to 100 mrad), and HAADF (100 to 180 mrad) images of a STO/LTO interface that we built in the [simulation inputs](./sim_inputs.md) chapter. Note that since the structure repeats in the $x$-direction, we only scan over the unit cell, as shown in [](#fig_stem_specimen) below in red. The images simulated with a primary beam energy of 150 keV, a defocus of 50 Å, and a probe convergence-semiangle of 20 mrad are shown in [](#fig_stem_image) below. Note that these are quite pixelated since we simulated at Nyqvist sampling to save computational effort; see [post-processing](./post.md) for how these are interpolated to a higher resolution.
+#### STEM Image Simulation: STO/LTO
+As an example, we simulate the BF (0 to 20 mrad), MAADF (40 to 100 mrad), and HAADF (100 to 180 mrad) images of a STO/LTO interface that we built in the [simulation inputs](./sim_inputs.md) chapter. Note that since the structure repeats in the $x$-direction, we only scan over the unit cell, as shown in [](#fig_stem_specimen) below in red. The images are simulated with a primary beam energy of 150 keV, a defocus of 50 Å, and a probe convergence-semiangle of 20 mrad. Note that these would be quite pixelated since we simulated at Nyqvist sampling to save computational effort; below we show how these are interpolated to a higher resolution.
 
 ```{figure} #app:stem_sto-lto_scan
 :name: fig_stem_specimen
@@ -117,10 +116,21 @@ As an example, we simulate the BF (0 to 20 mrad), MAADF (40 to 100 mrad), and HA
 A SrTiO<sub>3</sub>/LaTiO<sub>3</sub> (STO/LTO) interface model. The red overlaid rectangle indicates the area of the scan.
 ```
 
-```{figure} #app:stem_sto-lto_image
-:name: fig_stem_image
-:placeholder: ./static/stem_images.png
-Bright-field (BF), medium-angle annular dark-field (MAADF), and high-angle annular dark-field (HAADF) imges of the SrTiO<sub>3</sub>/LaTiO<sub>3</sub> (STO/LTO) interface.
+#### Interpolation
+We can save a great deal of computational effort by scanning at the [Nyquist_frequency](wiki:Nyquist_frequency), which is information-theoretically guaranteed to be sufficient — but the result is visually quite pixelated. To address this, we can interpolate the images to a sampling of 0.05 $\mathrm{\AA}$. *ab*TEM’s default interpolation algorithm is Fourier-space padding, but spline interpolation is also available, which is more appropriate if the image in non-periodic.
+
+#### Blurring
+Standard multislice simulations are too idealized to describe a realistic experimental image. For example, a finite Gaussian-shaped source will result in a blurring of the image, and vibrations and other instabilities may further contribute to the blur. It is typical and convenient to approximate these by applying a Gaussian blur with a standard deviation of $0.35 \ \mathrm{\AA}$ (corresponding to a source of approximately that size). However, note that correctly including spatial and temporal incoherence is a bit more complicated and may be necessary for quantitative comparisons with experiment.
+
+#### Noise
+Analogous to the discussion in [](#id-tem-phase), STEM simulations are initially performed at infinite dose, and we need to add Poisson nose to reach more realistic conditions. In this case we add a dose per area of $10^5 \ \mathrm{e}^- / \mathrm{\AA}^2$ to form a more realistic image.
+
+The different STEM post-processing steps can be explored in [](#fig_stem_processing).
+
+```{figure} #app:stem_processing
+:name: fig_stem_processing
+:placeholder: ./static/stem_processing.png
+Using the slider observe how different post-processing steps affect the scanned bright-field, medium-angle, and high-angle annular dark-field images of an STO/LTO heterostructure.
 ```
 
 (differential-phase-contrast)=

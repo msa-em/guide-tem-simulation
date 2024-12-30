@@ -15,7 +15,7 @@ label: physics_page
 
 The properties of atoms, molecules and solids are fundamentally determined by quantum mechanics. In this modern theory of physics, some classical concepts such as the electrostatic potential and the propagation of waves are carried over essentially unchanged, whereas many familiar intuitions fail on the level of the very small. In particular, quantum objects including electrons exhibit both wave and particle properties depending on how they are observed — in the context of electron scattering, matter-wave interference is of central importance. Mathematically, both free propagating electrons and those bound into atoms are described mathematically as complex waves, via so-called electron wavefunctions.
 
-(electron-wavefunctions-ts)=
+(electron-wavefunctions)=
 ## Electron Wavefunctions
 
 An electron wavefunction, typically denoted by $\psi$, is a mathematical description of the quantum state of an isolated quantum system. The wavefunctions are complex-valued, and thus not directly observable, but their squared amplitudes can be interpreted as probabilities to find the electrons in particular states that do correspond to physically observable properties of the system. Wavefunctions naturally live in a many-dimensional mathematical space called the Hilbert space. By choosing a basis of representation, they can be represented in real space, typically using either Cartesian (convenient for planewave propagation) or spherical coordinates (convenient for scattering).
@@ -40,7 +40,7 @@ where $\bm{r}^{\prime}$ now denotes the location of a scattering center, and the
 
 To describe the propagation of these waves in free space, the imaginary term in the exponential describes periodic variation. Thus for any fixed sum of the spatial and temporal terms in the exponent, the wavefunction has the same value; these represent the planes (or shells) of constant amplitude. To calculate the wave in an arbitrary position, we can simply substitute the new spatial location and time arguments to calculate the resulting amplitude.
 
-(bound-systems-ts)=
+(bound-systems)=
 ## Bound Systems: The Schrödinger Equation
 
 To derive the wavefunction of a bound system, we need to solve the quantum "equation of motion" for the electron(s) in the corresponding confining potential: this is the Schrödinger equation. The Schrödinger equation gives the fundamental mathematical description of quantum systems, describing the time-evolution of their wavefunction. The equation for a single non-relativistic particle can in the position representation be written as
@@ -61,7 +61,7 @@ The equation can only be solved analytically for a handful of simple cases, of w
 
 where wavefunctions $\psi(\bm{r})$ are the eigenvectors and energies $E$ the eigenvalues of the system.
 
-(electrostatic-potentials-ts)=
+(electrostatic-potentials)=
 ## Electrostatic Potentials
 
 The electrostatic potential of a specimen determines not only how the electrons of the system are bound, but also how transmitting electrons scatter via the Lorentz force. It therefore connects the properties of the material to the resulting images or diffraction patterns. The electrostatic potential is fundamentally speaking derived from the electron density of the atoms in a specimen, which is described by their quantum mechanical many-body wavefunction. However, this is only rarely analytically solvable, and various approximations may be needed.
@@ -96,7 +96,7 @@ whose squared norm gives the (non-relativistic) electron density of hydrogen as
 \rho(r) = |\psi_{1 0 0}(r)|^2 = \frac{1}{\pi a_0^3} \mathrm{e^{-2 r / a_0}}.
 ```
 
-(scattering-from-a-potential-ts)=
+(scattering-from-a-potential)=
 ## Scattering from a Potential
 
 To understand how electrons scatter from a potential, we can consider an electron plane wave incident on an isolated atom. The wave interacts with the electrostatic potential of the nucleus and electrons of the atom, and an outgoing spherical wave is generated. To understand the effect of the atom on the wave, we need to calculated the distribution of scattered intensity, which is not isotropic due to the initial linear momentum of the incident wave.
@@ -131,8 +131,8 @@ This can be formally solved with the help of Green's function $G(\bm{r},\bm{r^{\
 
 While this formal solution is in principle exact, it is in the form of an implicit integral equation whose solution $\psi$ appears both inside and outside the integral – indeed, we have merely transformed the differential Schrödinger equation into an integral equation without solving anything. To proceed, some approximation is needed.
 
-(born-approximation-ts)=
-### Born approximation for electron scattering
+(born-approximation)=
+### Born Approximation for Electron Scattering
 
 A widely used approximation to solve [](#eq:scattering_schrodinger) is the first Born approximation, whereby we replace the full $\psi$ within the integral simply by the incident planewave. In effect, this approximation makes the assumption that the incident wave is not diminished and scattered only once by the material, which is valid when scattering is weak.
 
@@ -166,8 +166,8 @@ f(\Delta \bm{k}) \equiv-\frac{m}{2 \pi \hbar^{2}} \int V\left(\bm{r}^{\prime}\ri
 
 is called the atomic form factor (or electron scattering factor {cite:p}`kirkland_advanced_2010` and it describes the angular distribution of scattered intensity. In the first Born approximation it corresponds to the Fourier transform of the scattering potential ($f(\Delta \bm{k})=\mathcal{F}_k[V(r)]$).
 
-(atomic-form-factors-ts)=
-### Atomic form factors
+(atomic-form-factors)=
+### Atomic Form Factors
 
 The atomic form factors thus describe the angular amplitude for scattering of a single electron of by a single atom. While the first Born approximation is inadequate for describing real specimens (as electrons typically scatter multiple times when passing through a crystal), this description is quite useful since it relates the three-dimensional Fourier transform of the atomic potential to the scattering amplitude.
 
@@ -270,6 +270,6 @@ Although IAM potentials are useful for many purposes, they do neglect chemical b
 
 ```{figure} #H2_potential
 :name: fig:H2_potential
-:placeholder: ./figures/dft_iam_diff.png
-The difference between the indepdendent atom model potential to the DFT potential for the hydrogen molecule as a function of the distance between the H atoms.
+:placeholder: ./static/dft_iam_diff.png
+The difference between the indepdendent atom model potential to the DFT potential for the hydrogen molecule as a function of the distance between the H atoms. Note how there is no difference between the potential close to the atoms when they are further apart: the *ab*TEM implementation has taken care to ensure this, as it is vital for accurate quantitative comparisons.
 ```

@@ -1,5 +1,5 @@
 ---
-title: Mathematic Concepts
+title: Mathematical Concepts
 numbering:
   enumerator: 1.%s
 ---

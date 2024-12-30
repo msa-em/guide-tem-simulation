@@ -91,7 +91,6 @@ project:
     - format: meca
   exclude:
     - README.md
-    - 06_sim_inputs.md
     - 11_errors.md
     - main.md
     - original/*
@@ -119,7 +118,6 @@ project:
     - file: inputs.md
     - file: TEM.md
     - file: STEM.md
-    - file: post.md
     #- file: errors.md
     - file: conclusion.md
     - file: appendix.md
@@ -139,8 +137,7 @@ project:
         - file: notebooks/09.0_inputs_probe_size.ipynb
         - file: notebooks/09.1_STEM_detectors.ipynb
         - file: notebooks/09.2_STEM_convergence.ipynb
-        - file: notebooks/09.x_STEM_STO-LTO.ipynb
-        - file: notebooks/10_STEM_post_processing.ipynb
+        - file: notebooks/09.3_STEM_STO-LTO.ipynb
     
 site:
   template: book-theme
