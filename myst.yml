@@ -26,6 +26,7 @@ project:
     - Transmission electron microscopy
     - Scanning transmission electron microscopy
     - Multislice simulations
+    - Open source
   authors:
     - name: Colin Ophus
       corresponding: true
@@ -52,11 +53,11 @@ project:
           institution: University of California, Berkeley
           address: 468 Donner Lab, Berkeley, CA, USA, 94720
           ror: 01an7q238
-    - name: Alexander Rakowski
-      corresponding: true
-      orcid: 0000-0003-4565-8642
-      email: arakowski@lbl.gov
-      affiliations: [ncem]
+ #   - name: Alexander Rakowski
+ #     corresponding: true
+ #     orcid: 0000-0003-4565-8642
+ #     email: arakowski@lbl.gov
+ #     affiliations: [ncem]
     - name: Jacob Madsen
       corresponding: true
       orcid: 0000-0001-5534-0553
@@ -72,16 +73,16 @@ project:
       orcid: 0000-0003-2513-573X
       email: toma.susi@univie.ac.at
       affiliations: [vienna]
-    - name: Hamish G Brown
-      corresponding: true
-      orcid: 0000-0003-2292-7766
-      email: hgbrown@unimelb.edu.au
-      affiliations:
-        - id: melbourne
-          department: Ian Holmes Imaging Centre, Bio21 Institute
-          institution: The University of Melbourne
-          address: 30 Flemington Rd, Parkville VIC 3052, Australia
-          ror: 01ej9dk98
+  #  - name: Hamish G Brown
+  #    corresponding: true
+  #    orcid: 0000-0003-2292-7766
+  #    email: hgbrown@unimelb.edu.au
+  #    affiliations:
+  #      - id: melbourne
+  #        department: Ian Holmes Imaging Centre, Bio21 Institute
+  #        institution: The University of Melbourne
+  #        address: 30 Flemington Rd, Parkville VIC 3052, Australia
+  #        ror: 01ej9dk98
   open_access: true
   requirements:
     - 'environment.yml'
