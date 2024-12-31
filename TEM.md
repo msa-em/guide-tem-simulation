@@ -7,15 +7,24 @@ numbering:
 (tem_sims)=
 ## TEM Simulations with Parallel Illumination
 
-### Wavefunctions
-After building an atomic potential as described in the [](#algorithms_page), the first step in a TEM simulation is to choose the wavefunction ({math}`\Psi`) for the simulation. The simplest case for the incident beam is to set {math}`\Psi` to unity everywhere in the plane, which means perfectly even illumination across the sample. However, it is possible to introduce more complications, such as a slightly [titled plane wave](https://abtem.readthedocs.io/en/main/user_guide/walkthrough/multislice.html#small-angle-beam-tilt). The sampling is set by the gridpoint and extent as described in section [](#sim_inputs_page).
+(tem-wavefunctions)=
+### Initial Conditions of the Electron Wave
+After building an atomic potential as described in the [](#algorithms_page), the first step in a TEM simulation is to choose the initial wavefunction for the simulation. The simplest case for the incident beam is to set $\psi(\bm{r})$ to unity everywhere in the plane, which means perfectly even illumination across the sample:
+
+```{math}
+:label: eq:planewave_probe
+
+\psi_0(\bm{r}) = 1.
+```
+
+However, it is possible to introduce more complications, such as a slightly [titled plane wave](https://abtem.readthedocs.io/en/main/user_guide/walkthrough/multislice.html#small-angle-beam-tilt). The sampling is set by the gridpoint and extent as described in section [](#sim_inputs_page).
 
 (id-tem-imaging)=
 ### Imaging
 
-A TEM image is simulated by propagating the wavefunction through the specimen potential using the multislice algorithm (as described in [](#algorithms_page)), which calculates how the wave evolves due to scattering by the specimen atoms and the propagation through it. The resulting exit-wave is complex, but can be visualized via its intensity. For a more realistic image, a [contrast transfer function](#CTF_page) can be applied to model the optics of the microscope. More detials aberrations can be found in [](#CTF_page).  
+A TEM image is simulated by propagating the wavefunction through the specimen potential using the multislice algorithm (as described in [](#algorithms_page)), which calculates how the wave evolves due to scattering by the specimen atoms and the propagation through it. The resulting exit-wave is complex, but can be visualized via its intensity.
 
-In TEM, aberrations ({math}`\chi(\bm{k})`) modify the exit wave ({math}`\Psi_{exit}`) after the multislice simulation: 
+For a more realistic image, a [contrast transfer function](#CTF_page) can be applied to model the optics of the microscope. More details aberrations can be found in [](#CTF_page). In TEM, aberrations ({math}`\chi(\bm{k})`) modify the exit wave ({math}`\psi_{exit}`) after the multislice simulation: 
 
 ```{math}
 :label: eq:TEM_aberrations
@@ -24,7 +33,7 @@ In TEM, aberrations ({math}`\chi(\bm{k})`) modify the exit wave ({math}`\Psi_{ex
 
 ```
 
-Note that in TEM simulations, aberrations are added after the computationally time-consuming multislice calculation, which described the physics of the interaction. 
+Note that in TEM simulations, aberrations are added after the computationally time-consuming multislice calculation, which described the physics of the interaction.
 
 In [](#fig_tem_Au_potential_wave_image) we show an interactive visualization of the cumulative projected potential of gold with a lattice constant of 4.08 Å in the <100> zone axis, the corresponding exit wave function, and the resulting image as a function of depth through the specimen. The multislice algorithm is only accurate in the limit of good (small) sampling rate and thin slices, but improving these parameters also increases computational cost. A sensible value for the sampling is between $\mathrm{0.05} \ \mathrm{Å}$ and $0.02 \ \mathrm{Å}$, and the slice thickness is typically between $1.0 \ \mathrm{Å}$ and $0.025 \ \mathrm{Å}$; we use a value of $\sim1.0 \ \mathrm{Å}$ here.
 
@@ -39,7 +48,7 @@ Finally the right panel shows the resulting image from this simulation. To descr
 **Visualization of slicing through the specimen for the potential, the exit wave, and the image with a CTF applied.**
 ```
 
-### Electron diffraction patterns
+### Electron Diffraction Patterns
 
 Instead of an image, we can instead simulate a selected area diffraction (SAD) experiment by using the `DiffractionPatterns` method. We use `block_direct=True` to block the direct beam, which typically has a much higher intensity than the scattered beams, making it show it on the same scale. In a real experiment, you may similarly use a central beam stop in order to to visualize the scattered beams.
 
@@ -56,7 +65,7 @@ In [](#fig_tem_Au_diffraction) we show an interactive visualization of the diffr
 ```
 
 (id-tem-phase)=
-### Contrast transfer and phase imaging in TEM
+### Contrast Transfer and Phase Imaging
 Thus far we have been considering how to form images and diffraction patterns with perfect incident illumination and at infinite dose. However, often we're interested in simulating TEM experiments under more realistic conditions.  
 
 One example of the importance of aberrations and wavfunction modification is shown in [](#fig_tem_phase). Although the wavfunction at the imaging plane ({math}`\Psi_{image}(\bm{k}`)) may be complex, only the intensity of the exit wave is measured by detectors. Weakly scattering samples impart very little ampltidue contrast on the incident beam, so most of the structural information is encoded in the phase of the exit wave. This is especially well known in the case of imaging of biological materials, as these structures are beam-sensitive and composed of low atomic number (weakly scattering elements). This effect is evident in the left pannel of [](#fig_tem_phase); as the dose decreases, it is very challenging to observe the simulated covid spike protein.

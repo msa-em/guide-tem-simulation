@@ -26,7 +26,7 @@ For example, to create a basic model of the N<sub>2</sub> molecule, we could def
 atoms = ase.Atoms("N2", positions=[(0.0, 0.0, 0.0), (1.0, 0.0, 0.0)], cell=[6, 6, 6])
 ```
 
-All these attributes of the `Atoms` object are stored in underlying NumPy arrays,   which can be directly modified if desired. Convenient arithmetic operations also directly work for the `Atoms` object, so structures can be easily combined to create more complex specimens.
+All these attributes of the `Atoms` object are stored in underlying NumPy arrays, which can be directly modified if desired. Convenient arithmetic operations such as `+` and `*` also directly work for the `Atoms` object, so structures can be easily extended and combined to create more complex specimens models.
 
 #### Importing Structures from Files
 
@@ -58,6 +58,9 @@ mask = mask * (sto_lto.positions[:, 1] < 7.5)
 sto_lto.numbers[mask] = 57
 ```
 
+### Non-Orthogonal or Tilted Specimen
+Most multislice implementations also require the supercell axes to be orthogonal, which can sometimes be non-trivial to achieve for a given crystal structure, but especially tricky for rotated crystals. In *ab*TEM, there are some tools to help achieve this as described in its  [documentation](https://abtem.github.io/doc/user_guide/tutorials/advanced_atomic_models.html#orthogonal-and-periodic-supercells). While [small beam tilts](#tem-wavefunctions) can be accommodated within the multislice formalism, for arbitrary rotations of a crystal or large-angle beam tilts, the [Bloch Wave method](#blochwave-method) may instead be more appropriate (as implemented in [py4DSTEM](https://github.com/py4dstem/py4DSTEM_tutorials/blob/main/notebooks/diffraction_02_dynamical.ipynb) and recently also [*ab*TEM](https://abtem.github.io/doc/user_guide/tutorials/blochwave.html)).
+
 ## Sampling
 
 In any numerical implementation, continuous physical quantities such as potentials or wavefunctions have to be described on numerical grids. In *ab*TEM, these are represented on a rectangular grid of $N_x \times N_y$ grid points (`gpts`) or pixels. 
@@ -83,8 +86,6 @@ $$
     k_{x,\mathrm{max}} = \frac{1}{2\Delta_x} \quad \mathrm{and} \quad k_{y,\mathrm{max}} = \frac{1}{2\Delta_y} \quad .
 $$
 
-Finally we demonstrate the perhaps non-intuitive fact that the only real way to improve sampling in reciprocal space, i.e. decrease $\Delta k$, is to increase the size of the supercell in $x$ and $y$. 
+Finally, we want to stress the perhaps non-intuitive fact that although some codes allow the sampling of diffraction patterns to be separately set, due to the reciprocal pixel-wise numerical correspondence between the real and reciprocal spaces, the only true way to improve reciprocal-space sampling, i.e. decrease $\Delta k$, is to increase the size of the supercell in $x$ and $y$.
 
-Although some codes allow the sampling of diffraction patterns to be separately set, this is only numerically possibly by interpolation. In *ab*TEM we choose not to do this, but to retain the direct correspondence between the real-space extent of the potential and the reciprocal-space sampling.
-
-You can find more information in the [*ab*TEM documentation](https://abtem.github.io/doc/user_guide/appendix/antialiasing.html).
+In *ab*TEM we choose to retain the direct correspondence between the real-space extent of the potential and the reciprocal-space sampling, and only use interpolation to *decrease* the number of pixels along one direction to reach [uniform sampling](https://abtem.github.io/doc/reference/api/_autosummary/abtem.measurements.DiffractionPatterns.html#abtem.measurements.DiffractionPatterns.interpolate). You can find some more information in the [*ab*TEM documentation](https://abtem.github.io/doc/user_guide/appendix/antialiasing.html).
