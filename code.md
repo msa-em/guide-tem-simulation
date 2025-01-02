@@ -4,6 +4,7 @@ numbering:
   enumerator: 1.%s
 ---
 
+(code_overview)=
 ## Overview
 
 `Python` has unarguably become the leading programming language in the scientific community, continually gaining popularity for the past two decades. 
@@ -34,6 +35,7 @@ However, by making appropriate use of `Python` open-source numerical libraries i
 That is indeed what *ab*TEM has been able to achieve, which has made it one of the fastest-growing and popular tools for STEM simulations, and our choice for this text.
 
 
+(code_python_examples)=
 ## Simple Python Examples
 
 Most python scripts begin with importing necessary libraries. 
@@ -79,7 +81,7 @@ f = np.exp(
 )
 ```
 
-Here we modify the $x$ vector, by using square brackets $[,]$ to access indices of the $x$ array. 
+Here we modify the $x$ vector, by using square brackets `[,]` to access indices of the $x$ array. 
 Specifically we use `[:,None]`, where the first `:` means "all elements" and places these along the 1st dimension (array rows), and the `None` (or alternatively `np.newaxis`) expands the array to become 2D, by adding a new 2nd dimension (array columns). 
 This changes the $x$ array shape `x.shape` from $(200,)$ to $(200,1)$. 
 The similar indexing applied to $y$ changes its array shape `y.shape` from $(200,)$ to $(1,200)$. 
@@ -111,21 +113,22 @@ Note that here we have moved the default origin for arrays from the upper left c
 This change of origin is a common source of errors for `Python` newcomers, as in mathematics generally (and `Numpy` specifically) we typically place the origin in the upper left corner, while most plotting functions generally (and `Matplotlib` specifically) place it in the lower left. 
 We should remember however that the directions are only display and plotting conventions; internally the entries in our 2D `Numpy` arrays are always self-consistent when being accessed using the `[index_0,index_1]` convention.
 
+
+(code_notebooks)=
 ## Python Notebooks
 
-'Python' notebooks, such as those popularized by 'Jupyter', are a versatile tool for scientific computation and exploration. 
+`Python` notebooks, such as those popularized by `Jupyter`, are a versatile tool for scientific computation and exploration. 
 They allow users to combine code, text, mathematics (using LaTeX), and visualizations in a single document. 
 This format is particularly advantageous for iterative workflows where the ability to test new ideas, visualize intermediate results, and document findings is critical. 
 Each section of code, called a *cell*, can be executed independently, which makes debugging and refining specific parts of a larger workflow straightforward. 
 The downside of this organizational scheme is that we must carefully check that our code works correctly when all cells are executed sequentially.
 
 For tools like *ab*TEM, notebooks provide an excellent platform to run simulations, tweak their input parameters, and visualize the results.
-For example, users can modify the defocus or aperture size in a simulated STEM image and then immediately see how the results change.
+For example, users can modify the defocus or aperture size in a simulated STEM image and then re-run the necessary cells see how the results change.
 This approach not only makes learning the software more intuitive but also facilitates efficient experimentation, enabling users to focus on understanding the science.
 The ability to share notebooks further enhances collaboration and reproducibility, as researchers can publish notebooks alongside their papers, allowing readers to verify the results and modify them for their own needs.
 
 In this article, we use computable Jupyter notebooks alongside the text to ensure reproducibility.
 You can inspect all the source code under the `Notebooks` directory on the table of contents.
 In addition, we use the `ipywidgets` and `ipympl` libraries to make the code *interactive* using sliders and cursor callback functions.
-
 
