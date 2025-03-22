@@ -4,7 +4,7 @@ numbering:
   enumerator: 1.%s
 ---
 
-This article covers everything you need to know to simulate images for [transmission electron microscopy](wiki:Transmission_electron_microscopy) (TEM) and [scanning TEM](wiki:Scanning_transmission_electron_microscopy) (STEM) experiments [@pennycook2011scanning; @carter2016transmission].
+This article covers everything you need to know to simulate measurements for [transmission electron microscopy](wiki:Transmission_electron_microscopy) (TEM) and [scanning TEM](wiki:Scanning_transmission_electron_microscopy) (STEM) experiments [@pennycook2011scanning; @carter2016transmission].
 We focus on modern [Python](wiki:Python_(programming_language)) implementations centered around the [numpy](wiki:NumPy) {cite:p}`harris2020array` and [cupy](wiki:CuPy) {cite:p}`nishino2017cupy` libraries, for CPU and GPU calculations respectively, as implemented in the open-source [*ab*TEM](https://github.com/abTEM/abTEM/) code. 
 
 This text is aimed at both beginner and intermediate users, though experts may also learn some new concepts. 
@@ -21,6 +21,6 @@ The text can be broken into three sections:
 The first section consists of a brief overview to the [Python programming language](./code.md) and instructions on how to run the interactive figures.
 This is followed by a primer on the [mathematical concepts](./math.md) that underpin image simulations. 
 The second section addresses the theory of STEM image simulation, beginning with a discussion on the [underlying physics](./physics.md) of electron-atom interactions, after which the [algorithms](./algorithms.md) used to simulate images are detailed. 
-Finally, [wave aberrations](./aberrations.md) that are vital for undertanding contrast formation are briefly described. 
+Finally, [wave aberrations](./aberrations.md) that are vital for understanding contrast formation are briefly described. 
 In the final section the practicalities of image simulation are discussed, covering [creating simulation inputs](./inputs.md) before turning to [TEM simulations](./TEM.md) and [STEM simulations](./STEM.md) in turn, including some helpful tips on how to save computational effort while creating more experimentally realistic images.
 Finally we conclude with an outlook for simulations of this kind, which play an increasingly important role in modern research.

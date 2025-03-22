@@ -14,7 +14,7 @@ label : algorithms_page
 (numerical-solutions-of-the-schrodinger-equation)=
 ## Numerical Solutions of the Schrödinger Equation
 
-As discussed in [](#bound-systems), the [Schrödinger equation](wiki:Schrödinger_equation) typically cannot be solved analytically in complex systems. Therefore, in order to perform electron scattering simulations, we must calculate numerical solutions of Equation [](#eq:Schrodinger_time) for electron waves. First, we define the {cite:t}`debroglie1925recherches` wavelength of a free electrons (corrected for relativistic effects) as
+As discussed in [](#physics_bound_systems), the [Schrödinger equation](wiki:Schrödinger_equation) typically cannot be solved analytically in complex systems. Therefore, in order to perform electron scattering simulations, we must calculate numerical solutions of Equation [](#eq:Schrodinger_time) for electron waves. First, we define the {cite:t}`debroglie1925recherches` wavelength of a free electrons (corrected for relativistic effects) as
 
 ```{math}
 :label: eq:wavelength

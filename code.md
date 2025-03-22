@@ -55,7 +55,7 @@ sigma = 2.0
 x = np.arange(-5,5,0.1)
 y = np.arange(-5,5,0.1)
 
-ya,xa = np.meshgrid(y,x)
+xa,ya = np.meshgrid(x,y,indexing='ij')
 
 f = np.exp(
   -(xa**2 + ya**2) / (2*sigma**2)
