@@ -29,10 +29,13 @@
             11
         ],
         "extent": [
-            12.0,
-            6.0
+            6.0,
+            12.0
         ],
-        "metadata": {},
+        "metadata": {
+            "label": "potential",
+            "units": "eV / e"
+        },
         "sampling": [
             0.05,
             0.05

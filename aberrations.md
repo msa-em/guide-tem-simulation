@@ -6,13 +6,13 @@ label : CTF_page
 ---
 
 (wave-aberrations)=
-## Wave aberrations
+## Wave Aberrations
 
 An ideal lens forms a spherical wave converging on or emerging from a single point. This means that a plane wave will be converted to a spherical wave converging at the focal point of the lens, and the image of a point source is also a point. In STEM we want the objective lens to produce the smallest possible probe and in HRTEM we want the objective lens to produce a perfect magnified image of the sample. In most cases, both of these objectives require that we minimize all aberrations as much as possible. 
 
-However, while the last decades has seen enormous improvements in the optics of electron microscopes, they are far from ideal optical system. Imperfections causes the focused wave front to deviate from the ideal spherical surface. 
+While the last decades has seen enormous improvements in the optics of electron microscopes, S/TEMs are far from ideal optical system. Imperfections causes the focused wave front to deviate from the ideal spherical surface. 
 
-### Contrast transfer and the point-spread function
+### Contrast Transfer and the Point-Spread Function
 
 This deviation is typically expressed as a phase error or the aberration function, $\chi(\bm{k})$. Given a Fourier space wavefunction $\Psi_0(\bm{k})$ entering the lens, the wavefunction after passing through that lens can thus be expressed as 
 ```{math}
@@ -68,7 +68,7 @@ $$
 
 We typically cut off the `CTF` at the angle corresponding to the Scherzer [point resolution](https://en.wikipedia.org/wiki/High-resolution_transmission_electron_microscopy#Scherzer_defocus), which is defined as the angle where the phase of the `CTF` crosses the abscissa for the first time (`crossover_angle`).
 
-### Partial coherence (quasi-coherent)
+### Partial Coherence (Quasi-Coherent)
 Partial coherence acts similarly to the aperture function to dampen the high spatial frequencies of the signal. Partial coherence may be approximated by multiplying the `CTF` by envelope functions:
 
 $$
@@ -83,7 +83,7 @@ $$
 
 and $E_t(k)$ and $E_s(k)$ are the temporal and spatial envelopes, respectively (see [abTEM documentation](https://abtem.github.io/doc/user_guide/walkthrough/contrast_transfer_function.html#partial-coherence-quasi-coherent) for more detail).
 
-### Spherical-aberration limited contrast transfer
+### Spherical-Aberration Limited Contrast Transfer
 
 For an uncorrected microscope the dominant aberration is the third order spherical aberration ($C_{3,0}$). Assuming the other non-symmetric components have been well aligned by the user, the contrast transfer function simplifies to:
 ```{math}
@@ -91,7 +91,7 @@ For an uncorrected microscope the dominant aberration is the third order spheric
 ```
 Here we used the common aliases of the aberration coefficients, so $C10 = -\Delta f$ is the negative defocus and $C_{30} = C_s$ is the third order spherical aberration.
 
-#### Visualizing the contrast transfer function
+#### Visualizing the Contrast Transfer Function
 
 The contrast transfer function can also be plotted as a line profile, which *by convention* display the imaginary part of complex exponential of the phase error. The horizontal axis denotes a specific spatial frequency, while the vertical axis how the contrast at that spatial frequency is transferred.
 
