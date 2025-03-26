@@ -7,6 +7,8 @@ project:
   description: Computational article explaining the theory and practical applications of S/TEM image simulation. After reading, readers should feel comfortable in devising, preparing and running S/TEM image simulations, and be able to critically assess simulated images in the literature.
   thumbnail: thumbnail.png
   banner: banner.png
+  open_access: true
+  license: CC-BY-4.0
   github: https://github.com/msa-em/guide-tem-simulation
   jupyter: true
   # jupyter:
@@ -68,7 +70,6 @@ project:
       orcid: 0000-0003-2513-573X
       email: toma.susi@univie.ac.at
       affiliations: [vienna]
-  open_access: true
   requirements:
     - 'environment.yml'
   resources:
@@ -77,9 +78,6 @@ project:
     - format: meca
   exclude:
     - README.md
-    - 11_errors.md
-    - main.md
-    - original/*
   abbreviations:
     4D-STEM: four dimensional scanning transmission electron microscopy
     BF: bright-field

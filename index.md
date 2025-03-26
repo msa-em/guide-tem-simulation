@@ -17,6 +17,13 @@ Our aim is to help both newcomers and more experienced microscopists who may not
 
 +++
 
++++{"part":"epigraph"}
+:::{warning} Pre-print
+This article has not yet been peer-reviewed.  
+_Updated 2025 March 26_
+:::
++++
+
 ## Acknowledgements
 
 We are heavily indebted to the various excellent textbooks on electron microscopy, in particular [Advanced Computing in Electron Microscopy](doi:10.1007/978-3-030-33260-0) by Earl Kirkland. 
