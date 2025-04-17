@@ -11,10 +11,6 @@ project:
   license: CC-BY-4.0
   github: https://github.com/msa-em/guide-tem-simulation
   jupyter: true
-  # jupyter:
-  #  server:
-  #    url: http://localhost:8891
-  #    token: toma-token-devel
   #  jupyter:
   #    server:
   #      url: 'http://localhost:8888'
@@ -71,7 +67,8 @@ project:
       email: toma.susi@univie.ac.at
       affiliations: [vienna]
   requirements:
-    - 'environment.yml'
+    - 'Dockerfile'
+    - 'requirements.in'
   resources:
     - 'notebooks/**/*'
   exports:
