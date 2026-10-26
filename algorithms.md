@@ -267,7 +267,7 @@ We will use the multislice method in the rest of this article, so you can procee
 ## Bloch Wave Simulations
 
 While the multislice method is widely used for electron scattering simulations due to its flexibility and scalability, the Bloch wave method provides an alternative approach that is especially efficient for small, periodic structures. 
-The Bloch wave method was introduced by {cite:t}`bethe_theorie_1928`, and detailed descriptions can be found in {cite:t}`humphreys_scattering_1979` and {cite:t}`zuo_dynamical_2017`.
+The Bloch wave method was introduced by {cite:t}`bethe_theorie_1928`, and detailed descriptions can be found in {cite:t}`humphreys_scattering_1979`, {cite:t}`spence_electron_1992`, and {cite:t}`zuo_dynamical_2017`.
 The Bloch wave formalism leverages the translational symmetry of the crystal lattice to express the electron wavefunction as a sum of periodic Bloch states, significantly reducing computational effort for crystalline samples.
 This reduction in computational cost is possible because in a Bloch wave simulation, we only consider a small number of scattering vectors $\bm{g}$, or equivalently a small number of scattering angles $\alpha = \lambda |\bm{g}|$.
 
