@@ -23,7 +23,7 @@ Mathematically, both free propagating electrons and those bound into atoms are d
 
 An electron wavefunction, typically denoted by $\psi$, is a mathematical description of the quantum state of an isolated quantum system. 
 The wavefunctions are complex-valued, and thus not directly observable, but their squared amplitudes can be interpreted as probabilities to find the electrons in particular states that do correspond to physically observable properties of the system. 
-Wavefunctions naturally live in a many-dimensional mathematical space called the Hilbert space. 
+Wavefunctions naturally live in a many-dimensional mathematical space called the [Hilbert space](wiki:Hilbert_space) (see Chapter 3 of {cite:t}`griffiths_introduction_2018` for an introduction). 
 By choosing a basis of representation, they can be represented in real space, typically using either Cartesian (convenient for planewave propagation) or spherical coordinates (convenient for scattering).
 
 Two kinds of wavefunctions are commonly encountered in the context of electron scattering: freely propagating plane and spherical waves, and wavefunctions of electrons bound by (a collection of) atoms. 
@@ -54,12 +54,12 @@ To calculate the wave in an arbitrary position, we can simply substitute the new
 ## Bound Systems: The Schrödinger Equation
 
 To derive the wavefunction of a bound system, we need to solve the quantum "equation of motion" for the electron(s) in the corresponding confining potential: this is the Schrödinger equation. 
-The Schrödinger equation gives the fundamental mathematical description of quantum systems, describing the time-evolution of their wavefunction. 
+The Schrödinger equation gives the fundamental mathematical description of quantum systems, describing the time-evolution of their wavefunction {cite:p}`griffiths_introduction_2018`. 
 The equation for a single non-relativistic particle can in the position representation be written as
 
 ```{math}
 :label: eq:Schrodinger_time
-    \hbar \frac{\partial}{\partial t} \psi(\bm{r}, t)=\left[-\frac{\hbar^{2}}{2 m} \frac{\partial^{2}}{\partial \bm{r}^{2}}+V(\bm{r}, t)\right] \psi(\bm{r}, t),
+    i \hbar \frac{\partial}{\partial t} \psi(\bm{r}, t)=\left[-\frac{\hbar^{2}}{2 m} \frac{\partial^{2}}{\partial \bm{r}^{2}}+V(\bm{r}, t)\right] \psi(\bm{r}, t),
 ```
 
 where $\hbar$ is the reduced Planck constant, $m$ is the electron mass, and $V(\bm{r}, t)$ is the potential, e.g., Coulomb potential of a nucleus in the case of an atom. 
@@ -122,7 +122,7 @@ whose squared norm gives the (non-relativistic) electron density of hydrogen as
 
 To understand how electrons scatter from a potential, we can consider an electron plane wave incident on an isolated atom. 
 The wave interacts with the electrostatic potential of the nucleus and electrons of the atom, and an outgoing spherical wave is generated. 
-To understand the effect of the atom on the wave, we need to calculated the distribution of scattered intensity, which is not isotropic due to the initial linear momentum of the incident wave.
+To understand the effect of the atom on the wave, we need to calculate the distribution of scattered intensity, which is not isotropic due to the initial linear momentum of the incident wave.
 
 The scattering problem can be formally treated by finding a solution of the Schrödinger equation [](#eq:Schrodinger) for the incident electron inside the scattering atom (with electron coordinates $\bm{r^{\prime}}$)
 
@@ -182,20 +182,20 @@ By further defining $\Delta \bm{k} \equiv \bm{k}-\bm{k}_{0}$, we can write the s
 \psi_{\mathrm{scatt}}(\Delta \bm{k}, \bm{r})=\frac{\mathrm{e}^{\mathrm{i} k \cdot \bm{r}}}{|\bm{r}|} f(\Delta \bm{k}),
 ```
 
-which is a function of only the difference between the incident and outgoing wavevectors $\Delta \bm{k}$, describes the change in the direction of the scattered radiation with respect to the incident direction (i.e. momentumn transfer). The factor
+which is a function of only the difference between the incident and outgoing wavevectors $\Delta \bm{k}$, describes the change in the direction of the scattered radiation with respect to the incident direction (i.e. momentum transfer). The factor
 
 ```{math}
 :label: eq:formfactor
 f(\Delta \bm{k}) \equiv-\frac{m}{2 \pi \hbar^{2}} \int V\left(\bm{r}^{\prime}\right) \mathrm{e}^{-\mathrm{i} \Delta \bm{k} \cdot \bm{r}^{\prime}} \mathrm{d}^{3} \bm{r}^{\prime},
 ```
 
-is called the atomic form factor (or electron scattering factor {cite:p}`kirkland_advanced_2010` and it describes the angular distribution of scattered intensity.
+is called the atomic form factor (or electron scattering factor {cite:p}`kirkland_advanced_2010`) and it describes the angular distribution of scattered intensity.
 In the first Born approximation it corresponds to the Fourier transform of the scattering potential ($f(\Delta \bm{k})=\mathcal{F}_k[V(r)]$).
 
 (physics_atomic_form_factors)=
 ### Atomic Form Factors
 
-The atomic form factors thus describe the angular amplitude for scattering of a single electron of by a single atom. 
+The atomic form factors thus describe the angular amplitude for scattering of a single electron by a single atom. 
 While the first Born approximation is inadequate for describing real specimens (as electrons typically scatter multiple times when passing through a crystal), this description is quite useful since it relates the three-dimensional Fourier transform of the atomic potential to the scattering amplitude.
 
 In the general case, we can describe the potential as a sum of a negative term due to the Coulomb attraction of the nucleus with atomic number $Z$ and a positive term arising from the Coulomb repulsion of the atomic electrons with electron density $\rho(\bm{r})$
@@ -229,7 +229,7 @@ relating electron scattering factors with x-ray scattering factors $f_{x}(k)=\ma
 This comparison highlights that unlike x-ray scattering (where the nucleus is too heavy to accelerate in an interaction with a nearly massless photon), electron scattering is sensitive to both nuclear and electron charges, with the latter contribution being relatively enhanced for small electron scattering angles (corresponding to small momentum vectors $k$). 
 The Mott-Bethe formula is a convenient way to obtain the potential distribution from a charge distribution including the nuclear point charge, effectively by solving Poisson's equation in reciprocal space. 
 
-As an example, we can calculate the x-ray form factor for hydrogen in spherical coordinates (c.f. [](#eq:H_density), assuming that the incident electron wavevector $\bm{k} = (0, 0, k)$ is parallel to the $z$ axis. 
+As an example, we can calculate the x-ray form factor for hydrogen in spherical coordinates (c.f. [](#eq:H_density)), assuming that the incident electron wavevector $\bm{k} = (0, 0, k)$ is parallel to the $z$ axis. 
 In this spherically symmetric case, the x-ray form factor reduces to a radial integral
 
 ```{math}
@@ -244,7 +244,7 @@ f_{x}(\Delta k) = \frac{e^2}{m c^2} \int_{0}^{\infty} \frac{r \mathrm{e}^{-2r / 
      = \frac{e^2}{m c^2}\frac{1}{\left(1+\pi^2 \Delta k^2 a_0^{2}\right)^{2}}.
 ```
 
-Using the definition of the Bohr radius ($a_{0}=4 \pi \varepsilon_{0} \hbar^{2} / m e^{2}$), the electron scattering factor for hydrogen ($Z = 1$) can then further be written via by the Mott-Bethe formula as 
+Using the definition of the Bohr radius ($a_{0}=4 \pi \varepsilon_{0} \hbar^{2} / m e^{2}$), the electron scattering factor for hydrogen ($Z = 1$) can then further be written via the Mott-Bethe formula as 
 
 ```{math}
 f(\Delta k)=\frac{a_0}{2 \varepsilon_0 \Delta k^{2}} \left(1-\frac{1}{\left(1+\pi^2 \Delta k^2 a_0^{2}\right)^{2}}\right).
@@ -275,7 +275,7 @@ Independent atom model potentials and scattering factors for several elements.
 ## Density Functional Theory Potentials
 
 Since the complicated many-body interactions of multiple electrons mean that wavefunction cannot in general be analytically solved, further approximations are needed. 
-Density functional theory (DFT) is the most prominent one and is widely use for modeling the electronic structure of molecules and solids. 
+Density functional theory (DFT) is the most prominent one and is widely used for modeling the electronic structure of molecules and solids. 
 In DFT, the combinatorially intractable many-body problem of $N$ electrons with $3N$ spatial coordinates is reduced to a solution for the three spatial coordinates of the electron density that can be variationally reached. 
 This approximation would in principle be exact, but a term that describes electron exchange and correlation is not analytically known and must be approximated.
 
@@ -298,11 +298,11 @@ The Poisson equation is
 with the solution
 
 ```{math}
+:label: eq:H_potential
 V(r) = \frac{q_e}{4 \pi \epsilon_{0}} \frac{\mathrm{e^{-2 r / a_0}}}{r}\left(1 + \frac{r}{a_0}\right).
-\label{eq:H_potential}
 ```
 
-This expression is singular at the origin due to the point charge of the nucleus, but that singularity gets smeared out due and numerically discretized in practical calculations (by default, GPAW smears the nuclear potentials with a Gaussian function).
+This expression is singular at the origin due to the point charge of the nucleus. In practical calculations, the singularity is removed by smearing out the nuclear charge (by default, GPAW uses a Gaussian function) and by sampling the potential on a discrete numerical grid.
 
 In [](#fig:H_atom), we plot the exact solution of [](#eq:H_potential) against the Kirkland IAM parameterization as well as a DFT calculation using the GPAW code. 
 While all models agree perfectly near the nucleus (the discontinuous appearance of the line is due to a finite computational grid with a spacing of 0.01 Å), where the potential is the strongest, small differences emerge further away. 

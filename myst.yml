@@ -87,10 +87,10 @@ project:
     CPU: central processing unit
     CTF: contrast transfer function
     DF: dark-field
-    DFT: discete Fourier transform
+    DFT: discrete Fourier transform
     GPU: graphics processing unit
     FFT: fast Fourier transform
-    MTF: microscope transfer function
+    MTF: modulation transfer function
     STEM: scanning transmission electron microscopy
     S/TEM: scanning transmission electron microscopy
     TEM: transmission electron microscopy
