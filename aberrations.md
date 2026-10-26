@@ -92,7 +92,7 @@ Below we visualize each aberration by mapping the phase to different colors. We 
 ```
 ````
 
-We can also visualize this interactively as shown in [](#fig_ctf_psf).
+We can also visualize this interactively as shown in [](#fig_ctf_psf), where the sliders control the defocus, two-fold astigmatism, axial coma, three-fold astigmatism, and third- and fifth-order spherical aberration.
 
 ```{figure} #app:ctf_psf
 :name: fig_ctf_psf

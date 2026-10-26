@@ -153,7 +153,7 @@ There are myriad possibilities with 4D-STEM, and we refer you to other reference
 ```{figure} #app:stem_convergence
 :name: fig_stem_convergence
 :placeholder: ./static/stem_convergence.png
-Using the slider observe how the separation of Bragg disks and probe size change with convergence angle for graphene. 80 kV simulation.
+Using the slider observe how the separation of Bragg disks and probe size change with convergence angle for graphene. 80 kV simulation. The diffraction pattern intensity is shown with a fourth-root scaling, so that the weak Bragg disks of graphene are visible next to the direct beam.
 ```
 
 For more complex analysis, there are two most common modes for experimental set-up: small and large convergence angle, which can be explored in [](#fig_stem_convergence). Using a small convergence angle leads to large separation between Bragg disks in reciprocal space, which is ideal for orientation and strain experiments. For orientation mapping, the diffraction pattern at each position is compared to a library of patterns from a reference structure to solve for rotation of the crystal. Strain mapping is accomplished by comparing to a reference diffraction pattern and computing  subtle shifts in Bragg disks resulting from structural disorder. The structure of amorphous materials can also be studied with this configuration by computing the radial distribution function. Careful choice of simulation parameters is important for this set-up. The small convergence angle creates a large real space probe size, which requires a large cell to hold the probe. At the same time, the maximum scattering angle needs to be large enough to capture enough Bragg disks for structural identification.
