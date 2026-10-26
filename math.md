@@ -33,7 +33,7 @@ This unit is a number which satisfies the equation
 i^2 = -1.
 ```
 Examples of complex numbers include $3+5i$, $4/5-(9/7)i$, $-0.23+4.33i$, and $1+\sqrt{5}i$. [](#fig_complex) shows examples of complex numbers. 
-These are enormously powerful, and essential when performing calclations using [quantum mechanics](wiki:Quantum_mechanics). 
+These are enormously powerful, and essential when performing calculations using [quantum mechanics](wiki:Quantum_mechanics). 
 
 ```{figure} #app:complex_numbers
 :name: fig_complex
@@ -47,24 +47,53 @@ The magnitude of a complex number $z=a+ib$ is defined by its Euclidean length
 :label: eq:mag
 |z| = \sqrt{a^2 + b^2}.
 ```
-This quantity is also sometimes referred to as the magnitude or the absolute value. 
-The second quantity we define is the complex argument, defined as the angle $\phi$ from the real axis to the complex vector. 
-Note that we usually want the signed angle, meaning we use which quadrant the complex value $(a,b)$ is located in to determine the signed angle using the expression
+This quantity is also sometimes referred to as the modulus or the absolute value. 
+The second quantity we define is the complex argument, defined as the angle $\phi$ measured counterclockwise from the positive real axis to the complex vector $(a,b)$, as shown in [](#fig_complex). 
+The ratio $b/a$ alone does not determine this angle, because $(a,b)$ and $(-a,-b)$ have the same ratio but point in opposite directions. 
+The standard function $\arctan(b/a)$ only returns angles between $-\pi/2$ and $\pi/2$, and so we also need the signs of $a$ and $b$ to determine which quadrant the complex value is located in. 
+The two-argument arctangent function performs this quadrant correction, giving a signed angle between $-\pi$ and $\pi$,
 ```{math}
 :label: eq:arg
-\phi = \arctan2(b, a).
+\phi = \arctan2(b, a) = 
+\begin{cases}
+\arctan(b/a) & a > 0, \\
+\arctan(b/a) + \pi & a < 0,\ b \geq 0, \\
+\arctan(b/a) - \pi & a < 0,\ b < 0, \\
+\pi/2 & a = 0,\ b > 0, \\
+-\pi/2 & a = 0,\ b < 0.
+\end{cases}
 ```
-In programming, functions which measure this value are often named $\arg(z)$ or $\rm{angle}(z)$. 
-One of the most powerful identities using complex numbers is [Euler's formula](wiki:Euler%27s_formula)
+The angle is undefined for $z=0$, and most programming languages return $\phi = 0$ in this case. 
+In programming, functions which measure this value are often named $\arg(z)$ or $\rm{angle}(z)$, for example `numpy.angle()` in Python. 
+Going the other way, we can recover the real and imaginary parts from the magnitude and angle using $a = |z| \cos \phi$ and $b = |z| \sin \phi$.
+
+One of the most powerful identities using complex numbers is [Euler's formula](wiki:Euler%27s_formula), which for a real angle $\phi$ is
 ```{math}
 :label: eq:euler
-\exp(i z) = \cos(z) + i \sin(z).
+\exp(i \phi) = \cos(\phi) + i \sin(\phi).
 ```
-This expression links complex numbers to the trigonometric functions. 
+This expression links complex numbers to the trigonometric functions, and combining it with the expressions for $a$ and $b$ above allows us to write any complex number in polar form as
+```{math}
+:label: eq:polar
+z = a + ib = |z| \left[\cos(\phi) + i \sin(\phi)\right] = |z| \exp(i \phi).
+```
 This relationship foreshadows a key upcoming concept, namely that the trigonometric oscillations describe waves, where the physical concept of the complex angle will be mapped onto relative phase shifts of electron waves. 
 We will therefore usually refer to the complex argument as the **phase** of a given complex value.
 
 As we will see, even though computers internally store complex numbers using real and imaginary components as $z=(a,b)$, it is often more intuitive for us to represent these numbers using their magnitude and phase, i.e. as $|z| \exp{(i \phi)}$.
+Multiplication shows why. 
+For two complex numbers $z_1 = a_1 + i b_1 = |z_1| \exp(i \phi_1)$ and $z_2 = a_2 + i b_2 = |z_2| \exp(i \phi_2)$, using [](#eq:imag) the product in Cartesian form is
+```{math}
+:label: eq:product_cartesian
+z_1 z_2 = (a_1 a_2 - b_1 b_2) + i (a_1 b_2 + a_2 b_1),
+```
+while in polar form it is simply
+```{math}
+:label: eq:product_polar
+z_1 z_2 = |z_1| |z_2| \exp\left[i (\phi_1 + \phi_2)\right].
+```
+When we multiply two complex numbers, their magnitudes multiply and their phases add. 
+We will use this property many times, for example when an electron wave passes through a thin specimen and picks up a phase shift, which we compute by multiplying the wave by a complex number with unit magnitude.
 
 We also sometimes take the [conjugate](wiki:Complex_conjugate) of complex numbers, which means that we reverse the sign of the imaginary part. 
 This operation is defined for a complex number $z=a+i b$ as
@@ -77,6 +106,8 @@ or for $z=|z| \exp{(i \phi)}$ as
 :label: eq:complex_conjugate_2
 z^* = |z|\exp{(-i \phi)}.
 ```
+Multiplying a complex number by its conjugate gives the squared magnitude $z z^* = a^2 + b^2 = |z|^2$, which is a real number. 
+This is how we compute measured intensities from complex electron wavefunctions.
 
 (math_fourier_transform)=
 ## 1D Fourier Transform
@@ -99,7 +130,7 @@ and we can recover the original function with the inverse transform
 :label: eq:ft_inverse
 f(x) = \frac{1}{2 \pi} \int_{-\infty}^{\infty}
   F(\omega) \exp\left(
-    -i \omega x
+    i \omega x
   \right) d\omega.
 ```
 
@@ -122,7 +153,7 @@ We instead use the [discrete Fourier transform](wiki:Discrete_Fourier_transform)
 \end{aligned}
 ```
 where $N$ is the number of samples for both functions, and $f_n$ is the $n$'th sample of $f(x)$. 
-The inverse DTF is defined as
+The inverse DFT is defined as
 ```{math}
 :label: eq:dft_inverse
 \begin{aligned}
@@ -137,12 +168,12 @@ The inverse DTF is defined as
 ```
 where $F_k$ is the $k$'th sample of $F(k)$. 
 Both $f(x)$ and $F(k)$ can be complex-valued. 
-If either sequence is purely real-valued, the other will be conjugate symmetric, which means that if reverse the sequence and take the complex conjugate, we will recover the same sequence.
+If either sequence is purely real-valued, the other will be conjugate symmetric, which means that if we reverse the sequence and take the complex conjugate, we will recover the same sequence.
 
 [](#fig:fft_1d) shows an interactive version of the 1D discrete Fourier transform. 
 Try switching between the different preset functions. 
 You can also change the amplitude of $F(k)$ by clicking and moving the points up and down, or the phase by moving left and right. 
-It can be difficult at first to gain intution for how changing the values of a given spatial frequency $F_k$ will change the output, but working in Fourier space will become second nature to you when you routinely perform STEM simulations.
+It can be difficult at first to gain intuition for how changing the values of a given spatial frequency $F_k$ will change the output, but working in Fourier space will become second nature to you when you routinely perform STEM simulations.
 
 ```{figure} #app:fft_1d
 :name: fig:fft_1d
@@ -195,7 +226,7 @@ We can simplify this notation by combining the two sequential operations into on
 ```
 where $\bm{r} = (x,y)$ and $\bm{k} = (k_x,k_y)$ are the 2D coordinate systems for real and diffraction space respectively. 
 As in the 1D case, in practice we use the [fast Fourier transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform) (FFT) algorithm to compute these transforms with small computational overhead. 
-[](#fig:fft_2d) shows an interactive version of the forward and and inverse 2D FFT. 
+[](#fig:fft_2d) shows an interactive version of the forward and inverse 2D FFT. 
 
 
 ```{figure} #app:fft_2d
@@ -206,7 +237,7 @@ Both images have been FFT-shifted, with origins shown as a red `+` symbol.
 Amplitude is shown as the pixel values, while phase is shown as a periodic colorwheel.
 ```
 
-On the left panel of [](fig:fft_2d), you can click to swap individual pixels between 0 and 1 in Fourier space, while observing the response on the real space function. 
+On the left panel of [](#fig:fft_2d), you can click to swap individual pixels between 0 and 1 in Fourier space, while observing the response on the real space function. 
 On the right panel, you can click and drag to shift the function by a distance $\Delta \bm{r}$, which is applied by using the Fourier shift theorem as
 ```{math}
 f(\bm{r} - \Delta \bm{r}) =

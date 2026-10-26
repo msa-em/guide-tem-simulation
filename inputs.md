@@ -89,3 +89,59 @@ $$
 Finally, we want to stress the perhaps non-intuitive fact that although some codes allow the sampling of diffraction patterns to be separately set, due to the reciprocal pixel-wise numerical correspondence between the real and reciprocal spaces, the only true way to improve reciprocal-space sampling, i.e. decrease $\Delta k$, is to increase the size of the supercell in $x$ and $y$.
 
 In *ab*TEM we choose to retain the direct correspondence between the real-space extent of the potential and the reciprocal-space sampling, and only use interpolation to *decrease* the number of pixels along one direction to reach [uniform sampling](https://abtem.github.io/doc/reference/api/_autosummary/abtem.measurements.DiffractionPatterns.html#abtem.measurements.DiffractionPatterns.interpolate). You can find some more information in the [*ab*TEM documentation](https://abtem.github.io/doc/user_guide/appendix/antialiasing.html).
+
+(choosing-sampling)=
+### Choosing the Grid Size and Sampling
+
+The real-space sampling and the size of the simulation cell are the two most important numerical parameters in a simulation, and choosing them poorly can produce errors which are easy to miss {cite:p}`kirkland2020`.
+
+The real-space sampling $\Delta x$ sets the highest scattering angle included in the simulation. 
+Because the transmission operator multiplies the wavefunction by the transmission function in real space, which is a convolution in Fourier space, the multislice method can produce aliasing artifacts at the edges of Fourier space. 
+To prevent these, most codes including *ab*TEM apply an antialiasing aperture which removes all spatial frequencies above $2/3$ of $k_{\mathrm{max}}$, giving a maximum scattering angle of
+```{math}
+:label: eq:max_angle
+\alpha_{\mathrm{max}} = \frac{2}{3} \frac{\lambda}{2 \Delta x} = \frac{\lambda}{3 \Delta x}.
+```
+For example, at 200 kV ($\lambda \approx 0.0251$ Å) a sampling of $\Delta x = 0.05$ Å gives $\alpha_{\mathrm{max}} \approx 168$ mrad. 
+Any electrons scattered beyond this angle are removed from the simulation. 
+For STEM simulations, $\alpha_{\mathrm{max}}$ must therefore be larger than the outer angle of every detector we want to simulate, otherwise the simulated ADF signals will be too low. 
+The sampling must also be fine enough to describe the sharply peaked atomic potentials, which is why typical values are between 0.02 and 0.05 Å.
+
+The size of the simulation cell $L$ sets the reciprocal-space sampling $\Delta k = 1/L$. 
+In STEM, the cell must be large enough to contain the full probe, including the probe tails and any spreading of the probe through the thickness of the specimen and from defocus. 
+Because the multislice method uses periodic boundary conditions, a probe which is too large for the cell will overlap with its own periodic images, producing wrap-around artifacts. 
+The cell must also be large enough to sample the diffraction pattern finely, since the number of pixels across the diameter of the bright field disk is $2 \alpha_{\mathrm{cutoff}} L / \lambda$, where $\alpha_{\mathrm{cutoff}}$ is the convergence semiangle. 
+For example, a $20$ mrad probe at 200 kV in a $20$ Å cell gives approximately 32 pixels across the bright field disk, which is sufficient for most detector geometries. 
+Small or finely structured detectors, such as those used for DPC or 4D-STEM, require finer sampling of the diffraction pattern and therefore larger cells.
+
+The safest way to choose these parameters is to perform a convergence test: repeat a small test simulation with finer sampling and a larger cell, and confirm that the quantity of interest (for example an image contrast or an integrated detector intensity) no longer changes by more than the required precision. 
+Note that the real-space sampling of the wavefunction is independent of the STEM probe step size, which we discuss in [](#imaging).
+
+(frozen-phonons)=
+## Thermal Vibrations and Frozen Phonons
+
+Atoms in a real specimen vibrate about their equilibrium positions, even at cryogenic temperatures due to zero-point motion. 
+A fast electron passes through a typical TEM specimen in approximately $10^{-16}$ s, which is much shorter than the period of atomic vibrations (approximately $10^{-13}$ s). 
+Each electron therefore sees the atoms frozen in a single set of displaced positions. 
+In the frozen phonon method, we perform many multislice simulations, each with a different random set of atomic displacements, and average the resulting intensities incoherently {cite:p}`loane_thermal_1991`.
+
+In the simplest model, the Einstein model, each atom is displaced independently by a random Gaussian displacement along each direction, with a root-mean-square displacement $u$ for each element. 
+These values can be taken from the Debye-Waller factors $B = 8 \pi^2 u^2$ measured by X-ray or neutron diffraction, and are typically on the order of $0.1$ Å at room temperature. 
+More accurate models use correlated displacements from molecular dynamics or phonon calculations {cite:p}`forbes_thermal_2011`.
+
+Averaging the intensities over many configurations produces thermal diffuse scattering (TDS), the diffuse intensity between and beyond the Bragg disks, which dominates the signal at high scattering angles. 
+TDS is therefore essential for quantitative simulations of HAADF-STEM images, and also reduces the intensity of the Bragg beams and changes the contrast of TEM images and CBED patterns. 
+Even though phonon scattering is an inelastic process, the energy lost by the fast electron is only tens to hundreds of meV, and the frozen phonon method describes the resulting intensity accurately {cite:p}`van_dyck_frozen_2009`.
+
+Because the frozen phonon result is a Monte Carlo average, its statistical error decreases with the number of configurations $N$ as $1/\sqrt{N}$. 
+The number of configurations needed depends on the measurement. 
+Signals which integrate over large regions of the diffraction pattern, such as ADF images, typically converge with fewer configurations than individual diffraction patterns, where the TDS between the Bragg disks remains speckled until many configurations have been averaged. 
+Larger simulation cells also require fewer configurations, because each configuration already contains more independently displaced atoms. 
+As for the sampling, a practical approach is to increase $N$ (for example from 4 to 8 to 16 configurations) until the quantity of interest changes by less than the required precision. 
+In *ab*TEM, frozen phonons are defined by wrapping the atomic model, for example
+
+```python
+frozen_phonons = abtem.FrozenPhonons(atoms, num_configs=16, sigmas=0.1)
+```
+
+where `sigmas` is the root-mean-square displacement $u$ in Å, which can also be given separately for each element.
