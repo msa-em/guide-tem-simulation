@@ -152,7 +152,7 @@ $$
     \mathrm{CTF}(k, \phi) = E_t(k) E_s(k) A(k) \exp[-i \chi(k, \phi)]
 $$
 
-and $E_t(k)$ and $E_s(k)$ are the temporal and spatial envelopes, respectively. For a Gaussian distribution of defocus values with root-mean-square focal spread $\Delta$, the temporal envelope is $E_t(k) = \exp\left[-\frac{1}{2}\left(\pi \lambda \Delta k^2\right)^2\right]$ {cite:p}`kirkland2020`, while the spatial envelope depends on the gradient of the aberration function $\chi(\bm{k})$ and on the angular spread of the illumination (see the [abTEM documentation](https://abtem.github.io/doc/user_guide/walkthrough/contrast_transfer_function.html#partial-coherence-quasi-coherent) for more detail).
+and $E_t(k)$ and $E_s(k)$ are the temporal and spatial envelopes, respectively. For a Gaussian distribution of defocus values with root-mean-square focal spread $\Delta$, the temporal envelope is $E_t(k) = \exp\left[-\frac{1}{2}\left(\pi \lambda \Delta k^2\right)^2\right]$ {cite:p}`kirkland2020`, while the spatial envelope depends on the gradient of the aberration function $\chi(\bm{k})$ and on the angular spread of the illumination (see the [abTEM documentation](https://abtem.github.io/doc/user_guide/walkthrough/contrast_transfer_function.html#partial-coherence-quasi-coherent) for more detail). Note that the `focal_spread` and `angular_spread` parameters in *ab*TEM, which we use for the interactive figures, follow the convention of {cite:t}`kirkland2020` and give the $1/e$ half-width of each distribution, which is $\sqrt{2}$ times its standard deviation.
 
 ### Spherical-Aberration Limited Contrast Transfer
 
